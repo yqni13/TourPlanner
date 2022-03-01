@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500">
+        Title="MainWindow" Height="Auto" Width="500">
     
     <!-- User-Interface Structure -->
     <Border BorderThickness="1.5" BorderBrush="DarkGray" Margin="2">
@@ -50,8 +50,8 @@
                     <TextBlock FontSize="20" Margin="10 0 0 0" HorizontalAlignment="Stretch">?</TextBlock>
                 </Border>
             </DockPanel>
-            <StackPanel Orientation="Horizontal">
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
+            <DockPanel VerticalAlignment="Bottom" Height="Auto">
+                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Width="125">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
@@ -131,7 +131,7 @@
                         </StackPanel>
                     </Border>
                 </StackPanel>
-            </StackPanel>
+            </DockPanel>
 
         </StackPanel>
 
