@@ -13,6 +13,18 @@
             <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
                 <TextBlock FontWeight="Bold" FontSize="22" HorizontalAlignment="Stretch" Margin="10 0 0 0">Tour-Planner</TextBlock>
             </Border>
+            
+            <!-- version with menuitems -->
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="_Settings" IsCheckable="True"/>
+                </MenuItem>
+                <MenuItem Header="Edit" />
+                <MenuItem Header="Options" />
+                <MenuItem Header="Help" />
+            </Menu>
+            
+            <!-- version with classic TextBlocks
             <StackPanel Orientation="Horizontal">
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
                     <TextBlock FontSize="20" Margin="10 0 0 0">File</TextBlock>
@@ -26,7 +38,7 @@
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
                     <TextBlock FontSize="20" Margin="10 0 0 0">Help</TextBlock>
                 </Border>
-            </StackPanel>
+            </StackPanel> end -->
             <DockPanel>
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
                     <TextBlock FontSize="20" Margin="10 0 0 0">Search</TextBlock>
