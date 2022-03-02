@@ -27,21 +27,6 @@
                 <MenuItem Header="Help" />
             </Menu>
             
-            <!-- version with classic TextBlocks
-            <StackPanel Orientation="Horizontal">
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                    <TextBlock FontSize="20" Margin="10 0 0 0">File</TextBlock>
-                </Border>
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                    <TextBlock FontSize="20" Margin="10 0 0 0">Edit</TextBlock>
-                </Border>
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                    <TextBlock FontSize="20" Margin="10 0 0 0">Options</TextBlock>
-                </Border>
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                    <TextBlock FontSize="20" Margin="10 0 0 0">Help</TextBlock>
-                </Border>
-            </StackPanel> end -->
             <DockPanel>
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
                     <TextBlock FontSize="20" Margin="10 0 0 0">Search</TextBlock>
