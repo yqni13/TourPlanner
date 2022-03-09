@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
+        xmlns:local="clr-namespace:TourPlanner.ViewComponents"
         mc:Ignorable="d"
         Title="MainWindow" Height="Auto" Width="500">
     
@@ -29,11 +30,12 @@
             
             <DockPanel>
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                    <TextBlock FontSize="20" Margin="10 0 0 0">Search</TextBlock>
+                    <TextBlock FontSize="20" Margin="10 0 0 0" HorizontalAlignment="Stretch">Search</TextBlock>
                 </Border>
-                <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
+                <Button DockPanel.Dock="Right" Content="Search" Margin="2" Width="60"/>
+                <!--<Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
                     <TextBlock FontSize="20" Margin="10 0 0 0" HorizontalAlignment="Stretch">?</TextBlock>
-                </Border>
+                </Border>-->
             </DockPanel>
             <DockPanel VerticalAlignment="Bottom" Height="Auto">
                 <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Width="125">
@@ -52,10 +54,11 @@
                                 <TextBlock FontWeight="Bold">[!]</TextBlock>
                             </Border>
                         </StackPanel>
-                        <TextBlock>-Placeholder#1</TextBlock>
+                        <local1:TourDataResults x:Name="TourDataResults" />
+                        <!--<TextBlock>-Placeholder#1</TextBlock>
                         <TextBlock>-Placeholder#2</TextBlock>
                         <TextBlock>-Placeholder#3</TextBlock>
-                        <TextBlock>...</TextBlock>
+                        <TextBlock>...</TextBlock>-->
                     </StackPanel>
                 </Border>
                 <StackPanel Orientation="Vertical">

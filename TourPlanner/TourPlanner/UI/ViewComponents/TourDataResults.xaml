@@ -17,6 +17,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Padding="5" Margin="0,5,5,5">List filtered tour data:</Label>
-        <Label FontSize="14" FontWeight="ExtraBold" Grid.Row="1" Grid.Column="0" Padding="5" Margin="0,5,5,5" Content="{}"></Label>
+        <Label FontSize="14" FontWeight="ExtraBold" Grid.Row="1" Grid.Column="0" Padding="5" Margin="0,5,5,5" Content="{Binding Path=Result}"></Label>
     </Grid>
 </Page>

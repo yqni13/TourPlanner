@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\" />
-    <Folder Include="BL\" />
+    <Compile Remove="BL\**" />
+    <Compile Remove="DAL\**" />
+    <EmbeddedResource Remove="BL\**" />
+    <EmbeddedResource Remove="DAL\**" />
+    <None Remove="BL\**" />
+    <None Remove="DAL\**" />
+    <Page Remove="BL\**" />
+    <Page Remove="DAL\**" />
   </ItemGroup>
 
 </Project>
