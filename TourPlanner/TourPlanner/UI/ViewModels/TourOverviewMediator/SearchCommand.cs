@@ -8,36 +8,23 @@ namespace TourPlanner.UI.ViewModels
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
-        public SearchCommand(Action<object> exe, Predicate<object> canExe)
+        public SearchCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            _execute = exe ?? throw new ArgumentNullException(nameof(exe));
-            _canExecute = canExe;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
         }
 
-        public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
-        {
-            _canExecute?.Invoke(parameter);
-            throw new NotImplementedException();
-        }
+        public bool CanExecute(object parameter) => _canExecute?.Invoke(parameter) ?? true;
 
-        public void Execute(object parameter)
-        {
-            _execute.Invoke(parameter);
-            throw new NotImplementedException();
-        }
 
-        public event EventHandler CommandChange
+        public void Execute(object parameter) => _execute.Invoke(parameter);
+
+
+        public event EventHandler CanExecuteChanged
         {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-            }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 }

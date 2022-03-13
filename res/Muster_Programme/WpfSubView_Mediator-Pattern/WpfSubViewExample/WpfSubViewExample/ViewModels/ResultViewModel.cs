@@ -8,7 +8,7 @@ namespace WpfSubViewExample.ViewModels
     {
         private string _resultText;
 
-        public string ResultText 
+        public string ResultText
         {
             get { return _resultText; }
             set

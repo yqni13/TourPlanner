@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:TourPlanner.UI.ViewComponents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="500">
+        Title="MainWindow" Height="300" Width="500">
     
     <Grid Margin="3">
         <Grid.RowDefinitions>
@@ -37,88 +37,6 @@
 
     </Grid>
 
-    
-            
-    <!--<DockPanel VerticalAlignment="Bottom" Height="Auto">
-        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Width="125">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal">
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                        <TextBlock FontWeight="Bold">Tours</TextBlock>
-                    </Border>
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                        <TextBlock FontWeight="Bold">+</TextBlock>
-                    </Border>
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                        <TextBlock FontWeight="Bold">-</TextBlock>
-                    </Border>
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-                        <TextBlock FontWeight="Bold">[!]</TextBlock>
-                    </Border>
-                </StackPanel>
-                <local1:TourDataResults x:Name="TourDataResults" />
-                        
-            </StackPanel>
-        </Border>
-        <StackPanel Orientation="Vertical">
-                    
-                    
-            <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                <StackPanel Orientation="Vertical">
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                        <TextBlock HorizontalAlignment="Stretch">Title:</TextBlock>
-                    </Border>
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock FontWeight="Bold" HorizontalAlignment="Stretch">Route</TextBlock>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock FontWeight="Bold" HorizontalAlignment="Stretch">Description</TextBlock>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock HorizontalAlignment="Stretch"> - - - </TextBlock>
-                        </Border>
-                    </StackPanel>
-                    <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                        <TextBlock Margin="25"></TextBlock>                                
-                    </Border>
-                </StackPanel>
-            </Border>
-                    
-                    
-            <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock>Logs:</TextBlock>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock HorizontalAlignment="Stretch">+ - [!]</TextBlock>
-                        </Border>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock FontWeight="Bold" HorizontalAlignment="Stretch">Route</TextBlock>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock FontWeight="Bold" HorizontalAlignment="Stretch">Description</TextBlock>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="DimGray" Margin="2">
-                            <TextBlock HorizontalAlignment="Stretch"> -</TextBlock>
-                        </Border>                                
-                    </StackPanel>
-                    <DataGrid>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date" FontWeight="Bold" FontStyle="Italic"/>
-                            <DataGridTextColumn Header="Duration" FontWeight="Bold"/>
-                            <DataGridTextColumn Header="Distance" FontWeight="Bold"/>
-                            <DataGridTextColumn Header="..." FontWeight="Bold"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </DockPanel>-->
-
+ 
        
 </Window>

@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿)using System.Windows;
 using WpfSubViewExample.SearchEngine;
 using WpfSubViewExample.ViewModels;
 

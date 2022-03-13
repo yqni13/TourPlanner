@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.UI.TourSearch
 {
-    interface ISearch
+    public interface ISearch
     {
         string[] TourSearch(string searchText);
     }

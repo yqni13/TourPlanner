@@ -13,17 +13,17 @@ namespace TourPlanner.UI.ViewModels
 
         public string Result
         {
-            get => _result;
+            get { return _result; }
             set
             {
                 _result = value;
                 OnPropertyChanged();
-            }            
+            }
         }
 
-        public void DisplayTourDataOverview(string result)
+        public void DisplayTourDataOverview(string resultText)
         {
-            Result = result;
+            Result = resultText;
         }
     }
 }

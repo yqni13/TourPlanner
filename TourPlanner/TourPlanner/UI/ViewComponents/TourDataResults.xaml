@@ -3,21 +3,20 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TourPlanner.UI.ViewComponents" 
-      xmlns:viewmodels="clr-namespace:TourPlanner.UI.ViewModels"              
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
+             
+             mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="500"
       >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="0" Padding="5" Margin="2" FontSize="20">Tours</Button>
-        <Label FontSize="14" FontWeight="ExtraBold" Grid.Row="1" Grid.Column="0" Padding="5" Margin="0,5,5,5" Content="{Binding Path=Result}"></Label>
+        <Label Foreground="MediumPurple" FontSize="14" FontWeight="ExtraBold" Grid.Row="1" Grid.Column="0" Padding="5" Margin="0,5,5,5" Content="{Binding Path=Result}"></Label>
     </Grid>
 </UserControl>
