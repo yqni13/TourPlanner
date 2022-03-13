@@ -16,13 +16,21 @@ using System.Windows.Shapes;
 namespace TourPlanner.UI.ViewComponents
 {
     /// <summary>
-    /// Interaction logic for TourDataResults.xaml
+    /// Interaction logic for TourSearchBar.xaml
     /// </summary>
-    public partial class TourDataResults : UserControl
+    public partial class TourSearchBar : UserControl
     {
-        public TourDataResults()
+        public TourSearchBar()
         {
             InitializeComponent();
+        }
+
+        private void ChangeHint(object sender, TextChangedEventArgs e)
+        {
+            if (SearchInputBox.Text.Length == 0)
+                SearchBoxInputHint.Visibility = Visibility.Visible;
+            else
+                SearchBoxInputHint.Visibility = Visibility.Hidden;
         }
     }
 }

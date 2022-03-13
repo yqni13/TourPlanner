@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TourPlanner.UI.ViewComponents
 {
     /// <summary>
-    /// Interaction logic for TourDataResults.xaml
+    /// Interaction logic for TourMenu.xaml
     /// </summary>
-    public partial class TourDataResults : UserControl
+    public partial class TourMenu : UserControl
     {
-        public TourDataResults()
+        public TourMenu()
         {
             InitializeComponent();
         }

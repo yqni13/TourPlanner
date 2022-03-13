@@ -8,6 +8,6 @@ namespace TourPlanner.UI.TourSearch
 {
     interface ISearch
     {
-        Dictionary<string, string> TourSearch(string entry);
+        string[] TourSearch(string searchText);
     }
 }

@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.UI.TourSearch
 {
-    class SearchTourData
+    class SearchTourData : ISearch
     {
-        public Dictionary<string, string> TourSearch(string entry)
+        public string[] TourSearch(string searchText)
         {
-            Dictionary<string, string> tourData = new();
-            for (int i = 0; i < 3; ++i)
-                tourData.Add($"march{i}", $"Tour entry #{i}");
-
-            return tourData;
+            return new[] { $"Filtered result for: {searchText}\n=> Example tour route abc\n=> Example tour route xyz" };
         }
     }
 }
