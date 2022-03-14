@@ -4,7 +4,7 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
-    class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private readonly TourOverviewViewModel resultView;
         private readonly ISearch searchEngine;

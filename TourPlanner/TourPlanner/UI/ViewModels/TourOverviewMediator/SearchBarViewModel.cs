@@ -8,7 +8,7 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
-    class SearchBarViewModel : BaseViewModel
+    public class SearchBarViewModel : BaseViewModel
     {
         public event EventHandler<string> SearchTextChanged;
 

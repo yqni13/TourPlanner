@@ -7,9 +7,11 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 
 namespace TourPlanner.UI.ViewModels
 {
-    internal class TourOverviewViewModel : BaseViewModel
+    public class TourOverviewViewModel : BaseViewModel
     {
         private string _result;
+
+        public TourOverviewViewModel() { }
 
         public string Result
         {
@@ -19,6 +21,14 @@ namespace TourPlanner.UI.ViewModels
                 _result = value;
                 OnPropertyChanged();
             }
+        }
+
+        public bool IsResultEmpty()
+        {
+            if (string.IsNullOrEmpty(Result))
+                return true;
+            // Purpose of method serves only for Unit Test at the moment.
+            return false;
         }
 
         public void DisplayTourDataOverview(string resultText)
