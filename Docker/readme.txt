@@ -1,3 +1,3 @@
-docker build -t my-postgres-db ./
+docker build -t tourplanner-postgres-image ./
 
-docker run -d --name postgres-container -p 5432:5432 my-postgres-db
+docker run -d --name tourplanner-postgres-container -p 5432:5432 tourplanner-postgres-image
