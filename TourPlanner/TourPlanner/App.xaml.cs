@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,9 +19,13 @@ namespace TourPlanner
     {
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
+                .Build();
+
             var searchBar = new SearchBarViewModel();
             var searchData = new SearchTourData();
-            var tourOverview = new TourOverviewViewModel();
+            var tourOverview = new TourOverviewViewModel(configuration["example:TourLogX"]);
 
             var window = new MainWindow
             {
