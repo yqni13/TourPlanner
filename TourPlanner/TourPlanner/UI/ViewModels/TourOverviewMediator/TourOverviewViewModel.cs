@@ -37,8 +37,8 @@ namespace TourPlanner.UI.ViewModels
 
         public void DisplayTourDataOverview(string resultText)
         {
-            //Result = resultText;
-            Result = _configexample;
+            Result = resultText;
+            //Result = _configexample;
         }
     }
 }

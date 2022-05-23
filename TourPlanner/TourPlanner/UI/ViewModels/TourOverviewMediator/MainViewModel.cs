@@ -1,6 +1,8 @@
 ﻿using System;
+using TourPlanner.DAL;
 using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewModels.AbstractMediator;
+
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
@@ -14,7 +16,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
             searchBar.SearchTextChanged += (_, searchText) =>
             {
-                SearchTours(searchText);
+                SearchTours(searchText);                
             };
             this.resultView = resultView;
             this.searchEngine = searchEngine;

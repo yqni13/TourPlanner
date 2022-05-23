@@ -6,17 +6,19 @@
              xmlns:local="clr-namespace:TourPlanner.UI.ViewComponents"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="80">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Orientation="Vertical">
-            <Button FontSize="16" Grid.Column="0" Margin="1 1 1 25" >File</Button>
-            <Button FontSize="16" Grid.Column="0" Margin="1 1 1 25" >Edit</Button>
-            <Button FontSize="16" Grid.Column="0" Margin="1 1 1 25" >Options</Button>
-            <Button FontSize="16" Grid.Column="0" Margin="1 1 1 0" >Help</Button>
-        </StackPanel>
-    </Grid>
+    
+    <Menu >
+        <MenuItem Header="_File">
+            <MenuItem Header="_New" />
+            <MenuItem Header="_Open" />
+            <MenuItem Header="_Save" />
+            <Separator />
+            <MenuItem Header="_Exit" />
+        </MenuItem>
+        <MenuItem Header="_Edit">            
+        </MenuItem>
+        <MenuItem Header="_Options">
+        </MenuItem>
+    </Menu>
 
 </UserControl>

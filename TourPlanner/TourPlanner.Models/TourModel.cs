@@ -8,7 +8,7 @@ namespace TourPlanner.Models
 {
     public class TourModel
     {
-        string _name() { get, private set};
+        public string _name { get; private set;}
         private List<LogModel> _logs = new List<LogModel>();
     }
 }

@@ -23,4 +23,14 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
   </ItemGroup>
 
+    <ItemGroup>
+	    <CSFile Include="*.cs" Exclude="Tourplanner.json.config" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TourPlanner.BL\TourPlanner.BL.csproj" />
+      <ProjectReference Include="..\TourPlanner.DAL\TourPlanner.DAL.csproj" />
+      <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
+    </ItemGroup>
+
 </Project>

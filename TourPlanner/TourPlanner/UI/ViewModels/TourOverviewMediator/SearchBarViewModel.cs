@@ -10,6 +10,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class SearchBarViewModel : BaseViewModel
     {
+        //Subscribe to this in order to get notivied of event 
         public event EventHandler<string> SearchTextChanged;
 
         public ICommand SearchCommand { get; }
@@ -27,6 +28,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
         public SearchBarViewModel()
         {
+            //SearchCommand function raises the SearchTextChanged event when called            
             SearchCommand = new SearchCommand((_) =>
             {
                 this.SearchTextChanged?.Invoke(this, SearchText);

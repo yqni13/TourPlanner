@@ -5,32 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:TourPlanner.UI.ViewComponents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="535" MaxHeight="1000" Width="500" MaxWidth="1000">
+        Title="MainWindow" Height="535" MaxHeight="1000" Width="700" MaxWidth="1000">
     
     <Grid Margin="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/> <!-- GridSplitter -->
-            <RowDefinition Height="Auto" MinHeight="150" MaxHeight="250"/>
-            <RowDefinition Height="Auto"/> <!-- GridSplitter -->
-            <RowDefinition Height="Auto" MinHeight="150" MaxHeight="250"/>
+            <RowDefinition Height="*"/>            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300" MaxWidth="300"/>            
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="30" Content="TourPlanner" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="CadetBlue"/>
-        <local:TourMenu x:Name="TourMenu" Grid.Row="1" Grid.RowSpan="6" Grid.Column="0"/>
-        <GridSplitter Grid.Row="1" Grid.RowSpan="6" Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <local:TourSearchBar x:Name="TourSearchBar" Grid.Row="1" Grid.Column="2"/>
-        <local:TourDataResults x:Name="TourDataResults" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <GridSplitter Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="3" HorizontalAlignment="Stretch"></GridSplitter>        
-        <local:TourDataDetails x:Name="TourDataDetails" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <GridSplitter Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <local:TourDataLogs Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <local:TourMenu x:Name="TourMenu" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <DockPanel Grid.Row="3" Grid.Column="0">
+            <local:TourSearchBar x:Name="TourSearchBar" DockPanel.Dock="Top"/>
+            <local:TourDataResults x:Name="TourDataResults" DockPanel.Dock="Top"/>
+        </DockPanel>
+        <Grid Margin="3" Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <local:TourDataDetails x:Name="TourDataDetails" Grid.Row="0" Grid.Column="0"/>
+            <GridSplitter Grid.Row="1" Grid.Column="0" Height="3" HorizontalAlignment="Stretch"></GridSplitter>
+            <local:TourDataLogs Grid.Row="2" Grid.Column="0" />
+        </Grid>
+                
+        <GridSplitter Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+                    
+        
     </Grid>
 
  
