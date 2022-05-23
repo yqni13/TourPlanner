@@ -29,7 +29,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
         public SearchBarViewModel()
         {
             //SearchCommand function raises the SearchTextChanged event when called            
-            SearchCommand = new SearchCommand((_) =>
+            SearchCommand = new RelayCommand((_) =>
             {
                 this.SearchTextChanged?.Invoke(this, SearchText);
             });
