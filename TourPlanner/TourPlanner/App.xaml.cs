@@ -25,7 +25,8 @@ namespace TourPlanner
 
             var searchBar = new SearchBarViewModel();
             var searchData = new SearchTourData();
-            var tourOverview = new TourOverviewViewModel(configuration["example:TourLogX"]);
+            //var tourOverview = new TourOverviewViewModel();
+            var tourOverview = new TourOverviewViewModel();
 
             var window = new MainWindow
             {

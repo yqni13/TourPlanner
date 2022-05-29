@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Models
 {
-    class Adress
+    public class Adress
     {
     }
 }

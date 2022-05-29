@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Models
 {
-    enum TransportType
+    public enum ETransportType
     {
+        Car = 0,
+        Train = 1,
+        Bicycle = 2,
+        Walk = 3
     }
 }

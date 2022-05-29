@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.BL", "TourPlann
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.Models", "TourPlanner.Models\TourPlanner.Models.csproj", "{FB32D8D3-54DF-4D46-AF9B-A4FF2DE342E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_T_UnitTests.Test", "TourPlanner_T_UnitTests.Test\TourPlanner_T_UnitTests.Test.csproj", "{E673CCF1-4693-49F0-984F-2F64CB4328F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_T_UnitTests.Test", "TourPlanner_T_UnitTests.Test\TourPlanner_T_UnitTests.Test.csproj", "{E673CCF1-4693-49F0-984F-2F64CB4328F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_T_IntegrationTests.Test", "TourPlanner_T_IntegrationTests.Test\TourPlanner_T_IntegrationTests.Test.csproj", "{77F860A2-7119-4F87-BFC6-738AA007DB79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_T_IntegrationTests.Test", "TourPlanner_T_IntegrationTests.Test\TourPlanner_T_IntegrationTests.Test.csproj", "{77F860A2-7119-4F87-BFC6-738AA007DB79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

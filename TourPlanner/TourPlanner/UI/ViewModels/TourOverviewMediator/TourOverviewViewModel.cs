@@ -10,12 +10,8 @@ namespace TourPlanner.UI.ViewModels
     public class TourOverviewViewModel : BaseViewModel
     {
         private string _result;
-        private string _configexample;
 
-        public TourOverviewViewModel(string path) 
-        {
-            _configexample = path;
-        }
+        public TourOverviewViewModel() { }
 
         public string Result
         {
@@ -37,8 +33,7 @@ namespace TourPlanner.UI.ViewModels
 
         public void DisplayTourDataOverview(string resultText)
         {
-            Result = resultText;
-            //Result = _configexample;
+            Result = resultText;            
         }
     }
 }
