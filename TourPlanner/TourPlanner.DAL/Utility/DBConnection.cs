@@ -18,8 +18,8 @@ namespace TourPlanner.DAL.Utility
                 .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
                 .Build();
 
-            //return new NpgsqlConnection("Host=localhost;Username=swen2;Password=swen2;Database=tourplanner");
-            return new NpgsqlConnection(configuration["dbconnection:TourPlannerDB"]);
+            return new NpgsqlConnection("Host=localhost;Username=swen2;Password=swen2;Database=tourplanner");
+            //return new NpgsqlConnection(configuration["dbconnection:TourPlannerDB"]);
         }
     }
 }

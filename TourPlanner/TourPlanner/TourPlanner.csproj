@@ -33,4 +33,8 @@
       <ProjectReference Include="..\TourPlanner_T_IntegrationTests.Test\TourPlanner_T_IntegrationTests.Test.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="UI\ViewModels\Setup\" />
+    </ItemGroup>
+
 </Project>

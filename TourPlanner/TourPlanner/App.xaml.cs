@@ -23,6 +23,7 @@ namespace TourPlanner
                 .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
                 .Build();
 
+            var menuBar = new MenuViewModel();
             var searchBar = new SearchBarViewModel();
             var searchData = new SearchTourData();
             //var tourOverview = new TourOverviewViewModel();
@@ -30,7 +31,7 @@ namespace TourPlanner
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel(searchBar, tourOverview, searchData),
+                DataContext = new MainViewModel(menuBar, searchBar, tourOverview, searchData),
                 TourSearchBar = { DataContext = searchBar },
                 TourDataResults = { DataContext = tourOverview }
             };

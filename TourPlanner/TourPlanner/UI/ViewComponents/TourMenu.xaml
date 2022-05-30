@@ -9,11 +9,11 @@
     
     <Menu >
         <MenuItem Header="_File">
-            <MenuItem Header="_New" />
-            <MenuItem Header="_Open" />
-            <MenuItem Header="_Save" />
+            <MenuItem Header="_PDF-Generation" />
+            <MenuItem Header="_Import" />
+            <MenuItem Header="_Export" />
             <Separator />
-            <MenuItem Header="_Exit" />
+            <MenuItem Header="_Quit" Command="{Binding QuitApplication}"/>
         </MenuItem>
         <MenuItem Header="_Edit">            
         </MenuItem>
