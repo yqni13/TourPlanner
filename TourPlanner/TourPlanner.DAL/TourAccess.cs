@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.DAL.Utility;
+using TourPlanner.Models;
 
 namespace TourPlanner.DAL
 {
     public class TourAccess
     {
+
+        private string _tableNameTours = "tours";
+        private string _tableNameTourLogs = "tourlogs";
 
         public static void AddTour()
         {
@@ -63,7 +67,50 @@ namespace TourPlanner.DAL
 
                     command.ExecuteNonQuery();
                 }
+        }
 
+        public static List<Tour> AccessTours()
+        {
+            using (IDbConnection connection = DBConnection.GetConnection())
+            {
+                List<Tour> tours = new();
+
+                connection.Open();
+                IDbCommand command = connection.CreateCommand();
+                command.CommandText = @"SELECT * FROM {_tableNameTours}";
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Guid id = Guid.Parse(reader[0].ToString());
+                    string name = reader.GetString(1);
+                    string description = reader.GetString(2);
+                    Adress from = (Adress)reader.GetValue(3);
+                    Adress to = (Adress)reader.GetValue(4);
+                    double startC = reader.GetDouble(5);
+                    double endC = reader.GetDouble(6);
+                    ETransportType transport = (ETransportType)reader.GetValue(7);
+                    double distance = reader.GetDouble(8);
+                    TimeSpan duration = (TimeSpan)reader.GetValue(9);
+                    string mappath = reader.GetString(10);
+
+                    tours.Add(new Tour(
+                        id,
+                        name,
+                        description,
+                        from,
+                        to,
+                        startC,
+                        endC,
+                        transport,
+                        distance,
+                        duration,
+                        mappath)
+                    );
+                }
+                reader.Close();
+                return tours;
+            }
         }
     }
 }

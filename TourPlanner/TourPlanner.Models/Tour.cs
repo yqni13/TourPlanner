@@ -11,7 +11,9 @@ namespace TourPlanner.Models
         public Guid ID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
+        //public String From { get; set; }
         public Adress From { get; set; }
+        //public String To { get; set; }
         public Adress To { get; set; }
         public Double StartCoord { get; set; }
         public Double EndCoord { get; set; }
@@ -19,6 +21,7 @@ namespace TourPlanner.Models
         public Double Distance { get; set; }
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
+        //public String Duration { get; set; }
         public TimeSpan Duration { get; set; }
 
         //Placeholder for the image.

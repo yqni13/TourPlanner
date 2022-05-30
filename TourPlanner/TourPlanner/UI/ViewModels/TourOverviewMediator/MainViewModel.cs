@@ -1,5 +1,4 @@
 ﻿using System;
-using TourPlanner.DAL;
 using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewModels.AbstractMediator;
 
