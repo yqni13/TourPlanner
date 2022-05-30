@@ -42,7 +42,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             {
                 try
                 {
-                    Environment.Exit(0);
+                    Environment.Exit(0);                   
                 }
                 catch (Exception err)
                 {

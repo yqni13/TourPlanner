@@ -27,7 +27,9 @@ namespace TourPlanner.Models
         //Placeholder for the image.
         public String MapPath { get; set; }        
         
-        private List<TourLogs> _logs = new List<TourLogs>();
+        public List<TourLogs> Logs = new List<TourLogs>();
+
+        public Tour() { }
 
         public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, ETransportType transport, double distance, TimeSpan duration, string mappath)
         {
@@ -42,6 +44,23 @@ namespace TourPlanner.Models
             Distance = distance;
             Duration = duration;
             MapPath = mappath;
+        }
+
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, ETransportType transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+            From = from;
+            To = to;
+            StartCoord = startC;
+            EndCoord = endC;
+            Transport = transport;
+            Distance = distance;
+            Duration = duration;
+            MapPath = mappath;
+            // Including Logs.
+            Logs = logs;
         }
     }
 }
