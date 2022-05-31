@@ -12,15 +12,112 @@ using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using TourPlanner.BL.Services;
 using TourPlanner.Models;
+using TourPlanner.Models.Enums;
 
 namespace TourPlanner.BL.PDFGeneration
 {
     public class TourToPDF
     {
         public void GenerateSummarizeReport()
-        {
+        {      
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
+            Tour tour = new();
+            List<Tour> tourList = DataBaseService.GetAllTours();
+            string fileName = $"Summary_{DateTime.Now.ToString("yyyy-MM-dd")}_{tour.Name}.pdf";
+
+            PdfWriter writer = new PdfWriter(fileName);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            Paragraph reportHeaderTourLogs = new Paragraph($"Summary for Tours")
+                    .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD))
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(20)
+                    .SetBold()
+                    .SetFontColor(ColorConstants.BLUE);
+            document.Add(reportHeaderTourLogs);
+
+            // Add line seperator.
+            LineSeparator seperatorHeaderTourLogs1 = new(new SolidLine());
+            document.Add(seperatorHeaderTourLogs1);
+
+            // Add new line to get space between data.
+            document.Add(new Paragraph("\n"));
+
+            Paragraph tourListHeader = new Paragraph("List of all Tours:")
+                    .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                    .SetFontSize(14)
+                    .SetBold()
+                    .SetFontColor(ColorConstants.ORANGE);
+            document.Add(tourListHeader);
+
+            List listingAllTours = new List()
+                .SetSymbolIndent(12)
+                .SetListSymbol("\u2022")
+                .SetMarginLeft(30)
+                .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
+            foreach (Tour t in tourList)
+            {
+                listingAllTours.Add(new ListItem($"{t.Name} (from: {t.From} - to: {t.To})"));
+            }
+            document.Add(listingAllTours);
+
+            // Add new line to get space between data.
+            document.Add(new Paragraph("\n"));
+
+            Paragraph tourlogsListHeader = new Paragraph("Statistics of all Tours:")
+                    .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                    .SetFontSize(14)
+                    .SetBold()
+                    .SetFontColor(ColorConstants.ORANGE);
+            document.Add(tourlogsListHeader);
+
+            List listingAllStatistics = new List()
+                /*.SetSymbolIndent(12)
+                .SetListSymbol("\u2022")*/
+                .SetMarginLeft(30)
+                .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
+            foreach (Tour t in tourList)
+            {
+                listingAllStatistics.Add($"{t.Name}");
+                document.Add(listingAllStatistics);
+                listingAllStatistics.GetChildren().Clear();
+
+                List listingStatistics = new List()
+                    .SetSymbolIndent(10)
+                    .SetListSymbol("\u2022")
+                    .SetMarginLeft(60)
+                    .SetFontSize(10)
+                    .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
+
+                listingStatistics.Add(new ListItem($"Difficulty: {AverageDifficulty(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Rating: {AverageRating(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Time: {AverageTime(t.TourLogs)}"));
+                document.Add(listingStatistics);
+            }
+
+            // Add new line to get space between data.
+            document.Add(new Paragraph("\n"));
+
+            // Add explanation of Difficulty and Rating.
+            Paragraph difficultyExplanation = new Paragraph("Difficulty: 1 - Warmup, 2 - Easy, 3 - Moderate, 4 - Hard, 5 - Expert\nRating: 1 - Worst, 2 - Bad, 3 - Weak, 4 - Improveable, 5 - Moderate, 6 - Advancement, 7 - Good, 8 - Excellent, 9 - Satisfying, 10 - Perfect")
+                .SetFontSize(7)
+                .SetFontColor(ColorConstants.GRAY);
+            document.Add(difficultyExplanation);
+
+            // Page numbers
+            int n = pdf.GetNumberOfPages();
+            for (int i = 1; i <= n; i++)
+            {
+                document.ShowTextAligned(new Paragraph(String
+                   .Format("page" + i + " of " + n)),
+                   559, 25, i, TextAlignment.RIGHT,
+                   VerticalAlignment.BOTTOM, 0);
+            }
+
+            document.Close();
         }
 
         public void GenerateTourReport()
@@ -96,7 +193,7 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetFontColor(ColorConstants.ORANGE);
             document.Add(tourlogsTableHeader);
 
-            foreach (TourLogs log in tour.Logs)
+            foreach (TourLogs log in tour.TourLogs)
             {
                 Table tourlogsTable = new Table(UnitValue.CreatePercentArray(6)).UseAllAvailableWidth();
                 tourlogsTable.AddHeaderCell(getHeaderCell("Timestamp"));
@@ -162,6 +259,54 @@ namespace TourPlanner.BL.PDFGeneration
         private static Cell getHeaderCell(String s)
         {
             return new Cell().Add(new Paragraph(s)).SetBold().SetBackgroundColor(ColorConstants.GRAY);
+        }
+
+        private static double AverageDifficulty(List<TourLogs> tourlogs)
+        {
+            double number = 0;
+            foreach (TourLogs logs in tourlogs)
+            {
+                var enumNumber = EnumCalculations.EnumDifficultyToDouble(logs.Difficulty);
+                number += enumNumber;
+            }
+            return number / tourlogs.Count;
+        }
+
+        private static double AverageRating(List<TourLogs> tourlogs)
+        {
+            double number = 0;
+            foreach (TourLogs logs in tourlogs)
+            {
+                var enumNumber = EnumCalculations.EnumRatingToDouble(logs.Rating);
+                number += enumNumber;
+            }
+            return number / tourlogs.Count;
+        }
+
+        private static string AverageTime(List<TourLogs> tourLogs)
+        {
+            string convertingTime;
+            double timeInSeconds = 0;
+            foreach (TourLogs logs in tourLogs)
+            {
+                convertingTime = logs.TotalTime;
+                timeInSeconds += StringTimeConverterToSeconds(convertingTime);
+            }
+
+            // Converting back to correct calculated and readable hh:mm:ss string.
+            timeInSeconds = timeInSeconds / tourLogs.Count;
+
+            return TimeSpan.FromSeconds(timeInSeconds).ToString();
+        }
+
+
+        private static double StringTimeConverterToSeconds(string time)
+        {
+            DateTime timeType = DateTime.Parse(time);
+            double seconds = timeType.Second;
+            double minutes = timeType.Minute * 60;
+            double hours = timeType.Hour * 3600;
+            return seconds + minutes + hours;
         }
     }
 }

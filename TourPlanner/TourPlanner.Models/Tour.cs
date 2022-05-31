@@ -27,7 +27,7 @@ namespace TourPlanner.Models
         //Placeholder for the image.
         public String MapPath { get; set; }        
         
-        public List<TourLogs> Logs = new List<TourLogs>();
+        public List<TourLogs> TourLogs = new List<TourLogs>();
 
         public Tour() { }
 
@@ -60,7 +60,7 @@ namespace TourPlanner.Models
             Duration = duration;
             MapPath = mappath;
             // Including Logs.
-            Logs = logs;
+            TourLogs = logs;
         }
     }
 }
