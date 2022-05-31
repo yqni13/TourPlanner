@@ -9,13 +9,13 @@ namespace TourPlanner.Models
 {
     public enum ETransportType
     {
-        [Description("CAR")]
-        CAR = 0,
-        [Description("TRAIN")]
-        TRAIN = 1,
-        [Description("BICYCLE")]
+        [Description("fastest")] //Fastest driving route.
+        FASTEST = 0,
+        [Description("shortest")] //Shortest driving route.
+        SHORTEST = 1,
+        [Description("bicycle")]
         BICYCLE = 2,
-        [Description("WALK")]
-        WALK = 3
+        [Description("pedestrian")]
+        PEDESTRIAN = 3
     }
 }
