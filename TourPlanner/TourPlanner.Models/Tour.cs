@@ -15,7 +15,7 @@ namespace TourPlanner.Models
         public Adress To { get; set; }
         public Double StartCoord { get; set; }
         public Double EndCoord { get; set; }
-        public ETransportType Transport { get; set; }
+        public String Transport { get; set; }
         public Double Distance { get; set; }
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
@@ -26,7 +26,7 @@ namespace TourPlanner.Models
         
         private List<TourLogs> _logs = new List<TourLogs>();
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, ETransportType transport, double distance, TimeSpan duration, string mappath)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, String transport, double distance, TimeSpan duration, string mappath)
         {
             ID = id;
             Name = name;
@@ -39,6 +39,13 @@ namespace TourPlanner.Models
             Distance = distance;
             Duration = duration;
             MapPath = mappath;
+        }
+        public Tour(string name, string description, Adress from, Adress to)
+        {
+            Name = name;
+            Description = description;
+            From = from;
+            To = to;
         }
     }
 }

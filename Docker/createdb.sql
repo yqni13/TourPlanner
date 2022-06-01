@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS tourlogs CASCADE;
 CREATE TABLE
     IF NOT EXISTS
         tours (
-            t_id serial
+            t_id uuid
                 constraint tours_pk
                     primary key,
             t_name varchar NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE
             t_endname varchar,
             t_startcoord decimal NOT NULL,
             t_endcoord decimal NOT NULL,
-            t_transporttype integer,
+            t_transporttype varchar,
             t_distance decimal,
             t_estimatetime time,
             t_mappath varchar
@@ -22,10 +22,10 @@ CREATE TABLE
 CREATE TABLE
     IF NOT EXISTS
         tourlogs (
-            tl_id serial
+            tl_id uuid
                 constraint tourlogs_pk
                     primary key,
-            tl_tour integer CONSTRAINT tourlogs_tours_t_id_fk REFERENCES tours,
+            tl_tour uuid CONSTRAINT tourlogs_tours_t_id_fk REFERENCES tours,
             tl_date date,
             tl_time time,
             tl_difficulty integer,
