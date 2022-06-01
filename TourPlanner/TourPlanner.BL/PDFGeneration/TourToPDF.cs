@@ -300,7 +300,7 @@ namespace TourPlanner.BL.PDFGeneration
         }
 
 
-        private static double StringTimeConverterToSeconds(string time)
+        public static double StringTimeConverterToSeconds(string time)
         {
             DateTime timeType = DateTime.Parse(time);
             double seconds = timeType.Second;
