@@ -20,7 +20,7 @@ namespace TourPlanner.BL.PDFGeneration
 {
     public class TourToPDF
     {
-        public void GenerateSummarizeReport()
+        public static void GenerateSummarizeReport()
         {      
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
             Tour tour = new();
@@ -120,7 +120,7 @@ namespace TourPlanner.BL.PDFGeneration
             document.Close();
         }
 
-        public void GenerateTourReport()
+        public static void GenerateTourReport()
         {            
             // Containing all information of single tour including all regarding tour logs.            
             

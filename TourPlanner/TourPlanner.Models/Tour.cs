@@ -17,12 +17,28 @@ namespace TourPlanner.Models
         public Adress To { get; set; }
         public Double StartCoord { get; set; }
         public Double EndCoord { get; set; }
-        public ETransportType Transport { get; set; }
+        private string _routeType = "fastest";
+        public String Transport
+        {
+            get
+            {
+                return _routeType;
+            }
+            set
+            {
+                if (value == "fastest" || value == "shortest" || value == "pedestrian" || value == "bicycle")
+                    _routeType = value;
+                else
+                    _routeType = "fastest";
+            }
+        }
         public Double Distance { get; set; }
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
         //public String Duration { get; set; }
         public TimeSpan Duration { get; set; }
+        public String Session { get; set; }
+        public String BoundingBox { get; set; }
 
         //Placeholder for the image.
         public String MapPath { get; set; }        
@@ -31,7 +47,7 @@ namespace TourPlanner.Models
 
         public Tour() { }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, ETransportType transport, double distance, TimeSpan duration, string mappath)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
         {
             ID = id;
             Name = name;
@@ -46,7 +62,7 @@ namespace TourPlanner.Models
             MapPath = mappath;
         }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, ETransportType transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
         {
             ID = id;
             Name = name;
