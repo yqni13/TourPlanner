@@ -17,23 +17,33 @@ namespace TourPlanner
     /// </summary>
     public partial class App : Application
     {
+        public SearchBarViewModel SearchBarViewModel { get; set; }
+        public TourDataResultsViewModel TourDataResultsViewModel { get; set; }
+        public TourOverviewViewModel TourOverviewViewModel { get; set; }
+        public AddTourViewModel AddTourViewModel { get; set; }
+        public MenuViewModel MenuViewModel {get;set;}
+
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
                 .Build();
 
-            var menuBar = new MenuViewModel();
-            var searchBar = new SearchBarViewModel();
-            var searchData = new SearchTourData();
-            //var tourOverview = new TourOverviewViewModel();
-            var tourOverview = new TourOverviewViewModel();
+            
+            
+
+            SearchBarViewModel = new SearchBarViewModel();
+            TourDataResultsViewModel = new TourDataResultsViewModel();
+            TourOverviewViewModel = new TourOverviewViewModel();
+            AddTourViewModel = new AddTourViewModel();
+            MenuViewModel = new MenuViewModel();
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel(menuBar, searchBar, tourOverview, searchData),
-                TourSearchBar = { DataContext = searchBar },
-                TourDataResults = { DataContext = tourOverview }
+                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel),
+                TourSearchBar = { DataContext = SearchBarViewModel },
+                TourDataResults = { DataContext = TourDataResultsViewModel },
+                TourDataDetails = {DataContext = TourOverviewViewModel}
             };
 
             window.Show();

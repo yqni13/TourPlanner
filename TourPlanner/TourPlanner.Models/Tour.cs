@@ -45,8 +45,6 @@ namespace TourPlanner.Models
         
         public List<TourLogs> TourLogs = new List<TourLogs>();
 
-        public Tour() { }
-
         public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
         {
             ID = id;
@@ -60,6 +58,13 @@ namespace TourPlanner.Models
             Distance = distance;
             Duration = duration;
             MapPath = mappath;
+        }
+        public Tour(string name, string description, Adress from, Adress to)
+        {
+            Name = name;
+            Description = description;
+            From = from;
+            To = to;
         }
 
         public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
