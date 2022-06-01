@@ -89,7 +89,7 @@ namespace TourPlanner.DAL
 
                 while (reader.Read())
                 {
-                    Tour tour = new Tour(System.Guid.NewGuid(),
+                    Tour tour = new Tour(Guid.Parse(reader[0].ToString()),
                                         reader.GetString(1),
                                         reader.GetString(2),
                                         new Adress(),
