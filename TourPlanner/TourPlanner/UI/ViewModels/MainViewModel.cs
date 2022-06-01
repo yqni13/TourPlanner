@@ -1,54 +1,56 @@
-﻿using System;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
+using TourPlanner.DAL;
+using TourPlanner.Models;
 using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewModels.AbstractMediator;
+
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly TourOverviewViewModel _resultView;
-        private readonly ISearch _searchEngine;
-        public MenuViewModel MenuView { get; set; }
+        private readonly TourOverviewViewModel resultView;
+        private readonly ISearch searchEngine;        
 
-        public MainViewModel(MenuViewModel menu, SearchBarViewModel searchBar, TourOverviewViewModel resultView, ISearch searchEngine)
+        public Collection<Tour> Data { get; }
+           = new Collection<Tour>();
+
+        public MainViewModel(SearchBarViewModel searchBar,
+                            TourDataResultsViewModel resultView,
+                            TourOverviewViewModel detailView,                             
+                            AddTourViewModel addTour,
+                            MenuViewModel menu
+                            )
         {
 
             searchBar.SearchTextChanged += (_, searchText) =>
             {
+                MessageBox.Show("SeachTextChanged called");
                 SearchTours(searchText);                
             };
-            this._resultView = resultView;
-            this._searchEngine = searchEngine;
-            MenuView = menu;
+            //this.resultView = resultView;
+            //this.searchEngine = searchEngine;
 
-            MenuSetUp();
+            addTour.ToursChangedEvent += (_, newTourName) =>
+            {
+                MessageBox.Show("ToursChangedEvent called");
+                resultView.UpdateTours(TourAccess.getTours());
+            };
+            resultView.SelectedTourChanged += (_, tour) =>
+            {
+                detailView.SelectedTour = tour;
+                MessageBox.Show("New SelectedTour");
+            };
+            resultView.UpdateTours(TourAccess.getTours());
+            
         }
 
         private void SearchTours(string searchText)
         {
-            var results = String.Join("\n", this._searchEngine.TourSearch(searchText));
-            this._resultView.DisplayTourDataOverview(results);
-        }
-
-        private void MenuSetUp()
-        {
-            QuitApplicationOption();
-        }
-
-        private void QuitApplicationOption()
-        {
-            MenuView.quitApplication += (sender, e) =>
-            {
-                try
-                {
-                    Environment.Exit(0);                   
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.ToString());
-                }
-            };
+            //var results = String.Join("\n", this.searchEngine.TourSearch(searchText));
+            //this.resultView.DisplayTourDataOverview(results);
         }
     }
 }

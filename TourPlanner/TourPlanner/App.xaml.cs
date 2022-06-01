@@ -26,11 +26,8 @@ namespace TourPlanner
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
+                .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
-
-            
-            
 
             SearchBarViewModel = new SearchBarViewModel();
             TourDataResultsViewModel = new TourDataResultsViewModel();
@@ -40,7 +37,7 @@ namespace TourPlanner
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel),
+                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel, MenuViewModel),
                 TourSearchBar = { DataContext = SearchBarViewModel },
                 TourDataResults = { DataContext = TourDataResultsViewModel },
                 TourDataDetails = {DataContext = TourOverviewViewModel}

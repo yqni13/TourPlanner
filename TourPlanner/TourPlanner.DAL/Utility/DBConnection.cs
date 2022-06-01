@@ -15,11 +15,11 @@ namespace TourPlanner.DAL.Utility
         public static IDbConnection GetConnection()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
+                .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            return new NpgsqlConnection("Host=localhost;Username=swen2;Password=swen2;Database=tourplanner");
-            //return new NpgsqlConnection(configuration["dbconnection:TourPlannerDB"]);
+            //return new NpgsqlConnection("Host=localhost;Username=swen2;Password=swen2;Database=tourplanner");
+            return new NpgsqlConnection(configuration["dbconnection:TourPlannerDB"]);
         }
     }
 }

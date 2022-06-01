@@ -12,7 +12,7 @@ using System.Windows;
 using TourPlanner.Models;
 
 namespace TourPlanner.BL.MapQuestAPI
-{
+{/*
     public class MapDataRequest
     {
         public String MapDataURL { get; set; } = "http://www.mapquestapi.com/directions/v2/route";
@@ -39,6 +39,7 @@ namespace TourPlanner.BL.MapQuestAPI
 
             // Connect request link with necessary parameters: key | from | to | unit | routeType.
             MapDataURL += $"?key={KeyAuthentication}&from={TourObject.From}&to={TourObject.To}&unit=k&routeType={TourObject.Transport}";
+            
         }
 
         public async Task<Tour> RequestTourFromAPI()
@@ -80,4 +81,5 @@ namespace TourPlanner.BL.MapQuestAPI
             // Parse BoundingBox, Session, distance and time into TourObject
         }
     }
+    */
 }
