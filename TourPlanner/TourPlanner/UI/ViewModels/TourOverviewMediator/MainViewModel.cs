@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using TourPlanner.DAL;
@@ -20,7 +20,8 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
         public MainViewModel(SearchBarViewModel searchBar,
                             TourDataResultsViewModel resultView,
                             TourOverviewViewModel detailView,                             
-                            AddTourViewModel addTour
+                            AddTourViewModel addTour,
+                            MenuViewModel menu
                             )
         {
 

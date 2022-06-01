@@ -13,5 +13,5 @@ namespace TourPlanner.Models.Enums
         Moderate = 3,
         Hard = 4,
         Expert = 5
-    }
+    }    
 }

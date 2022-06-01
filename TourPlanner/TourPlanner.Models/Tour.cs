@@ -11,22 +11,41 @@ namespace TourPlanner.Models
         public Guid ID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
+        //public String From { get; set; }
         public Adress From { get; set; }
+        //public String To { get; set; }
         public Adress To { get; set; }
         public Double StartCoord { get; set; }
         public Double EndCoord { get; set; }
-        public String Transport { get; set; }
+        private string _routeType = "fastest";
+        public String Transport
+        {
+            get
+            {
+                return _routeType;
+            }
+            set
+            {
+                if (value == "fastest" || value == "shortest" || value == "pedestrian" || value == "bicycle")
+                    _routeType = value;
+                else
+                    _routeType = "fastest";
+            }
+        }
         public Double Distance { get; set; }
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
+        //public String Duration { get; set; }
         public TimeSpan Duration { get; set; }
+        public String Session { get; set; }
+        public String BoundingBox { get; set; }
 
         //Placeholder for the image.
         public String MapPath { get; set; }        
         
-        private List<TourLogs> _logs = new List<TourLogs>();
+        public List<TourLogs> TourLogs = new List<TourLogs>();
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, String transport, double distance, TimeSpan duration, string mappath)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
         {
             ID = id;
             Name = name;
@@ -46,6 +65,23 @@ namespace TourPlanner.Models
             Description = description;
             From = from;
             To = to;
+        }
+
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+            From = from;
+            To = to;
+            StartCoord = startC;
+            EndCoord = endC;
+            Transport = transport;
+            Distance = distance;
+            Duration = duration;
+            MapPath = mappath;
+            // Including Logs.
+            TourLogs = logs;
         }
     }
 }

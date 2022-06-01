@@ -21,6 +21,7 @@ namespace TourPlanner
         public TourDataResultsViewModel TourDataResultsViewModel { get; set; }
         public TourOverviewViewModel TourOverviewViewModel { get; set; }
         public AddTourViewModel AddTourViewModel { get; set; }
+        public MenuViewModel MenuViewModel {get;set;}
 
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
@@ -29,12 +30,13 @@ namespace TourPlanner
                 .Build();
 
             
-            var searchData = new SearchTourData();
+            
 
             SearchBarViewModel = new SearchBarViewModel();
             TourDataResultsViewModel = new TourDataResultsViewModel();
             TourOverviewViewModel = new TourOverviewViewModel();
             AddTourViewModel = new AddTourViewModel();
+            MenuViewModel = new MenuViewModel();
 
             var window = new MainWindow
             {
