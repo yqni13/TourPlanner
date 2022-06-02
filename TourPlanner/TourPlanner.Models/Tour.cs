@@ -11,12 +11,16 @@ namespace TourPlanner.Models
         public Guid ID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
-        //public String From { get; set; }
-        public Adress From { get; set; }
-        //public String To { get; set; }
-        public Adress To { get; set; }
+        public String From { get; set; }
+        //public Adress From { get; set; }
+        public String To { get; set; }
+        //public Adress To { get; set; }
+
+        // Not needed anymore, because coordinates are saved to BoundingBox. ?
         public Double StartCoord { get; set; }
         public Double EndCoord { get; set; }
+
+
         private string _routeType = "fastest";
         public String Transport
         {
@@ -45,7 +49,9 @@ namespace TourPlanner.Models
         
         public List<TourLogs> TourLogs = new List<TourLogs>();
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
+        public Tour() { }
+
+        public Tour(Guid id, string name, string description, string from, string to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
         {
             ID = id;
             Name = name;
@@ -59,7 +65,7 @@ namespace TourPlanner.Models
             Duration = duration;
             MapPath = mappath;
         }
-        public Tour(string name, string description, Adress from, Adress to)
+        public Tour(string name, string description, string from, string to)
         {
             Name = name;
             Description = description;
@@ -67,7 +73,7 @@ namespace TourPlanner.Models
             To = to;
         }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        public Tour(Guid id, string name, string description, string from, string to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
         {
             ID = id;
             Name = name;
