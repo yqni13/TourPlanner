@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using TourPlanner.DAL;
+using TourPlanner.BL.Search;
 using TourPlanner.Models;
 using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewComponents;
@@ -11,9 +12,7 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class MainViewModel : BaseViewModel
-    {
-        private readonly TourOverviewViewModel resultView;
-        private readonly ISearch searchEngine;        
+    {        
 
         public Collection<Tour> Data { get; set; }
            = new Collection<Tour>();
@@ -77,8 +76,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
                 ResultView.UpdateTours(this.Data);
             };
             SearchBar.SearchTextChanged += (_, searchText) =>
-            {
-                MessageBox.Show("SeachTextChanged called");
+            {                
                 SearchTours(searchText);
             };
             AddTour.AddedTourEvent += (_, tour) =>
@@ -102,8 +100,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
         private void SearchTours(string searchText)
         {
-            //var results = String.Join("\n", this.searchEngine.TourSearch(searchText));
-            //this.resultView.DisplayTourDataOverview(results);
+            ResultView.UpdateTours(SearchEngine.searchTours(Data, searchText));
         }
 
         private void OpenAddDialog()
