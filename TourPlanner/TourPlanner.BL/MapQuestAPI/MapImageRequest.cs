@@ -67,7 +67,7 @@ namespace TourPlanner.BL.MapQuestAPI
                 var response = await client.GetByteArrayAsync(MapImageURL);
 
                 // Generate file name by Guid (avoid DateTime format drama with no ":") and name of tour.
-                imageName = $"{Guid.NewGuid()}_{tour.Name}.{Format}";
+                imageName = $"{tour.ID}_{tour.Name}.{Format}";
                 tour.MapPath = $"{ImageDirectoryPath}/{imageName}";
 
                 // Draw Image with data from response and call MapPath from tour model.

@@ -14,43 +14,34 @@ using TourPlanner.BL.Services;
 using TourPlanner.Models;
 
 namespace TourPlanner.BL.MapQuestAPI
-{/*
+{
     public class MapDataRequest
     {
         public String MapDataURL { get; set; } = "http://www.mapquestapi.com/directions/v2/route";
         public String KeyAuthentication { get; set; }
         public JObject JsonResponse { get; set; }
-        public Tour TourObject { get; set; }
-        
+        public Tour TourObject { get; set; }        
 
 
-        public MapDataRequest(string name, string from, string to, string routeType)
+        public MapDataRequest(Tour tour)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
                 .Build();
 
-            TourObject = new();
-            TourObject.Name = name;
-            Adress fromAdress = new(from);
-            from = fromAdress.ToString();
-            Adress toAdress = new(to);
-            to = toAdress.ToString();
-            TourObject.From = from;
-            TourObject.To = to;
-            TourObject.Transport = routeType;
+            this.TourObject = tour;
+            //need name, from, to and transport type in TourObject to work 
+            //maybe make ifstatement            
 
             // Get saved authentication key (http://developer.mapquest.com) from config file.
             KeyAuthentication = configuration["mapquestapi:key"];
 
             // Connect request link with necessary parameters: key | from | to | unit | routeType.
-            MapDataURL += $"?key={KeyAuthentication}&from={TourObject.From}&to={TourObject.To}&unit=k&routeType={TourObject.Transport}";
-            
+            MapDataURL += $"?key={KeyAuthentication}&from={TourObject.From.ToString()}&to={TourObject.To.ToString()}&unit=k&routeType={TourObject.Transport}";
         }
 
-        public async Task<Tour> RequestTourFromAPI()
-        {
-            Tour tour = new();
+        public async Task RequestTourFromAPI()
+        {            
             try
             {                
                 using HttpClient client = new();
@@ -62,8 +53,7 @@ namespace TourPlanner.BL.MapQuestAPI
                 JsonResponse = JsonConvert.DeserializeObject<JObject>(response);
 
                 // Parsing content and filling up Tour-model.
-                tour = ParsingResponse(JsonResponse);
-                tour.ID = Guid.NewGuid();
+                ParsingResponse(JsonResponse);                
                 // tour.Description = description?
                 
             }
@@ -77,11 +67,9 @@ namespace TourPlanner.BL.MapQuestAPI
                 MessageBox.Show(err.ToString());
                 // Place logger here.
             }
-
-            return tour;
         }
 
-        public Tour ParsingResponse(JObject json)
+        public void ParsingResponse(JObject json)
         {
             // Parse BoundingBox, Session, distance and time into TourObject
 
@@ -95,14 +83,12 @@ namespace TourPlanner.BL.MapQuestAPI
             string time = json["route:formattedTime"].ToString();            
             TimeSpan tourTime = TimeSpan.FromSeconds(GeneralService.StringTimeConverterToSeconds(time));
 
-            Tour tour = new();
-            tour.Session = sessionID;
-            tour.BoundingBox = boundingBox;
-            tour.Distance = Double.Parse(distance, CultureInfo.InvariantCulture);
-            tour.Duration = tourTime;
 
-            return tour;
+            TourObject.Session = sessionID;
+            TourObject.BoundingBox = boundingBox;
+            TourObject.Distance = Double.Parse(distance, CultureInfo.InvariantCulture);
+            TourObject.Duration = tourTime;
         }
     }
-    */
+    
 }

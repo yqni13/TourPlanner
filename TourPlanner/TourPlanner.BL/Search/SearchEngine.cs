@@ -14,15 +14,20 @@ namespace TourPlanner.BL.Search
         {
             Collection<Tour> returnCollection = new Collection<Tour>();
 
-            var results = from tour in tours
-                        where tour.Name.Contains(seachText)
-                        select tour;
-
-            foreach (var result in results)
+            if(seachText != null)
             {
-                returnCollection.Add(result);
+                var results = from tour in tours
+                              where tour.Name.Contains(seachText)
+                              select tour;
+
+                foreach (var result in results)
+                {
+                    returnCollection.Add(result);
+                }
+                return returnCollection;
             }
-            return returnCollection;
+            return tours;
+            
         }
     }
 }

@@ -12,13 +12,10 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class MainViewModel : BaseViewModel
-    {        
-
+    {
         public Collection<Tour> Data { get; set; }
            = new Collection<Tour>();
-
         public Window OpenInputWindow { get; set; }
-
         public SearchBarViewModel SearchBar { get; set; }
         public TourDataResultsViewModel ResultView { get; set; }
         public TourOverviewViewModel DetailView { get; set; }
@@ -51,6 +48,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
         private void SubscribeToEvents()
         {
+            //@todo swap everything to BL
             ResultView.SelectedTourChanged += (_, tour) =>
             {
                 DetailView.SelectedTour = tour;
@@ -92,10 +90,6 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             {
                 CloseOpenWindow();
             };
-
-
-
-            
         }
 
         private void SearchTours(string searchText)
