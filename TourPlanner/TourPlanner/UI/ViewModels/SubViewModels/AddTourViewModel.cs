@@ -12,15 +12,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class AddTourViewModel
     {
-        public Tour newTour { get; set; } = new Tour();     
-        /*
-        public string TourName { get; set; } = "Test";
-        public string TourDescription { get; set; } = "Des...";
-        public Adress From { get; set; } = new Adress("bla");
-        public Adress To { get; set; } = new Adress("bla");
-
-        public String TransportType { get; set; } = "Bike";
-        */
+        public Tour newTour { get; set; } = new Tour();
 
         //Subscribe to this in order to get notivied of event 
         public event EventHandler<Tour> AddedTourEvent;
@@ -54,11 +46,5 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
                 this.CloseAddTourDialogEvent?.Invoke(this, EventArgs.Empty);
             });
         }
-
-        public void Debuggaddcomman()
-        {
-            MessageBox.Show("testAddCommand");
-        }
-
     }
 }

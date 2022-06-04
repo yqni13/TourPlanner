@@ -7,7 +7,7 @@ using TourPlanner.Models;
 using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewComponents;
 using TourPlanner.UI.ViewModels.AbstractMediator;
-
+using TourPlanner.BL.Services;
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
@@ -15,7 +15,9 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
     {
         public Collection<Tour> Data { get; set; }
            = new Collection<Tour>();
-        public Window OpenInputWindow { get; set; }
+        public Window OpenInputWindow { get; set; } = null;
+
+        //ViewModels
         public SearchBarViewModel SearchBar { get; set; }
         public TourDataResultsViewModel ResultView { get; set; }
         public TourOverviewViewModel DetailView { get; set; }
@@ -42,8 +44,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
 
             //populate the list of tours in the result view 
-            this.Data = TourAccess.getTours();
-            resultView.UpdateTours(this.Data);            
+            UpdateTourList();
         }
 
         private void SubscribeToEvents()
@@ -51,16 +52,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             //@todo swap everything to BL
             ResultView.SelectedTourChanged += (_, tour) =>
             {
-                DetailView.SelectedTour = tour;
-                if (tour == null)
-                {
-                    MessageBox.Show("no tour selected");
-                }
-                else
-                {
-                    MessageBox.Show("New SelectedTour");
-                }
-                
+                DetailView.SelectedTour = tour;                
             };
             ResultView.OpenAddDialogEvent += (_, arg) =>
             {
@@ -68,23 +60,18 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             };
             ResultView.DeleteTourEvent += (_, tour) =>
             {
-                MessageBox.Show("Delete Tour with UUID " + tour.ID.ToString());
-                TourAccess.DeleteTour(tour.ID);
-                this.Data = TourAccess.getTours();
-                ResultView.UpdateTours(this.Data);
+                TourController.DeleteTour(tour);
+                UpdateTourList();
             };
             SearchBar.SearchTextChanged += (_, searchText) =>
             {                
                 SearchTours(searchText);
             };
             AddTour.AddedTourEvent += (_, tour) =>
-            {                
-                
-                TourAccess.AddTour(tour);
-                this.Data = TourAccess.getTours();                
-                ResultView.UpdateTours(this.Data);
-                CloseOpenWindow();
-                              
+            {
+                TourController.AddTour(tour);
+                UpdateTourList();
+                CloseOpenWindow();                              
             };
             AddTour.CloseAddTourDialogEvent += (_, arg) =>
             {
@@ -99,14 +86,24 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 
         private void OpenAddDialog()
         {
-            OpenInputWindow = new AddTourDialog();
-            OpenInputWindow.DataContext = this.AddTour;
-            OpenInputWindow.Show();            
+            if(OpenInputWindow == null)
+            {
+                OpenInputWindow = new AddTourDialog();
+                OpenInputWindow.DataContext = this.AddTour;
+                OpenInputWindow.Show();
+            }                     
         }
 
         private void CloseOpenWindow()
         {
-            OpenInputWindow.Hide();   
+            OpenInputWindow.Hide();
+            OpenInputWindow = null;
+        }
+
+        private void UpdateTourList()
+        {
+            this.Data = TourController.GetTours();
+            ResultView.UpdateTours(this.Data);
         }
     }
 }

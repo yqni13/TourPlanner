@@ -14,7 +14,6 @@ namespace TourPlanner.DAL
 {
     public class TourAccess
     {
-
         public static void AddTour(Tour tour)
         {
 
@@ -50,7 +49,7 @@ namespace TourPlanner.DAL
 
                 c.Prepare();
 
-                c.Parameters["t_id"].Value = System.Guid.NewGuid();
+                c.Parameters["t_id"].Value = tour.ID;
                 c.Parameters["t_name"].Value = tour.Name;
                 c.Parameters["t_description"].Value = tour.Description;
                 c.Parameters["t_startname"].Value = tour.From.ToString();
