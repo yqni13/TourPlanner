@@ -41,7 +41,7 @@ namespace TourPlanner.BL.MapQuestAPI
         public MapImageRequest()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
+                .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
 
             ImageDirectoryPath = configuration["images:path"];

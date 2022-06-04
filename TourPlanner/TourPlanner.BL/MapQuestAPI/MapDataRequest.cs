@@ -26,7 +26,7 @@ namespace TourPlanner.BL.MapQuestAPI
         public MapDataRequest(Tour tour)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("Config/TourPlanner.json.config", optional: false, reloadOnChange: true)
+                .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
 
             this.TourObject = tour;
