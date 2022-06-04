@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace TourPlanner_T_UnitTests.Test.Tests_DB
         [Test]
         public void Test_ConnectionToDBWillSucceed()
         {
-            _tourList = TourAccess.AccessTours();
-            Assert.IsNotNull(_tourList.Capacity);
+            Collection<Tour> _tourList = TourAccess.getTours();
+            Assert.IsNotNull(_tourList.Count);
         }
     }
 }

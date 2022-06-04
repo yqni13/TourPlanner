@@ -24,7 +24,7 @@ namespace TourPlanner.BL.PDFGeneration
         {      
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
             Tour tour = new();
-            List<Tour> tourList = DataBaseService.GetAllTours();
+            List<Tour> tourList = new List<Tour>();
             string fileName = $"Summary_{DateTime.Now.ToString("yyyy-MM-dd")}_{tour.Name}.pdf";
 
             PdfWriter writer = new PdfWriter(fileName);
