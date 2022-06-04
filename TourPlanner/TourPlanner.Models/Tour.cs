@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,9 +49,19 @@ namespace TourPlanner.Models
         
         public List<TourLogs> TourLogs = new List<TourLogs>();
 
+
         public Tour() { }
 
         public Tour(Guid id, string name, string description, string from, string to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
+
+        public Tour()
+        {
+            this.From = new Adress();
+            this.To = new Adress();
+        }
+
+        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
+
         {
             ID = id;
             Name = name;

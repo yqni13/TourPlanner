@@ -24,12 +24,5 @@ namespace TourPlanner.UI.ViewComponents
         {
             InitializeComponent();
         }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new AddTourDialog();            
-            window.Show();
-        }
     }
 }

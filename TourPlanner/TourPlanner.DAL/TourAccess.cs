@@ -108,5 +108,35 @@ namespace TourPlanner.DAL
             }
         }
 
+        public static bool DeleteTour(Guid id)
+        {
+
+            //with the using statement we make sure the connection gets freed right after the block is done
+            using (IDbConnection connection = DBConnection.GetConnection())
+            {
+                //open the DB connection and create a command
+                connection.Open();
+                IDbCommand command = connection.CreateCommand();
+
+                Collection<Tour> tours = new Collection<Tour>();
+
+                command.CommandText = @"
+                    DELETE FROM tours WHERE t_id = @id
+                ";
+
+                NpgsqlCommand c = command as NpgsqlCommand;
+
+                c.Parameters.Add("id", NpgsqlDbType.Uuid);
+
+                c.Prepare();
+
+                c.Parameters["id"].Value = id;
+
+                command.ExecuteNonQuery();
+
+                return true;
+            }
+        }
+
     }
 }
