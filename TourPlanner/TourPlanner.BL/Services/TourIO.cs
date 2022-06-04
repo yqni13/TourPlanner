@@ -21,6 +21,5 @@ namespace TourPlanner.BL.Services
             var jsonString = JsonConvert.SerializeObject(tour, _options);
             File.WriteAllText(path, jsonString);
         }
-
     }
 }

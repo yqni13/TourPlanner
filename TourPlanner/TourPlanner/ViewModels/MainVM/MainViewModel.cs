@@ -9,9 +9,9 @@ using TourPlanner.ViewModels.SubViewModels;
 using TourPlanner.ViewModels.Abstract;
 using TourPlanner.ViewComponents;
 
-namespace TourPlanner.ViewModels
+namespace TourPlanner.ViewModels.MainVM
 {
-    public class MainViewModel : BaseViewModel
+    public partial class MainViewModel : BaseViewModel
     {
         private static ILoggerWrapper logger = LoggerFactory.GetLogger();
         public Collection<Tour> Data { get; set; }
@@ -40,6 +40,7 @@ namespace TourPlanner.ViewModels
             AddTour = addTour;
             Menu = menu;
 
+
             //subscribe to all the Events from the ViewModels 
             SubscribeToEvents();
 
@@ -50,65 +51,16 @@ namespace TourPlanner.ViewModels
 
         private void SubscribeToEvents()
         {
-            //@todo swap everything to BL
-            ResultView.SelectedTourChanged += (_, tour) =>
-            {
-                DetailView.SelectedTour = tour;
-            };
-            ResultView.OpenAddDialogEvent += (_, arg) =>
-            {
-                OpenAddDialog();
-            };
-            ResultView.DeleteTourEvent += (_, tour) =>
-            {
-                TourController.DeleteTour(tour);
-                UpdateTourList();
-            };
-            SearchBar.SearchTextChanged += (_, searchText) =>
-            {
-                SearchTours(searchText);
-            };
-            AddTour.AddedTourEvent += (_, tour) =>
-            {
-                TourController.AddTour(tour);
-                UpdateTourList();
-                CloseOpenWindow();
-            };
-            AddTour.CloseAddTourDialogEvent += (_, arg) =>
-            {
-                CloseOpenWindow();
-            };
-            Menu.tourExportEvent += (_, arg) =>
-            {
-                TourIO.ExportTour(DetailView.SelectedTour, FileDialog());
-            };
-        }
-
-        private void SearchTours(string searchText)
-        {
-            ResultView.UpdateTours(SearchEngine.searchTours(Data, searchText));
-        }
-
-        private void OpenAddDialog()
-        {
-            if (OpenInputWindow == null)
-            {
-                OpenInputWindow = new AddTourDialog();
-                OpenInputWindow.DataContext = AddTour;
-                OpenInputWindow.Show();
-            }
-        }
+            SubToSearchBarEvents();
+            SubToResultsViewEvents();
+            SubToAddDialogEvents();
+            SubToMenuEvents();
+        }  
 
         private void CloseOpenWindow()
         {
             OpenInputWindow.Hide();
             OpenInputWindow = null;
-        }
-
-        private void UpdateTourList()
-        {
-            Data = TourController.GetTours();
-            ResultView.UpdateTours(Data);
         }
 
         private string FileDialog()

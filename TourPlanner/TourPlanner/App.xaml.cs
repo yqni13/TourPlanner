@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.ViewModels;
+using TourPlanner.ViewModels.MainVM;
 using TourPlanner.ViewModels.SubViewModels;
 
 namespace TourPlanner
