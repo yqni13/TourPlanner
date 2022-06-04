@@ -11,7 +11,7 @@ using TourPlanner.Models;
 using TourPlanner.UI.ViewComponents;
 using TourPlanner.UI.ViewModels.AbstractMediator;
 
-namespace TourPlanner.UI.ViewModels.TourOverviewMediator
+namespace TourPlanner.UI.ViewModels.SubViewModels
 {
     public class TourDataResultsViewModel : BaseViewModel
     {

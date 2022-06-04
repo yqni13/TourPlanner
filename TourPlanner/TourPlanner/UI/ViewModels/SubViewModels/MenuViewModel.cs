@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TourPlanner.UI.ViewModels.AbstractMediator;
 
-namespace TourPlanner.UI.ViewModels
+namespace TourPlanner.UI.ViewModels.SubViewModels
 {
 
     public class MenuViewModel : BaseViewModel

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using System.Threading.Tasks;
+using TourPlanner.Models;
 
 namespace TourPlanner.BL.Services
 {
@@ -14,7 +15,7 @@ namespace TourPlanner.BL.Services
         private static readonly JsonSerializerSettings _options
         = new() { NullValueHandling = NullValueHandling.Ignore };
 
-        public static void ExportTour(TourController tour, String path)
+        public static void ExportTour(Tour tour, String path)
         {
 
             var jsonString = JsonConvert.SerializeObject(tour, _options);

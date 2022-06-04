@@ -10,8 +10,9 @@ using TourPlanner.UI.ViewModels.AbstractMediator;
 using TourPlanner.BL.Services;
 using Microsoft.Win32;
 using Example.Log4Net.logging;
+using TourPlanner.UI.ViewModels.SubViewModels;
 
-namespace TourPlanner.UI.ViewModels.TourOverviewMediator
+namespace TourPlanner.UI.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
@@ -82,7 +83,7 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             };
             Menu.tourExportEvent += (_, arg) =>
             {
-                TourIO.ExportTour(DetailView.SelectedTour, )
+                TourIO.ExportTour(DetailView.SelectedTour, FileDialog());
             };            
         }
 

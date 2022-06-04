@@ -8,7 +8,7 @@ using System.Windows.Input;
 using TourPlanner.DAL;
 using TourPlanner.Models;
 
-namespace TourPlanner.UI.ViewModels.TourOverviewMediator
+namespace TourPlanner.UI.ViewModels.SubViewModels
 {
     public class AddTourViewModel
     {

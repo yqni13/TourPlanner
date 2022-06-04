@@ -10,7 +10,7 @@ using TourPlanner.Models;
 using TourPlanner.UI.ViewComponents;
 using TourPlanner.UI.ViewModels.AbstractMediator;
 
-namespace TourPlanner.UI.ViewModels
+namespace TourPlanner.UI.ViewModels.SubViewModels
 {
     public class TourOverviewViewModel : BaseViewModel
     {
