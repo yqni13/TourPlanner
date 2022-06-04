@@ -40,7 +40,8 @@ namespace TourPlanner
                 DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel, MenuViewModel),
                 TourSearchBar = { DataContext = SearchBarViewModel },
                 TourDataResults = { DataContext = TourDataResultsViewModel },
-                TourDataDetails = {DataContext = TourOverviewViewModel}
+                TourDataDetails = {DataContext = TourOverviewViewModel},
+                TourMenu = { DataContext = MenuViewModel }
             };
 
             window.Show();

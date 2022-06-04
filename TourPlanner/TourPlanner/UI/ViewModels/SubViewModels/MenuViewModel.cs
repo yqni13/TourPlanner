@@ -12,10 +12,10 @@ namespace TourPlanner.UI.ViewModels
     public class MenuViewModel : BaseViewModel
     {
         // Define commands and event handlers.
-        public ICommand PDFGenerator;
-        public ICommand Import;
-        public ICommand Export;
-        public ICommand QuitApplication;
+        public ICommand PDFGenerator { get; }
+        public ICommand Import { get; }
+        public ICommand Export { get; }
+        public ICommand QuitApplication { get; }
 
         public event EventHandler generatePDF;
         public event EventHandler tourImport;
