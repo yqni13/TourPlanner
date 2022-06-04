@@ -290,23 +290,13 @@ namespace TourPlanner.BL.PDFGeneration
             foreach (TourLogs logs in tourLogs)
             {
                 convertingTime = logs.TotalTime;
-                timeInSeconds += StringTimeConverterToSeconds(convertingTime);
+                timeInSeconds += GeneralService.StringTimeConverterToSeconds(convertingTime);
             }
 
             // Converting back to correct calculated and readable hh:mm:ss string.
             timeInSeconds = timeInSeconds / tourLogs.Count;
 
             return TimeSpan.FromSeconds(timeInSeconds).ToString();
-        }
-
-
-        public static double StringTimeConverterToSeconds(string time)
-        {
-            DateTime timeType = DateTime.Parse(time);
-            double seconds = timeType.Second;
-            double minutes = timeType.Minute * 60;
-            double hours = timeType.Hour * 3600;
-            return seconds + minutes + hours;
-        }
+        }        
     }
 }
