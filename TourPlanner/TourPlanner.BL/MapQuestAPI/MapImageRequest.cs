@@ -20,21 +20,6 @@ namespace TourPlanner.BL.MapQuestAPI
         public String KeyAuthentication { get; set; }
         public String MapSize { get; set; }
         public String Format { get; set; }
-        private String _mapType;
-        public String MapType
-        {
-            get
-            {
-                return _mapType;
-            }
-            set
-            {
-                if (value == "dark" || value == "light" || value == "map" || value == "hyb" || value == "sat")
-                    _mapType = value;
-                else
-                    _mapType = "map";
-            }
-        }
         public String RouteColor { get; set; }
         public String ScaleBar { get; set; }
 
@@ -52,14 +37,14 @@ namespace TourPlanner.BL.MapQuestAPI
             ScaleBar = "true|bottom";
         }
 
-        public async void RequestMapImageFromAPI(Tour tour, string maptype)
+        public async void RequestMapImageFromAPI(Tour tour)
         {
             string imageName;
 
             try
             {
                 // Prepare URL with necessary/customized parameters.
-                SetupURL(maptype, tour.Session, tour.BoundingBox);
+                SetupURL(tour.MapType, tour.Session, tour.BoundingBox);
 
                 using HttpClient client = new();
 

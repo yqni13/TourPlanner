@@ -34,6 +34,21 @@ namespace TourPlanner.Models
                     _routeType = "fastest";
             }
         }
+        private String _mapType;
+        public String MapType
+        {
+            get
+            {
+                return _mapType;
+            }
+            set
+            {
+                if (value == "dark" || value == "light" || value == "map" || value == "hyb" || value == "sat")
+                    _mapType = value;
+                else
+                    _mapType = "map";
+            }
+        }
         public Double Distance { get; set; }
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)

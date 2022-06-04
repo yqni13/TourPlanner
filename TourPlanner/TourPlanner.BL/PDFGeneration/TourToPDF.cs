@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,10 @@ namespace TourPlanner.BL.PDFGeneration
 {
     public class TourToPDF
     {
-        public static void GenerateSummarizeReport()
+        public static void GenerateSummarizeReport(Collection<Tour> tourList)
         {      
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
-            Tour tour = new();
-            List<Tour> tourList = new List<Tour>();
-            string fileName = $"Summary_{DateTime.Now.ToString("yyyy-MM-dd")}_{tour.Name}.pdf";
+            string fileName = $"Summary_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf";
 
             PdfWriter writer = new PdfWriter(fileName);
             PdfDocument pdf = new PdfDocument(writer);
@@ -120,11 +119,10 @@ namespace TourPlanner.BL.PDFGeneration
             document.Close();
         }
 
-        public static void GenerateTourReport()
+        public static void GenerateTourReport(Tour tour)
         {            
-            // Containing all information of single tour including all regarding tour logs.            
-            
-            Tour tour = new();
+            // Containing all information of single tour including all regarding tour logs. 
+          
             string fileName = $"Report_{DateTime.Now.ToString("yyyy-MM-dd")}_{tour.Name}.pdf";
             string mapImage = tour.MapPath;
 
