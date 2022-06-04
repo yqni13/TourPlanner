@@ -7,10 +7,12 @@ using System.Windows;
 using System.Windows.Input;
 using TourPlanner.DAL;
 using TourPlanner.Models;
+using TourPlanner.ViewModels.Abstract;
+using TourPlanner.ViewModels.Utility;
 
-namespace TourPlanner.UI.ViewModels.SubViewModels
+namespace TourPlanner.ViewModels.SubViewModels
 {
-    public class AddTourViewModel
+    public class AddTourViewModel : BaseViewModel
     {
         public Tour newTour { get; set; } = new Tour();
 

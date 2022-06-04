@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TourPlanner.UI.ViewModels.AbstractMediator;
+using TourPlanner.ViewModels.Abstract;
+using TourPlanner.ViewModels.Utility;
 
-namespace TourPlanner.UI.ViewModels.SubViewModels
+namespace TourPlanner.ViewModels.SubViewModels
 {
     public class SearchBarViewModel : BaseViewModel
     {

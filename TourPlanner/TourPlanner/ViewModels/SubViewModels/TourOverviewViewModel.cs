@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TourPlanner.Models;
-using TourPlanner.UI.ViewComponents;
-using TourPlanner.UI.ViewModels.AbstractMediator;
+using TourPlanner.ViewComponents;
+using TourPlanner.ViewModels.Abstract;
 
-namespace TourPlanner.UI.ViewModels.SubViewModels
+namespace TourPlanner.ViewModels.SubViewModels
 {
     public class TourOverviewViewModel : BaseViewModel
     {

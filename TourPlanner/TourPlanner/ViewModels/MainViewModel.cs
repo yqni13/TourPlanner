@@ -1,18 +1,15 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using TourPlanner.DAL;
 using TourPlanner.BL.Search;
 using TourPlanner.Models;
-using TourPlanner.UI.TourSearch;
-using TourPlanner.UI.ViewComponents;
-using TourPlanner.UI.ViewModels.AbstractMediator;
 using TourPlanner.BL.Services;
 using Microsoft.Win32;
 using Example.Log4Net.logging;
-using TourPlanner.UI.ViewModels.SubViewModels;
+using TourPlanner.ViewModels.SubViewModels;
+using TourPlanner.ViewModels.Abstract;
+using TourPlanner.ViewComponents;
 
-namespace TourPlanner.UI.ViewModels
+namespace TourPlanner.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
@@ -32,16 +29,16 @@ namespace TourPlanner.UI.ViewModels
 
         public MainViewModel(SearchBarViewModel searchBar,
                             TourDataResultsViewModel resultView,
-                            TourOverviewViewModel detailView,                             
+                            TourOverviewViewModel detailView,
                             AddTourViewModel addTour,
                             MenuViewModel menu
                             )
         {
-            this.SearchBar = searchBar;
-            this.ResultView = resultView;
-            this.DetailView = detailView;
-            this.AddTour = addTour;
-            this.Menu = menu;
+            SearchBar = searchBar;
+            ResultView = resultView;
+            DetailView = detailView;
+            AddTour = addTour;
+            Menu = menu;
 
             //subscribe to all the Events from the ViewModels 
             SubscribeToEvents();
@@ -56,7 +53,7 @@ namespace TourPlanner.UI.ViewModels
             //@todo swap everything to BL
             ResultView.SelectedTourChanged += (_, tour) =>
             {
-                DetailView.SelectedTour = tour;                
+                DetailView.SelectedTour = tour;
             };
             ResultView.OpenAddDialogEvent += (_, arg) =>
             {
@@ -68,14 +65,14 @@ namespace TourPlanner.UI.ViewModels
                 UpdateTourList();
             };
             SearchBar.SearchTextChanged += (_, searchText) =>
-            {                
+            {
                 SearchTours(searchText);
             };
             AddTour.AddedTourEvent += (_, tour) =>
             {
                 TourController.AddTour(tour);
                 UpdateTourList();
-                CloseOpenWindow();                              
+                CloseOpenWindow();
             };
             AddTour.CloseAddTourDialogEvent += (_, arg) =>
             {
@@ -84,7 +81,7 @@ namespace TourPlanner.UI.ViewModels
             Menu.tourExportEvent += (_, arg) =>
             {
                 TourIO.ExportTour(DetailView.SelectedTour, FileDialog());
-            };            
+            };
         }
 
         private void SearchTours(string searchText)
@@ -94,12 +91,12 @@ namespace TourPlanner.UI.ViewModels
 
         private void OpenAddDialog()
         {
-            if(OpenInputWindow == null)
+            if (OpenInputWindow == null)
             {
                 OpenInputWindow = new AddTourDialog();
-                OpenInputWindow.DataContext = this.AddTour;
+                OpenInputWindow.DataContext = AddTour;
                 OpenInputWindow.Show();
-            }                     
+            }
         }
 
         private void CloseOpenWindow()
@@ -110,11 +107,11 @@ namespace TourPlanner.UI.ViewModels
 
         private void UpdateTourList()
         {
-            this.Data = TourController.GetTours();
-            ResultView.UpdateTours(this.Data);
+            Data = TourController.GetTours();
+            ResultView.UpdateTours(Data);
         }
 
-        private String FileDialog()
+        private string FileDialog()
         {
             // From https://wpf-tutorial.com/dialogs/the-openfiledialog/
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -126,7 +123,7 @@ namespace TourPlanner.UI.ViewModels
             {
                 logger.Error("Failed to open File");
                 return "";
-            }            
+            }
         }
     }
 }

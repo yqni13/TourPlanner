@@ -6,9 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using TourPlanner.UI.TourSearch;
-using TourPlanner.UI.ViewModels;
-using TourPlanner.UI.ViewModels.TourOverviewMediator;
+using TourPlanner.ViewModels;
+using TourPlanner.ViewModels.SubViewModels;
 
 namespace TourPlanner
 {
