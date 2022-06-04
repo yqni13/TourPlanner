@@ -8,11 +8,14 @@ using TourPlanner.UI.TourSearch;
 using TourPlanner.UI.ViewComponents;
 using TourPlanner.UI.ViewModels.AbstractMediator;
 using TourPlanner.BL.Services;
+using Microsoft.Win32;
+using Example.Log4Net.logging;
 
 namespace TourPlanner.UI.ViewModels.TourOverviewMediator
 {
     public class MainViewModel : BaseViewModel
     {
+        private static ILoggerWrapper logger = LoggerFactory.GetLogger();
         public Collection<Tour> Data { get; set; }
            = new Collection<Tour>();
         public Window OpenInputWindow { get; set; } = null;
@@ -77,6 +80,10 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
             {
                 CloseOpenWindow();
             };
+            Menu.tourExportEvent += (_, arg) =>
+            {
+                TourIO.ExportTour(DetailView.SelectedTour, )
+            };            
         }
 
         private void SearchTours(string searchText)
@@ -104,6 +111,21 @@ namespace TourPlanner.UI.ViewModels.TourOverviewMediator
         {
             this.Data = TourController.GetTours();
             ResultView.UpdateTours(this.Data);
+        }
+
+        private String FileDialog()
+        {
+            // From https://wpf-tutorial.com/dialogs/the-openfiledialog/
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                logger.Error("Failed to open File");
+                return "";
+            }            
         }
     }
 }

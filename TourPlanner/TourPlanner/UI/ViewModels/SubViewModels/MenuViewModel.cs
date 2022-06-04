@@ -19,7 +19,7 @@ namespace TourPlanner.UI.ViewModels
 
         public event EventHandler generatePDF;
         public event EventHandler tourImport;
-        public event EventHandler tourExport;
+        public event EventHandler tourExportEvent;
         public event EventHandler quitApplication;
 
         public MenuViewModel()
@@ -36,7 +36,7 @@ namespace TourPlanner.UI.ViewModels
 
             Export = new RelayCommand((_) =>
             {
-                tourExport?.Invoke(null, EventArgs.Empty);
+                tourExportEvent?.Invoke(null, EventArgs.Empty);
             });
 
             QuitApplication = new RelayCommand((_) =>
