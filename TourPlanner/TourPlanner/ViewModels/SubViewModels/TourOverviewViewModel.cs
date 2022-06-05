@@ -17,7 +17,11 @@ namespace TourPlanner.ViewModels.SubViewModels
     {
         public event EventHandler<Tour> ShowTourDataEvent;
         public event EventHandler<String> ShowMapImageEvent;
+        public event EventHandler<Tour> SaveChangesEvent;
+        public event EventHandler<Tour> CancelChangesEvent;
 
+        public ICommand SaveChangesCommand { get; }
+        public ICommand CancelChangesCommand { get; }
         public ICommand OpenAddDialogCommand { get; set; }    
         public ICommand ShowTourDataCommand { get; set; }
         public ICommand ShowMapImageCommand { get; set; }
@@ -65,6 +69,14 @@ namespace TourPlanner.ViewModels.SubViewModels
             ShowMapImageCommand = new RelayCommand((_) =>
             {
                 this.ShowMapImageEvent?.Invoke(this, Image);
+            });
+            SaveChangesCommand = new RelayCommand((_) =>
+            {
+                this.SaveChangesEvent?.Invoke(this, SelectedTour);
+            });
+            CancelChangesCommand = new RelayCommand((_) =>
+            {
+                this.CancelChangesEvent?.Invoke(this, SelectedTour);
             });
         }
 

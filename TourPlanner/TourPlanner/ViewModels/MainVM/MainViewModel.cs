@@ -24,6 +24,7 @@ namespace TourPlanner.ViewModels.MainVM
         public TourOverviewViewModel DetailView { get; set; }
         public AddTourViewModel AddTour { get; set; }
         public MenuViewModel Menu { get; set; }
+        public TourLogViewModel LogsView { get; set; }
 
 
 
@@ -31,7 +32,8 @@ namespace TourPlanner.ViewModels.MainVM
                             TourDataResultsViewModel resultView,
                             TourOverviewViewModel detailView,
                             AddTourViewModel addTour,
-                            MenuViewModel menu
+                            MenuViewModel menu,
+                            TourLogViewModel logs
                             )
         {
             SearchBar = searchBar;
@@ -39,6 +41,7 @@ namespace TourPlanner.ViewModels.MainVM
             DetailView = detailView;
             AddTour = addTour;
             Menu = menu;
+            LogsView = logs;
 
 
             //subscribe to all the Events from the ViewModels 
@@ -56,6 +59,7 @@ namespace TourPlanner.ViewModels.MainVM
             SubToAddDialogEvents();
             SubToMenuEvents();
             SubToOverviewViewEvents();
+            SubToLogsViewEvent();
         }  
 
         private void CloseOpenWindow()

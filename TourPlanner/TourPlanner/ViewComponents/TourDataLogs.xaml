@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TourPlanner.ViewComponents"
+             DataContext="{Binding TourLogViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="500">
     <Grid>
@@ -18,13 +19,22 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
-            <Label HorizontalContentAlignment="Left" Margin="10 2 2 2" FontSize="16" FontWeight="Bold">Logs:</Label>
+            <Label HorizontalContentAlignment="Center" Margin="10 2 2 2" FontSize="16" FontWeight="Bold" Foreground="Goldenrod">List of Logs for chosen Tour</Label>
         </Border>
         <Button Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="+"/>
         <Button Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="-"/>
         <Button Grid.Row="0" Grid.Column="3" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="[-]"/>
-        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="1" BorderBrush="DimGray" Margin="2">
-            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10 2 2 2" FontSize="16" FontWeight="Bold" Content="-- insert table here --" Foreground="Goldenrod"/>
-        </Border>
+
+        <DataGrid ItemsSource="{Binding TourLogCollection}" SelectedItem="{Binding SelectedTourLog}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding TourLog.Date}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comment" Binding="{Binding TourLog.Comment}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Difficulty" Binding="{Binding TourLog.Difficulty}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="TotalTime" Binding="{Binding TourLog.TotalTime}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rating" Binding="{Binding TourLog.Rating}" Width="100"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
     </Grid>
 </UserControl>

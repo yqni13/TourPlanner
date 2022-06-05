@@ -16,9 +16,22 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DimGray" Margin="2">
-            <TextBox FontSize="20" Foreground="Goldenrod" TextAlignment="Center">Chosen Tour in Detail</TextBox>            
-        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>                
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" BorderThickness="1" BorderBrush="DimGray" Margin="2">
+                <TextBox FontSize="20" Foreground="Goldenrod" TextAlignment="Center">Chosen Tour in Detail</TextBox>
+            </Border>
+            <Button Grid.Row="0" Grid.Column="1" IsDefault="True" Command="{Binding SaveChangesCommand}">Save</Button>
+            <Button Grid.Row="0" Grid.Column="2" Command="{Binding CancelChangesCommand}">Cancel</Button>
+        </Grid>
 
         <TabControl Grid.Row="1" Margin="5">
             <TabItem Header="Route" FontSize="20">

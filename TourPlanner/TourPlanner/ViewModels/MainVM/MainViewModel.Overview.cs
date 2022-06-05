@@ -8,7 +8,7 @@ using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels.MainVM
 {
-    public partial class MainViewModel : BaseViewModel
+    public partial class MainViewModel
     {
         private void SubToOverviewViewEvents()
         {

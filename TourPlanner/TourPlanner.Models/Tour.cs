@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,7 +61,7 @@ namespace TourPlanner.Models
         //Placeholder for the image.
         public String MapPath { get; set; }        
         
-        public List<TourLogs> TourLogs = new List<TourLogs>();
+        public List<TourLogs> TourLogs = new();
 
         public Tour()
         {

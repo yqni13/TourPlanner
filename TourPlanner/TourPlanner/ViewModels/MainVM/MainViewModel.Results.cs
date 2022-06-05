@@ -15,6 +15,7 @@ namespace TourPlanner.ViewModels.MainVM
             ResultView.SelectedTourChanged += (_, tour) =>
             {
                 DetailView.SelectedTour = tour;
+                LogsView.TourLogCollection = tour.TourLogs;
             };
             ResultView.OpenAddDialogEvent += (_, arg) =>
             {
