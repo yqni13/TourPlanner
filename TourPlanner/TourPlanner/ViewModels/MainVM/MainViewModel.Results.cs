@@ -14,11 +14,11 @@ namespace TourPlanner.ViewModels.MainVM
         {
             ResultView.SelectedTourChanged += (_, tour) =>
             {
-                DetailView.SelectedTour = tour;
-                DetailView.SetMapPath(tour.MapPath);
+                DetailView.SelectedTour = tour;                
                 if (tour != null)
                 {
                     LogsView.TourLogCollection = tour.TourLogs;
+                    DetailView.SetMapPath(tour.MapPath);
                 }
                 else
                 {
