@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.DAL;
 using TourPlanner.Models;
 
@@ -37,9 +38,11 @@ namespace TourPlanner.BL.Services
                 TourAccess.AddTour(tour);               
                 logger.Debug("Added tour with ID " + tour.ID + " to Database");                
             }
-            catch
+
+            catch (Exception err)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
+                MessageBox.Show(err.Message);
             }            
         }
 
@@ -54,6 +57,29 @@ namespace TourPlanner.BL.Services
             {
                 logger.Error("Failed to delete tour " + tour.ID + " from Database");                
             }
+        }
+
+        public static void ImportTour(String path)
+        {
+            Collection<Tour> existingTours = TourAccess.getTours();
+            Tour tour = TourIO.ImportTour(path);
+            //LINQ statement to check if tour with same id exists
+            // https://stackoverflow.com/questions/56508215/how-to-check-if-an-object-with-the-same-id-already-exist-inside-a-list-of-object
+            if (existingTours.Any(t => t.ID == tour.ID))
+            {
+                logger.Error("Tried importing tour, but already existed");
+                return;
+            }
+            try
+            {
+                
+                TourAccess.AddTour(tour);
+            }
+            catch
+            {
+                logger.Error("Failed to Import tour");
+            }
+            
         }
 
         private Tour getMapQuestData(Tour tour)

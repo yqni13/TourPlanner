@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.DAL.Utility;
 using TourPlanner.Models;
 
@@ -26,8 +27,8 @@ namespace TourPlanner.DAL
 
                 command.CommandText = @"
                     INSERT INTO tours 
-                    (t_id, t_name, t_description, t_startname, t_endname, t_startcoord, t_endcoord, t_transporttype, t_distance, t_estimatetime, t_mappath)
-                    VALUES (@t_id, @t_name, @t_description, @t_startname, @t_endname, @t_startcoord, @t_endcoord, @t_transporttype, @t_distance, @t_estimatetime, @t_mappath)              
+                    (t_id, t_name, t_description, t_startname, t_endname, t_transporttype, t_distance, t_estimatetime, t_mappath)
+                    VALUES (@t_id, @t_name, @t_description, @t_startname, @t_endname, @t_transporttype, @t_distance, @t_estimatetime, @t_mappath)              
                     ";
 
                 NpgsqlCommand c = command as NpgsqlCommand;
@@ -38,10 +39,8 @@ namespace TourPlanner.DAL
                 c.Parameters.Add("t_startname", NpgsqlDbType.Varchar, 50);
                 c.Parameters.Add("t_endname", NpgsqlDbType.Varchar, 50);
 
-                c.Parameters.Add("t_startcoord", NpgsqlDbType.Integer, 50);
-                c.Parameters.Add("t_endcoord", NpgsqlDbType.Integer, 50);
-                c.Parameters.Add("t_transporttype", NpgsqlDbType.Integer, 50);
-                c.Parameters.Add("t_distance", NpgsqlDbType.Integer, 50);
+                c.Parameters.Add("t_transporttype", NpgsqlDbType.Varchar, 50);
+                c.Parameters.Add("t_distance", NpgsqlDbType.Double, 50);
 
                 c.Parameters.Add("t_estimatetime", NpgsqlDbType.Time, 50);
 
@@ -54,15 +53,13 @@ namespace TourPlanner.DAL
                 c.Parameters["t_description"].Value = tour.Description;
                 c.Parameters["t_startname"].Value = tour.From.ToString();
                 c.Parameters["t_endname"].Value = tour.To.ToString();
+               
+                c.Parameters["t_transporttype"].Value = tour.Transport;
+                c.Parameters["t_distance"].Value = tour.Distance;
 
-                c.Parameters["t_startcoord"].Value = 123;
-                c.Parameters["t_endcoord"].Value = 321;
-                c.Parameters["t_transporttype"].Value = 1;
-                c.Parameters["t_distance"].Value = 15;
+                c.Parameters["t_estimatetime"].Value = tour.Duration;
 
-                c.Parameters["t_estimatetime"].Value = new TimeSpan(2, 23, 5);
-
-                c.Parameters["t_mappath"].Value = "test";
+                c.Parameters["t_mappath"].Value = tour.MapPath;
 
                 command.ExecuteNonQuery();
             }
@@ -81,7 +78,7 @@ namespace TourPlanner.DAL
                 Collection<Tour> tours = new Collection<Tour>();
 
                 command.CommandText = @"
-                    SELECT t_id, t_name, t_description, t_startname, t_endname, t_startcoord, t_endcoord, t_transporttype, t_distance, t_estimatetime, t_mappath
+                    SELECT t_id, t_name, t_description, t_startname, t_endname, t_transporttype, t_distance, t_estimatetime, t_mappath
                     FROM tours";
                 
                 var reader = command.ExecuteReader();
@@ -91,17 +88,15 @@ namespace TourPlanner.DAL
                     Tour tour = new Tour(Guid.Parse(reader[0].ToString()),
                                         reader.GetString(1),
                                         reader.GetString(2),
-                                        new Adress(),
-                                        new Adress(),
-                                        reader.GetInt32(5),
-                                        reader.GetInt32(6),
-                                        reader.GetString(7),
-                                        reader.GetInt32(8),
-                                        new TimeSpan(2, 23, 5),
-                                        reader.GetString(10)
-                                        );
-                    tours.Add(tour);
-                }
+                                        new Adress(reader.GetString(3)),
+                                        new Adress(reader.GetString(4)),
+                                        reader.GetString(5),
+                                        reader.GetInt32(6),                                        
+                                        (TimeSpan)reader.GetValue(7),                                        
+                                        reader.GetString(8)
+                                        ); ;
+                    tours.Add(tour);                    
+                }     
                 
                 return tours;
             }

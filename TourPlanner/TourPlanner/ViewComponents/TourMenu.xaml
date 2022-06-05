@@ -10,8 +10,8 @@
     <Menu >
         <MenuItem Header="_File">
             <MenuItem Header="_PDF-Generation" />
-            <MenuItem Header="_Import" />
-            <MenuItem Header="_Export" />
+            <MenuItem Header="_Import" Command="{Binding Import}"/>
+            <MenuItem Header="_Export" Command="{Binding Export}"/>
             <Separator />
             <MenuItem Header="_Quit" Command="{Binding QuitApplication}"/>
         </MenuItem>

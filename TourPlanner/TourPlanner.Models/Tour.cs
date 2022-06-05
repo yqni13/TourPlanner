@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TourPlanner.Models
 {
@@ -13,12 +14,7 @@ namespace TourPlanner.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public Adress From { get; set; }        
-        public Adress To { get; set; }
-
-        // Not needed anymore, because coordinates are saved to BoundingBox. ?
-        public Double StartCoord { get; set; }
-        public Double EndCoord { get; set; }
-
+        public Adress To { get; set; }       
 
         private string _routeType = "fastest";
         public String Transport
@@ -35,7 +31,7 @@ namespace TourPlanner.Models
                     _routeType = "fastest";
             }
         }
-        private String _mapType;
+        private String _mapType = "map";
         public String MapType
         {
             get
@@ -50,7 +46,7 @@ namespace TourPlanner.Models
                     _mapType = "map";
             }
         }
-        public Double Distance { get; set; }
+        public Double Distance { get; set; } = 0;
 
         //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
         //public String Duration { get; set; }
@@ -59,9 +55,11 @@ namespace TourPlanner.Models
         public String BoundingBox { get; set; }
 
         //Placeholder for the image.
-        public String MapPath { get; set; }        
+        public String MapPath { get; set; } = "";       
         
         public List<TourLogs> TourLogs = new();
+
+        
 
         public Tour()
         {
@@ -69,16 +67,14 @@ namespace TourPlanner.Models
             this.To = new Adress();
         }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath)
 
         {
             ID = id;
             Name = name;
             Description = description;
             From = from;
-            To = to;
-            StartCoord = startC;
-            EndCoord = endC;
+            To = to;            
             Transport = transport;
             Distance = distance;
             Duration = duration;
@@ -92,15 +88,13 @@ namespace TourPlanner.Models
             To = to;
         }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, double startC, double endC, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
         {
             ID = id;
             Name = name;
             Description = description;
             From = from;
-            To = to;
-            StartCoord = startC;
-            EndCoord = endC;
+            To = to;            
             Transport = transport;
             Distance = distance;
             Duration = duration;
