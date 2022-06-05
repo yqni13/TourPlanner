@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Example.Log4Net.logging;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -14,6 +15,7 @@ namespace TourPlanner.BL.WeatherAPI
 {
     public class WeatherDataRequest
     {
+        private static ILoggerWrapper logger = LoggerFactory.GetLogger();
         public static Weather getWeather(Tour tour)
         {
             Weather weather = new();
@@ -48,12 +50,12 @@ namespace TourPlanner.BL.WeatherAPI
             catch (NullReferenceException err)
             {
                 MessageBox.Show(err.ToString());
-                // Place logger here.
+                logger.Error("Null ref at weather data rewuest");
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.ToString());
-                // Place logger here.
+                logger.Error("fatal error at weather request");
             }
             return weather;
         }
