@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.BL.Services;
+using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels.MainVM
 {
@@ -23,6 +24,7 @@ namespace TourPlanner.ViewModels.MainVM
                 else
                 {
                     LogsView.TourLogCollection = null;
+                    DetailView.SetMapPath(null);
                 }                
                 
             };
@@ -33,6 +35,8 @@ namespace TourPlanner.ViewModels.MainVM
             ResultView.DeleteTourEvent += (_, tour) =>
             {
                 TourController.DeleteTour(tour);
+                DetailView.SelectedTour = new Tour();
+                DetailView.SetMapPath(null);
                 UpdateTourList();
             };
         }

@@ -54,11 +54,12 @@ namespace TourPlanner.ViewModels.SubViewModels
                 if (value == null)
                 {
                     _selectedTour = value;
+                    From = "";
+                    To = "";                    
                 }
                 else
                 {
-                    _selectedTour = value;
-                    MessageBox.Show(_selectedTour.From.ToString());
+                    _selectedTour = value;                    
                     From = _selectedTour.From.ToString();
                     To = _selectedTour.To.ToString();                   
                 }                
@@ -109,8 +110,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         }
 
         public void SetMapPath(String path)
-        {
-            MessageBox.Show(path);
+        {            
             if (path == null || path == "")
             {
                 Image = _defaultPath;

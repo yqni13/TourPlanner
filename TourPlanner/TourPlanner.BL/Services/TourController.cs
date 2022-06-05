@@ -17,6 +17,8 @@ namespace TourPlanner.BL.Services
     {
         private static ILoggerWrapper logger = LoggerFactory.GetLogger();
 
+        public static object Giud { get; private set; }
+
         public static Collection<Tour> GetTours()
         {
             Collection<Tour> tours = new();
@@ -34,7 +36,10 @@ namespace TourPlanner.BL.Services
 
         public static async void AddTour(Tour tour)
         {
-            tour.ID = System.Guid.NewGuid();
+            if(tour.ID == Guid.Empty)
+            {
+                tour.ID = System.Guid.NewGuid();
+            }            
             try
             {
                 MapDataRequest datarequest = new(tour);
@@ -81,8 +86,7 @@ namespace TourPlanner.BL.Services
             }
             try
             {
-                
-                TourAccess.AddTour(tour);
+                AddTour(tour);
             }
             catch
             {
