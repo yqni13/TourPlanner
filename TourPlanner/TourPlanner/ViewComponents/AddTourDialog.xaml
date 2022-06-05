@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:TourPlanner.ViewComponents"
         mc:Ignorable="d"
         Title="AddTourDialog" Height="650" Width="800">   
-    <Grid>
+    <Grid>        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="125"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,8 +22,9 @@
             <ColumnDefinition Width="*"/>            
         </Grid.ColumnDefinitions>
         <Label  FontSize="16" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Add a new tour:</Label>
-        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Name:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding newTour.Name}"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Name*:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding newTour.Name}">            
+        </TextBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Description</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding newTour.Description}"></TextBox>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="5">From:</Label>
@@ -39,13 +41,13 @@
                 <ColumnDefinition Width="*"  MinWidth="350"/>
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" >Street</Label>
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" >Street*</Label>
             <TextBox Grid.Row="1" Grid.Column="0"  Text="{Binding newTour.From.Street}"></TextBox>
-            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" >Number</Label>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" >Number*</Label>
             <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding newTour.From.Number}"></TextBox>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" >City</Label>
             <TextBox Grid.Row="3" Grid.Column="0"  Text="{Binding newTour.From.City}"></TextBox>
-            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" >ZIP-Code</Label>
+            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" >ZIP-Code*</Label>
             <TextBox Grid.Row="3" Grid.Column="1"  Text="{Binding newTour.From.ZibCode}"></TextBox>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" >Country</Label>
             <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding newTour.From.Country}"></TextBox>
@@ -65,31 +67,31 @@
                 <ColumnDefinition Width="*"  MinWidth="350"/>
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">Street</Label>
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">Street*</Label>
             <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding newTour.To.Street}"></TextBox>
-            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">Number</Label>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">Number*</Label>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding newTour.To.Number}"></TextBox>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">City</Label>
             <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding newTour.To.City}"></TextBox>
-            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">ZIP-Code</Label>
+            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">ZIP-Code*</Label>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding newTour.To.ZibCode}"></TextBox>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">Country</Label>
             <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding newTour.To.Country}"></TextBox>
         </Grid>
-        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Transport-Type</Label>
+        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Transport-Type:</Label>
         <ComboBox Grid.Row="5" Grid.Column="1" Margin="5" Width="120" HorizontalAlignment="Left" 
-                  SelectedItem="{Binding newTour.Transport}">
-            <ComboBoxItem IsSelected="True">fastest</ComboBoxItem>
-            <ComboBoxItem>shortest</ComboBoxItem>
-            <ComboBoxItem>pedestrian</ComboBoxItem>
-            <ComboBoxItem>bicycle</ComboBoxItem>
+                  SelectedItem="{Binding newTour.Transport}"
+                  ItemsSource="{Binding transporttypes}">            
         </ComboBox>
-        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-            <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" Command="{Binding AddTourCommand}">Save</Button>
+        <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Map-Type:</Label>
+        <ComboBox Grid.Row="6" Grid.Column="1" Margin="5" Width="120" HorizontalAlignment="Left" 
+                  SelectedItem="{Binding newTour.MapType}"
+                  ItemsSource="{Binding maptypes}">
+        </ComboBox>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+            <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" IsEnabled="{Binding newTour.IsValid}" Command="{Binding AddTourCommand}">Save</Button>
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" Command="{Binding CloseDialogCommand}">Cancel</Button>
         </StackPanel>
-
-        
     </Grid>
     
 </Window>

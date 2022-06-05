@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TourPlanner.Models
 {
@@ -29,7 +31,7 @@ namespace TourPlanner.Models
                     _routeType = "fastest";
             }
         }
-        private String _mapType;
+        private String _mapType = "map";
         public String MapType
         {
             get
@@ -56,6 +58,8 @@ namespace TourPlanner.Models
         public String MapPath { get; set; } = "";       
         
         public List<TourLogs> TourLogs = new List<TourLogs>();
+
+        
 
         public Tour()
         {
