@@ -38,11 +38,11 @@ namespace TourPlanner.BL.Services
             {
                 MapDataRequest datarequest = new(tour);
                 MapImageRequest imagerequest = new();
-                tour = await datarequest.RequestTourFromAPI();
-                MessageBox.Show(tour.Session);
-                Tour populatedTour = await imagerequest.RequestMapImageFromAPI(tour);
-
-                TourAccess.AddTour(populatedTour);               
+                Task<Tour> requesttask = Task.Run<Tour>(async () => await datarequest.RequestTourFromAPI());                
+                MessageBox.Show(requesttask.Result.Session);
+                Task<Tour> imagetask = Task.Run<Tour>(async () => await imagerequest.RequestMapImageFromAPI(requesttask.Result));
+                
+                TourAccess.AddTour(imagetask.Result);               
                 logger.Debug("Added tour with ID " + tour.ID + " to Database");                
             }
 
