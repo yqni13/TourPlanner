@@ -57,7 +57,7 @@ namespace TourPlanner.Models
         //Placeholder for the image.
         public String MapPath { get; set; } = "";       
         
-        public List<TourLogs> TourLogs = new List<TourLogs>();
+        public List<TourLogs> TourLogs = new();
 
         
 

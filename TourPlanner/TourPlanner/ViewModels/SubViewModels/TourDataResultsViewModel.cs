@@ -19,6 +19,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         public event EventHandler OpenAddDialogEvent;
         public event EventHandler<Tour> SelectedTourChanged;
         public event EventHandler<Tour> DeleteTourEvent;
+        
 
         public ICommand OpenAddDialogCommand { get; }
         public ICommand DeleteTourCommand { get; }
@@ -45,10 +46,15 @@ namespace TourPlanner.ViewModels.SubViewModels
                 OnPropertyChanged();
             }
         }
+
+        
+        
         public TourDataResultsViewModel()
-        {                   
+        {
+            
             OpenAddDialogCommand = new RelayCommand((_) =>
             {                
+                // (this, EventArgs.Empty) => 2nd parameter if Eventhandler (line 19) is empty or gives specific datatype
                 this.OpenAddDialogEvent?.Invoke(this, EventArgs.Empty);
             });
             DeleteTourCommand = new RelayCommand((_) =>

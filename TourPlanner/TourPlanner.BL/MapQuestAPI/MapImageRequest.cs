@@ -53,7 +53,7 @@ namespace TourPlanner.BL.MapQuestAPI
 
                 // Generate file name by Guid (avoid DateTime format drama with no ":") and name of tour.
                 imageName = $"{tour.ID}_{tour.Name}.{Format}";
-                tour.MapPath = $"{ImageDirectoryPath}/{imageName}";
+                tour.MapPath = $"{Environment.CurrentDirectory}{ImageDirectoryPath}/{imageName}";
 
                 // Draw Image with data from response and call MapPath from tour model.
                 using System.Drawing.Image mapImage = System.Drawing.Image.FromStream(new MemoryStream(response));

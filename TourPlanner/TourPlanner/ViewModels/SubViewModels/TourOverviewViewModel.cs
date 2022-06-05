@@ -9,22 +9,37 @@ using System.Windows.Input;
 using TourPlanner.Models;
 using TourPlanner.ViewComponents;
 using TourPlanner.ViewModels.Abstract;
+using TourPlanner.ViewModels.Utility;
 
 namespace TourPlanner.ViewModels.SubViewModels
 {
     public class TourOverviewViewModel : BaseViewModel
     {
-        private string _result;        
+        public event EventHandler<Tour> ShowTourDataEvent;
+        public event EventHandler<String> ShowMapImageEvent;
+        public event EventHandler<Tour> SaveChangesEvent;
+        public event EventHandler<Tour> CancelChangesEvent;
 
-        public ICommand OpenAddDialogCommand { get; }        
-
-        public string Result
+        public ICommand SaveChangesCommand { get; }
+        public ICommand CancelChangesCommand { get; }
+        public ICommand OpenAddDialogCommand { get; set; }    
+        public ICommand ShowTourDataCommand { get; set; }
+        public ICommand ShowMapImageCommand { get; set; }
+                
+        private string _image = $"{Environment.CurrentDirectory}/Images/image_placeholder.jpg";
+        public String Image
         {
-            get { return _result; }
+            get
+            {
+                return _image;
+            }
             set
             {
-                _result = value;
-                OnPropertyChanged();
+                if (_image != value)
+                {
+                    _image = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -34,26 +49,36 @@ namespace TourPlanner.ViewModels.SubViewModels
             get => _selectedTour;
             set
             {
-                _selectedTour = value;  
+                _selectedTour = value;
+                From = _selectedTour.From.ToString();
+                To = _selectedTour.To.ToString();
                 OnPropertyChanged();
             }
         }
 
+        public String From { get; set; }
+        public String To { get; set; }
+
+
         public TourOverviewViewModel()
         {
+            ShowTourDataCommand = new RelayCommand((_) =>
+            {
+                this.ShowTourDataEvent?.Invoke(this, SelectedTour);
+            });
+            ShowMapImageCommand = new RelayCommand((_) =>
+            {
+                this.ShowMapImageEvent?.Invoke(this, Image);
+            });
+            SaveChangesCommand = new RelayCommand((_) =>
+            {
+                this.SaveChangesEvent?.Invoke(this, SelectedTour);
+            });
+            CancelChangesCommand = new RelayCommand((_) =>
+            {
+                this.CancelChangesEvent?.Invoke(this, SelectedTour);
+            });
         }
 
-        public bool IsResultEmpty()
-        {
-            if (string.IsNullOrEmpty(Result))
-                return true;
-            // Purpose of method serves only for Unit Test at the moment.
-            return false;
-        }
-
-        public void DisplayTourDataOverview(string resultText)
-        {
-            Result = resultText;            
-        }
     }
 }

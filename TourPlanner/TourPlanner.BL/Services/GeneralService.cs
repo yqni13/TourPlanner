@@ -23,5 +23,16 @@ namespace TourPlanner.BL.Services
             tour.Description = description;
             return tour;
         }
+
+        public static List<string> GetRouteTypes()
+        {
+            List<string> types = new();
+            types.Add("fastest");
+            types.Add("shortest");
+            types.Add("pedestrian");
+            types.Add("bicyle");
+
+            return types;
+        }
     }    
 }
