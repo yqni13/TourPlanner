@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:TourPlanner.ViewComponents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="535" MaxHeight="1000" Width="700" MaxWidth="1000">
+        Title="MainWindow" Height="800" MaxHeight="2000" Width="940" MaxWidth="1000">
     
     <Grid Margin="3">
         <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
         </DockPanel>
         <Grid Margin="3" Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="480"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>                

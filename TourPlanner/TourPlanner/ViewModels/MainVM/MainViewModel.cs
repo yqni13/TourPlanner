@@ -55,6 +55,7 @@ namespace TourPlanner.ViewModels.MainVM
             SubToResultsViewEvents();
             SubToAddDialogEvents();
             SubToMenuEvents();
+            SubToOverviewViewEvents();
         }  
 
         private void CloseOpenWindow()
