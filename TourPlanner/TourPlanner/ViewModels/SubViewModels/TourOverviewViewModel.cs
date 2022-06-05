@@ -118,6 +118,5 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
             Image = path;
         }
-
     }
 }
