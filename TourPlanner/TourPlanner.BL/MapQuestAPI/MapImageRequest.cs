@@ -46,8 +46,6 @@ namespace TourPlanner.BL.MapQuestAPI
                 // Prepare URL with necessary/customized parameters.
                 SetupURL(tour.MapType, tour.Session, tour.BoundingBox);
 
-                MessageBox.Show(MapImageURL);
-
                 using HttpClient client = new();
 
                 // Wait for the request to complete and return requested image by reading the bytes.

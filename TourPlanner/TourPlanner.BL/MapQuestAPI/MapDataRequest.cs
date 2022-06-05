@@ -48,8 +48,7 @@ namespace TourPlanner.BL.MapQuestAPI
                 using HttpClient client = new();
 
                 // Wait for the request to complete and return requested data.
-                var response = await client.GetStringAsync(MapDataURL);
-                MessageBox.Show(response);
+                var response = await client.GetStringAsync(MapDataURL);                
                 
                 // Deserialize the response data to json object for further handling.
                 JsonResponse = JsonConvert.DeserializeObject<JObject>(response);
@@ -83,15 +82,13 @@ namespace TourPlanner.BL.MapQuestAPI
             string boundingBox_ul_lng = json["route"]["boundingBox"]["ul"]["lng"].ToString().Replace(",", ".");
             string boundingBox_ul_lat = json["route"]["boundingBox"]["ul"]["lat"].ToString().Replace(",", ".");
             string boundingBox = $"{boundingBox_lr_lat},{boundingBox_lr_lng},{boundingBox_ul_lat},{boundingBox_ul_lng}";
-            string distance = json["route"]["distance"].ToString();
+            double distance = (double)json["route"]["distance"];
             string time = json["route"]["formattedTime"].ToString();            
             TimeSpan tourTime = TimeSpan.FromSeconds(GeneralService.StringTimeConverterToSeconds(time));
 
-            MessageBox.Show(sessionID);
-
             TourObject.Session = sessionID;
             TourObject.BoundingBox = boundingBox;
-            TourObject.Distance = Double.Parse(distance);
+            TourObject.Distance = distance;
             TourObject.Duration = tourTime;
         }
     }

@@ -60,7 +60,7 @@ namespace TourPlanner.ViewModels.SubViewModels
                     _selectedTour = value;
                     MessageBox.Show(_selectedTour.From.ToString());
                     From = _selectedTour.From.ToString();
-                    To = _selectedTour.To.ToString();
+                    To = _selectedTour.To.ToString();                   
                 }                
                 OnPropertyChanged();
             }
@@ -77,6 +77,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             get { return _to; }
             set { _to = value; OnPropertyChanged(); }
         }
+        private string _defaultPath; 
         
 
 
@@ -86,7 +87,8 @@ namespace TourPlanner.ViewModels.SubViewModels
                 .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            _image = $"{Environment.CurrentDirectory}/{configuration["images:path"]}/image_placeholder.jpg";
+            _defaultPath = $"{Environment.CurrentDirectory}/{configuration["images:path"]}/image_placeholder.jpg";
+            _image = _defaultPath;
            
             ShowTourDataCommand = new RelayCommand((_) =>
             {
@@ -104,6 +106,17 @@ namespace TourPlanner.ViewModels.SubViewModels
             {
                 this.CancelChangesEvent?.Invoke(this, SelectedTour);
             });
+        }
+
+        public void SetMapPath(String path)
+        {
+            MessageBox.Show(path);
+            if (path == null || path == "")
+            {
+                Image = _defaultPath;
+                return;
+            }
+            Image = path;
         }
 
     }
