@@ -36,15 +36,15 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
             newTour.Name = "testTour";
             newTour.Description = "Desc....";
-            newTour.From.Street = "Straße";
-            newTour.From.Number = "31/5";
+            newTour.From.Street = "Kaschlgasse";
+            newTour.From.Number = "1";
             newTour.From.City = "Wien";
             newTour.From.ZibCode = 1200;
             newTour.From.Country = "AT";
-            newTour.To.Street = "Straße";
-            newTour.To.Number = "31/5";
+            newTour.To.Street = "Gonzagagasse";
+            newTour.To.Number = "1";
             newTour.To.City = "Wien";
-            newTour.To.ZibCode = 1200;
+            newTour.To.ZibCode = 1010;
             newTour.To.Country = "AT";
             //AddTourCommand function raises the ToursChangedEvent event when called            
             AddTourCommand = new RelayCommand((_) =>

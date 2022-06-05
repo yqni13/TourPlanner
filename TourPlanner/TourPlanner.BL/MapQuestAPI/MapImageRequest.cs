@@ -30,14 +30,14 @@ namespace TourPlanner.BL.MapQuestAPI
                 .Build();
 
             ImageDirectoryPath = configuration["images:path"];
-            // Create new directory for images. If directory exists, it will not overwrite.
-            Directory.CreateDirectory(ImageDirectoryPath);
+            
             MapSize = "600,400";
             Format = "png";
             ScaleBar = "true|bottom";
+            KeyAuthentication = configuration["mapquestapi:key"];
         }
 
-        public async void RequestMapImageFromAPI(Tour tour)
+        public async Task<Tour> RequestMapImageFromAPI(Tour tour)
         {
             string imageName;
 
@@ -46,6 +46,8 @@ namespace TourPlanner.BL.MapQuestAPI
                 // Prepare URL with necessary/customized parameters.
                 SetupURL(tour.MapType, tour.Session, tour.BoundingBox);
 
+                MessageBox.Show(MapImageURL);
+
                 using HttpClient client = new();
 
                 // Wait for the request to complete and return requested image by reading the bytes.
@@ -53,7 +55,7 @@ namespace TourPlanner.BL.MapQuestAPI
 
                 // Generate file name by Guid (avoid DateTime format drama with no ":") and name of tour.
                 imageName = $"{tour.ID}_{tour.Name}.{Format}";
-                tour.MapPath = $"{Environment.CurrentDirectory}{ImageDirectoryPath}/{imageName}";
+                tour.MapPath = $"{Environment.CurrentDirectory}/{ImageDirectoryPath}/{imageName}";
 
                 // Draw Image with data from response and call MapPath from tour model.
                 using System.Drawing.Image mapImage = System.Drawing.Image.FromStream(new MemoryStream(response));
@@ -68,7 +70,8 @@ namespace TourPlanner.BL.MapQuestAPI
             {
                 MessageBox.Show(err.ToString());
                 // Place logger here.
-            }            
+            }
+            return tour;
         }
 
         public void SetupURL(string maptype, string session, string boundingbox)

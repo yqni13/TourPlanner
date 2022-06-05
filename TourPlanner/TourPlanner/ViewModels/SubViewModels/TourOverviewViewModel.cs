@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.Models;
 using TourPlanner.ViewComponents;
@@ -25,8 +27,8 @@ namespace TourPlanner.ViewModels.SubViewModels
         public ICommand OpenAddDialogCommand { get; set; }    
         public ICommand ShowTourDataCommand { get; set; }
         public ICommand ShowMapImageCommand { get; set; }
-                
-        private string _image = $"{Environment.CurrentDirectory}/Images/image_placeholder.jpg";
+
+        private string _image;
         public String Image
         {
             get
@@ -69,6 +71,12 @@ namespace TourPlanner.ViewModels.SubViewModels
 
         public TourOverviewViewModel()
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            _image = $"{Environment.CurrentDirectory}/{configuration["images:path"]}/image_placeholder.jpg";
+           
             ShowTourDataCommand = new RelayCommand((_) =>
             {
                 this.ShowTourDataEvent?.Invoke(this, SelectedTour);

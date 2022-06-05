@@ -43,7 +43,7 @@ namespace TourPlanner.Models
 
         public override String ToString()
         {
-            return this.Street + " " + this.Number + ", " + this.ZibCode + " " + this.City + ", " + this.Country; 
+            return this.Street + " " + this.Number + " " + this.ZibCode + " " + this.City + " " + this.Country; 
         }
     }
 }

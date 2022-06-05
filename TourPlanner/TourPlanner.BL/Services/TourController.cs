@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TourPlanner.BL.MapQuestAPI;
 using TourPlanner.DAL;
 using TourPlanner.Models;
 
@@ -30,12 +31,18 @@ namespace TourPlanner.BL.Services
             return tours;
         }
 
-        public static void AddTour(Tour tour)
+        public static async void AddTour(Tour tour)
         {
             tour.ID = System.Guid.NewGuid();
             try
             {
-                TourAccess.AddTour(tour);               
+                MapDataRequest datarequest = new(tour);
+                MapImageRequest imagerequest = new();
+                tour = await datarequest.RequestTourFromAPI();
+                MessageBox.Show(tour.Session);
+                Tour populatedTour = await imagerequest.RequestMapImageFromAPI(tour);
+
+                TourAccess.AddTour(populatedTour);               
                 logger.Debug("Added tour with ID " + tour.ID + " to Database");                
             }
 

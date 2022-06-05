@@ -89,7 +89,7 @@
                   ItemsSource="{Binding maptypes}">
         </ComboBox>
         <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
-            <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" IsEnabled="{Binding newTour.IsValid}" Command="{Binding AddTourCommand}">Save</Button>
+            <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" Command="{Binding AddTourCommand}">Save</Button>
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" Command="{Binding CloseDialogCommand}">Cancel</Button>
         </StackPanel>
     </Grid>

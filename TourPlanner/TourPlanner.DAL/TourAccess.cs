@@ -35,7 +35,7 @@ namespace TourPlanner.DAL
 
                 c.Parameters.Add("t_id", NpgsqlDbType.Uuid, 50);
                 c.Parameters.Add("t_name", NpgsqlDbType.Varchar, 50);
-                c.Parameters.Add("t_description", NpgsqlDbType.Varchar, 50);
+                c.Parameters.Add("t_description", NpgsqlDbType.Varchar, 500);
                 c.Parameters.Add("t_startname", NpgsqlDbType.Varchar, 50);
                 c.Parameters.Add("t_endname", NpgsqlDbType.Varchar, 50);
 
@@ -44,7 +44,7 @@ namespace TourPlanner.DAL
 
                 c.Parameters.Add("t_estimatetime", NpgsqlDbType.Time, 50);
 
-                c.Parameters.Add("t_mappath", NpgsqlDbType.Varchar, 50);
+                c.Parameters.Add("t_mappath", NpgsqlDbType.Varchar, 400);
 
                 c.Prepare();
 
