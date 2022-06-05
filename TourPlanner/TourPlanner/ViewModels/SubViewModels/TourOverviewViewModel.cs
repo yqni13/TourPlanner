@@ -49,9 +49,16 @@ namespace TourPlanner.ViewModels.SubViewModels
             get => _selectedTour;
             set
             {
-                _selectedTour = value;
-                From = _selectedTour.From.ToString();
-                To = _selectedTour.To.ToString();
+                if (value == null)
+                {
+                    _selectedTour = value;
+                }
+                else
+                {
+                    _selectedTour = value;
+                    From = _selectedTour.From.ToString();
+                    To = _selectedTour.To.ToString();
+                }                
                 OnPropertyChanged();
             }
         }
