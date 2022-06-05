@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Example.Log4Net.logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,14 +13,48 @@ namespace TourPlanner.BL.Services
 {
     public class TourIO
     {
+        private static ILoggerWrapper logger = LoggerFactory.GetLogger();
+
         private static readonly JsonSerializerSettings _options
         = new() { NullValueHandling = NullValueHandling.Ignore };
 
         public static void ExportTour(Tour tour, String path)
         {
-
             var jsonString = JsonConvert.SerializeObject(tour, _options);
-            File.WriteAllText(path, jsonString);
+            try
+            {
+                File.WriteAllText(path, jsonString);
+                logger.Debug("Exportet to: " + path);
+            }
+            catch (ArgumentNullException)
+            {
+                logger.Error("Export file path cant be null");
+            }
+            catch (PathTooLongException)
+            {
+                logger.Error("Export file path to long");
+            }
+            catch
+            {
+                logger.Error("Exporting File Error");
+            }
+        }
+
+        public static Tour ImportTour(String path)
+        {
+            Tour tour = new();
+            
+            try
+            {
+                string json = File.ReadAllText(path);
+                tour = JsonConvert.DeserializeObject<Tour>(json, _options);
+                logger.Debug("Importet from " + path + " the tour " + tour.Name);
+            }
+            catch (JsonSerializationException)
+            {
+                logger.Error("Serialization Error when importing Tour");
+            }
+            return tour;
         }
     }
 }

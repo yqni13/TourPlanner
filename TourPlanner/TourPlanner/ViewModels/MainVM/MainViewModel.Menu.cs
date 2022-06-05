@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,43 @@ namespace TourPlanner.ViewModels.MainVM
         {
             Menu.tourExportEvent += (_, arg) =>
             {
-                TourIO.ExportTour(DetailView.SelectedTour, FileDialog());
+                TourIO.ExportTour(DetailView.SelectedTour, SaveFileDialog());
             };
+            Menu.tourImportEvent += (_, arg) =>
+            {
+                TourController.ImportTour(OpenFileDialog());
+                UpdateTourList();
+            };
+        }
+
+        private string OpenFileDialog()
+        {
+            // From https://wpf-tutorial.com/dialogs/the-openfiledialog/
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                logger.Error("Failed to open File");
+                return "";
+            }
+        }
+        private string SaveFileDialog()
+        {
+            // From https://wpf-tutorial.com/dialogs/the-openfiledialog/
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Json | *.json";
+            if (saveFileDialog.ShowDialog() == true && saveFileDialog.FileName != null)
+            {
+                return saveFileDialog.FileName;
+            }
+            else
+            {
+                logger.Error("Failed to save File");
+                return "";
+            }
         }
     }
 }

@@ -61,21 +61,6 @@ namespace TourPlanner.ViewModels.MainVM
         {
             OpenInputWindow.Hide();
             OpenInputWindow = null;
-        }
-
-        private string FileDialog()
-        {
-            // From https://wpf-tutorial.com/dialogs/the-openfiledialog/
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                return openFileDialog.FileName;
-            }
-            else
-            {
-                logger.Error("Failed to open File");
-                return "";
-            }
-        }
+        }        
     }
 }

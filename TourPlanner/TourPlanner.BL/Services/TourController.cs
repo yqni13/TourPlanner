@@ -56,6 +56,28 @@ namespace TourPlanner.BL.Services
             }
         }
 
+        public static void ImportTour(String path)
+        {
+            Collection<Tour> existingTours = TourAccess.getTours();
+            Tour tour = TourIO.ImportTour(path);
+            //LINQ statement to check if tour with same id exists
+            if(existingTours.Any(t => t.ID == tour.ID))
+            {
+                logger.Error("Tried importing tour, but already existed");
+                return;
+            }
+            try
+            {
+                
+                TourAccess.AddTour(tour);
+            }
+            catch
+            {
+                logger.Error("Failed to Import tour");
+            }
+            
+        }
+
         private Tour getMapQuestData(Tour tour)
         {
             return tour;
