@@ -165,11 +165,7 @@ namespace TourPlanner.BL.PDFGeneration
             tourTable.AddHeaderCell(tour.From.ToString());
             tourTable.SetFontSize(11).SetBackgroundColor(ColorConstants.WHITE);
             tourTable.AddCell(getHeaderCell("Destination:"));
-            tourTable.AddCell(tour.To.ToString());
-            tourTable.AddCell(getHeaderCell("Coordinates Start:"));
-            tourTable.AddCell(tour.StartCoord.ToString());
-            tourTable.AddCell(getHeaderCell("Coordinates End:"));
-            tourTable.AddCell(tour.EndCoord.ToString());
+            tourTable.AddCell(tour.To.ToString());            
             tourTable.AddCell(getHeaderCell("Route Type:"));
             tourTable.AddCell(tour.Transport.ToString());
             tourTable.AddCell(getHeaderCell("Distance:"));

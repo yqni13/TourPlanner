@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.DAL;
 using TourPlanner.Models;
 
@@ -37,9 +38,11 @@ namespace TourPlanner.BL.Services
                 TourAccess.AddTour(tour);               
                 logger.Debug("Added tour with ID " + tour.ID + " to Database");                
             }
-            catch
+
+            catch (Exception err)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
+                MessageBox.Show(err.Message);
             }            
         }
 
