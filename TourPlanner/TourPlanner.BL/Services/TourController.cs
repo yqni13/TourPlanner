@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.BL.MapQuestAPI;
+using TourPlanner.BL.WeatherAPI;
 using TourPlanner.DAL;
 using TourPlanner.Models;
 
@@ -93,6 +94,28 @@ namespace TourPlanner.BL.Services
         private Tour getMapQuestData(Tour tour)
         {
             return tour;
+        }
+
+        public static Weather GetWeather(Tour tour)
+        {
+            Weather weather = new();
+            try
+            {
+                MapDataRequest datarequest = new(tour);
+                
+                //https://stackoverflow.com/questions/9343594/how-to-call-asynchronous-method-from-synchronous-method-in-c
+                Task<Tour> requesttask = Task.Run<Tour>(async () => await datarequest.RequestTourFromAPI());
+                WeatherDataRequest.getWeather(requesttask.Result);
+
+                logger.Debug("Fetched Weather for tour " + tour.ID);
+            }
+
+            catch (Exception err)
+            {
+                logger.Error("Failed to add tour " + tour.ID + " to Database");
+                MessageBox.Show(err.Message);
+            }
+            return weather;
         }
     }
 }

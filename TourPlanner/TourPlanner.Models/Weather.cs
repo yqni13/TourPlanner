@@ -10,8 +10,7 @@ namespace TourPlanner.Models
     {
         public double Temp;
         public double FeltTemp;
-        public String WeatherCondition;
-        public double WindSpeed;
+        public String WeatherCondition;        
 
         public Weather() { }
     }
