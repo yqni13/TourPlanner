@@ -61,7 +61,8 @@ namespace TourPlanner.BL.Services
             Collection<Tour> existingTours = TourAccess.getTours();
             Tour tour = TourIO.ImportTour(path);
             //LINQ statement to check if tour with same id exists
-            if(existingTours.Any(t => t.ID == tour.ID))
+            // https://stackoverflow.com/questions/56508215/how-to-check-if-an-object-with-the-same-id-already-exist-inside-a-list-of-object
+            if (existingTours.Any(t => t.ID == tour.ID))
             {
                 logger.Error("Tried importing tour, but already existed");
                 return;

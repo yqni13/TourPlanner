@@ -77,7 +77,13 @@
             <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding newTour.To.Country}"></TextBox>
         </Grid>
         <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="5">Transport-Type</Label>
-        <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding newTour.Transport}"></TextBox>
+        <ComboBox Grid.Row="5" Grid.Column="1" Margin="5" Width="120" HorizontalAlignment="Left" 
+                  SelectedItem="{Binding newTour.Transport}">
+            <ComboBoxItem IsSelected="True">fastest</ComboBoxItem>
+            <ComboBoxItem>shortest</ComboBoxItem>
+            <ComboBoxItem>pedestrian</ComboBoxItem>
+            <ComboBoxItem>bicycle</ComboBoxItem>
+        </ComboBox>
         <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" Command="{Binding AddTourCommand}">Save</Button>
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" Command="{Binding CloseDialogCommand}">Cancel</Button>
