@@ -34,5 +34,25 @@ namespace TourPlanner.BL.Services
 
             return types;
         }
+
+        public static int CalculatePopularity(Tour tour)
+        {
+            int result = 0;
+            foreach(TourLogs log in tour.TourLogs)
+            {
+                result += 1;
+            }
+            return result;
+        }
+
+        public static string CalculateChildFriendly(Tour tour)
+        {
+            return "Childfriendly";
+        }
+
+        public static TimeSpan Average(IEnumerable<TimeSpan> spans)
+        {
+            return TimeSpan.FromSeconds(spans.Select(s => s.TotalSeconds).Average());
+        }
     }    
 }

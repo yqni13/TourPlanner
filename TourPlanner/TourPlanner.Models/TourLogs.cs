@@ -15,7 +15,7 @@ namespace TourPlanner.Models
         public DateTime Timestamp { get; set; }
         public String Comment { get; set; }
         public ETourDifficulty Difficulty { get; set; }
-        public String TotalTime { get; set; }
+        public TimeSpan TotalTime { get; set; }
         public ETourRating Rating { get; set; }
     }
 }
