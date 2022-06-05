@@ -109,7 +109,7 @@ namespace TourPlanner.BL.Services
                 
                 //https://stackoverflow.com/questions/9343594/how-to-call-asynchronous-method-from-synchronous-method-in-c
                 Task<Tour> requesttask = Task.Run<Tour>(async () => await datarequest.RequestTourFromAPI());
-                WeatherDataRequest.getWeather(requesttask.Result);
+                weather = WeatherDataRequest.getWeather(requesttask.Result);
 
                 logger.Debug("Fetched Weather for tour " + tour.ID);
             }
@@ -119,6 +119,7 @@ namespace TourPlanner.BL.Services
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
                 MessageBox.Show(err.Message);
             }
+            //MessageBox.Show(weather.Temp);
             return weather;
         }
     }

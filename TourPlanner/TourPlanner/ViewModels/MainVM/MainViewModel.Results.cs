@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.BL.Services;
 using TourPlanner.Models;
 
@@ -20,11 +21,13 @@ namespace TourPlanner.ViewModels.MainVM
                 {
                     LogsView.TourLogCollection = tour.TourLogs;
                     DetailView.SetMapPath(tour.MapPath);
+                    DetailView.TourWeather = TourController.GetWeather(tour);                    
                 }
                 else
                 {
                     LogsView.TourLogCollection = null;
                     DetailView.SetMapPath(null);
+                    DetailView.TourWeather = null;
                 }                
                 
             };

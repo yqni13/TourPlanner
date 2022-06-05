@@ -29,9 +29,7 @@ namespace TourPlanner.BL.WeatherAPI
                 string location = $"{substrings[0]}, {substrings[1]}";
                 string key = configuration["weatherapi:key"];
 
-                String requestURL = "http://api.weatherapi.com/v1/current.json?" + location +"&key=" + key;
-
-                MessageBox.Show(requestURL);
+                String requestURL = "http://api.weatherapi.com/v1/current.json?q=" + location +"&key=" + key;
 
                 using HttpClient client = new();
 
@@ -43,8 +41,8 @@ namespace TourPlanner.BL.WeatherAPI
                 JObject JsonResponse = JsonConvert.DeserializeObject<JObject>(response);
 
                 // Parsing content and filling up Tour-model.
-                weather.Temp = (double)JsonResponse["current"]["temp_c"];
-                weather.FeltTemp = (double)JsonResponse["current"]["feelslike_c"];
+                weather.Temp = JsonResponse["current"]["temp_c"].ToString() + " C°";
+                weather.FeltTemp = JsonResponse["current"]["feelslike_c"].ToString() + " C°";
                 weather.WeatherCondition = JsonResponse["current"]["condition"]["text"].ToString();
             }
             catch (NullReferenceException err)

@@ -78,9 +78,13 @@ namespace TourPlanner.ViewModels.SubViewModels
             get { return _to; }
             set { _to = value; OnPropertyChanged(); }
         }
-        private string _defaultPath; 
-        
+        private string _defaultPath;
 
+        private Weather _tourweather;
+        public Weather TourWeather {
+            get { return _tourweather; }
+            set { _tourweather = value; OnPropertyChanged(); } 
+        }
 
         public TourOverviewViewModel()
         {

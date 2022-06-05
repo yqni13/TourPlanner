@@ -8,9 +8,9 @@ namespace TourPlanner.Models
 {
     public class Weather
     {
-        public double Temp;
-        public double FeltTemp;
-        public String WeatherCondition;        
+        public String Temp { get; set; }
+        public String FeltTemp { get; set; }
+        public String WeatherCondition { get; set; }    
 
         public Weather() { }
     }
