@@ -91,9 +91,9 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetFontSize(10)
                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
 
-                listingStatistics.Add(new ListItem($"Difficulty: {AverageDifficulty(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Rating: {AverageRating(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Time: {AverageTime(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Difficulty: {GeneralService.AverageDifficulty(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Rating: {GeneralService.AverageRating(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Time: {GeneralService.AverageTime(t.TourLogs)}"));
                 document.Add(listingStatistics);
             }
 
@@ -255,42 +255,8 @@ namespace TourPlanner.BL.PDFGeneration
             return new Cell().Add(new Paragraph(s)).SetBold().SetBackgroundColor(ColorConstants.GRAY);
         }
 
-        private static double AverageDifficulty(List<TourLogs> tourlogs)
-        {
-            double number = 0;
-            foreach (TourLogs logs in tourlogs)
-            {
-                var enumNumber = EnumCalculations.EnumDifficultyToDouble(logs.Difficulty);
-                number += enumNumber;
-            }
-            return number / tourlogs.Count;
-        }
+        
 
-        private static double AverageRating(List<TourLogs> tourlogs)
-        {
-            double number = 0;
-            foreach (TourLogs logs in tourlogs)
-            {
-                var enumNumber = EnumCalculations.EnumRatingToDouble(logs.Rating);
-                number += enumNumber;
-            }
-            return number / tourlogs.Count;
-        }
-
-        private static string AverageTime(List<TourLogs> tourLogs)
-        {
-            string convertingTime;
-            double timeInSeconds = 0;
-            foreach (TourLogs logs in tourLogs)
-            {
-                convertingTime = logs.TotalTime;
-                timeInSeconds += GeneralService.StringTimeConverterToSeconds(convertingTime);
-            }
-
-            // Converting back to correct calculated and readable hh:mm:ss string.
-            timeInSeconds = timeInSeconds / tourLogs.Count;
-
-            return TimeSpan.FromSeconds(timeInSeconds).ToString();
-        }        
+                
     }
 }

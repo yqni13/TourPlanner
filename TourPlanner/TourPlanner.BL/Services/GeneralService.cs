@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.Models;
+using TourPlanner.Models.Enums;
 
 namespace TourPlanner.BL.Services
 {
@@ -48,11 +49,44 @@ namespace TourPlanner.BL.Services
         public static string CalculateChildFriendly(Tour tour)
         {
             return "Childfriendly";
+        }        
+
+        public static string AverageTime(List<TourLogs> tourLogs)
+        {
+            string convertingTime;
+            double timeInSeconds = 0;
+            foreach (TourLogs logs in tourLogs)
+            {
+                convertingTime = logs.TotalTime.ToString();
+                timeInSeconds += GeneralService.StringTimeConverterToSeconds(convertingTime);
+            }
+
+            // Converting back to correct calculated and readable hh:mm:ss string.
+            timeInSeconds = timeInSeconds / tourLogs.Count;
+
+            return TimeSpan.FromSeconds(timeInSeconds).ToString();
         }
 
-        public static TimeSpan Average(IEnumerable<TimeSpan> spans)
+        public static double AverageDifficulty(List<TourLogs> tourlogs)
         {
-            return TimeSpan.FromSeconds(spans.Select(s => s.TotalSeconds).Average());
+            double number = 0;
+            foreach (TourLogs logs in tourlogs)
+            {
+                var enumNumber = EnumCalculations.EnumDifficultyToDouble(logs.Difficulty);
+                number += enumNumber;
+            }
+            return number / tourlogs.Count;
+        }
+
+        public static double AverageRating(List<TourLogs> tourlogs)
+        {
+            double number = 0;
+            foreach (TourLogs logs in tourlogs)
+            {
+                var enumNumber = EnumCalculations.EnumRatingToDouble(logs.Rating);
+                number += enumNumber;
+            }
+            return number / tourlogs.Count;
         }
     }    
 }
