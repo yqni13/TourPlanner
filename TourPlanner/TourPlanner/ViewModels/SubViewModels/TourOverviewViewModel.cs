@@ -58,6 +58,7 @@ namespace TourPlanner.ViewModels.SubViewModels
                 else
                 {
                     _selectedTour = value;
+                    MessageBox.Show(_selectedTour.From.ToString());
                     From = _selectedTour.From.ToString();
                     To = _selectedTour.To.ToString();
                 }                
@@ -65,8 +66,18 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
         }
 
-        public String From { get; set; }
-        public String To { get; set; }
+        private String _from;
+        public String From {
+            get { return _from; }
+            set { _from = value; OnPropertyChanged(); }
+        }
+        private String _to;
+        public String To
+        {
+            get { return _to; }
+            set { _to = value; OnPropertyChanged(); }
+        }
+        
 
 
         public TourOverviewViewModel()

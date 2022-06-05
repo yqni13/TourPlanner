@@ -38,8 +38,9 @@ namespace TourPlanner.BL.Services
             {
                 MapDataRequest datarequest = new(tour);
                 MapImageRequest imagerequest = new();
-                Task<Tour> requesttask = Task.Run<Tour>(async () => await datarequest.RequestTourFromAPI());                
-                MessageBox.Show(requesttask.Result.Session);
+
+                //https://stackoverflow.com/questions/9343594/how-to-call-asynchronous-method-from-synchronous-method-in-c
+                Task<Tour> requesttask = Task.Run<Tour>(async () => await datarequest.RequestTourFromAPI()); 
                 Task<Tour> imagetask = Task.Run<Tour>(async () => await imagerequest.RequestMapImageFromAPI(requesttask.Result));
                 
                 TourAccess.AddTour(imagetask.Result);               

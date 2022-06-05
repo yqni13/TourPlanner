@@ -82,7 +82,7 @@ namespace TourPlanner.BL.MapQuestAPI
             string boundingBox_lr_lat = json["route"]["boundingBox"]["lr"]["lat"].ToString().Replace(",", ".");
             string boundingBox_ul_lng = json["route"]["boundingBox"]["ul"]["lng"].ToString().Replace(",", ".");
             string boundingBox_ul_lat = json["route"]["boundingBox"]["ul"]["lat"].ToString().Replace(",", ".");
-            string boundingBox = $"{boundingBox_lr_lng},{boundingBox_lr_lat},{boundingBox_ul_lng},{boundingBox_ul_lat}";
+            string boundingBox = $"{boundingBox_lr_lat},{boundingBox_lr_lng},{boundingBox_ul_lat},{boundingBox_ul_lng}";
             string distance = json["route"]["distance"].ToString();
             string time = json["route"]["formattedTime"].ToString();            
             TimeSpan tourTime = TimeSpan.FromSeconds(GeneralService.StringTimeConverterToSeconds(time));
@@ -91,7 +91,7 @@ namespace TourPlanner.BL.MapQuestAPI
 
             TourObject.Session = sessionID;
             TourObject.BoundingBox = boundingBox;
-            TourObject.Distance = Double.Parse(distance, CultureInfo.InvariantCulture);
+            TourObject.Distance = Double.Parse(distance);
             TourObject.Duration = tourTime;
         }
     }
