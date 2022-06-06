@@ -88,5 +88,6 @@ namespace TourPlanner.BL.Services
             }
             return number / tourlogs.Count;
         }
+                
     }    
 }

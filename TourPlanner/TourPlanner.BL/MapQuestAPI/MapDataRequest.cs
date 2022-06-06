@@ -29,8 +29,7 @@ namespace TourPlanner.BL.MapQuestAPI
                 .AddJsonFile("Config/TourPlanner.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            this.TourObject = tour;
-            //need name, from, to and transport type in TourObject to work 
+            this.TourObject = tour;            
             //maybe make ifstatement            
 
             // Get saved authentication key (http://developer.mapquest.com) from config file.
@@ -77,18 +76,23 @@ namespace TourPlanner.BL.MapQuestAPI
             // Parse BoundingBox, Session, distance and time into TourObject
 
             string sessionID = json["route"]["sessionId"].ToString();
-            string boundingBox_lr_lng = json["route"]["boundingBox"]["lr"]["lng"].ToString().Replace(",", ".");
             string boundingBox_lr_lat = json["route"]["boundingBox"]["lr"]["lat"].ToString().Replace(",", ".");
-            string boundingBox_ul_lng = json["route"]["boundingBox"]["ul"]["lng"].ToString().Replace(",", ".");
+            string boundingBox_lr_lng = json["route"]["boundingBox"]["lr"]["lng"].ToString().Replace(",", ".");
             string boundingBox_ul_lat = json["route"]["boundingBox"]["ul"]["lat"].ToString().Replace(",", ".");
+            string boundingBox_ul_lng = json["route"]["boundingBox"]["ul"]["lng"].ToString().Replace(",", ".");
             string boundingBox = $"{boundingBox_lr_lat},{boundingBox_lr_lng},{boundingBox_ul_lat},{boundingBox_ul_lng}";
-            double distance = (double)json["route"]["distance"];
+            //double distance = (double)json["route"]["distance"];
+
+            string temp = json["route"]["distance"].ToString();
+            temp.Replace(",", ".");
+            double distance = Double.Parse(temp);
             string time = json["route"]["formattedTime"].ToString();            
             TimeSpan tourTime = TimeSpan.FromSeconds(GeneralService.StringTimeConverterToSeconds(time));
 
             TourObject.Session = sessionID;
             TourObject.BoundingBox = boundingBox;
             TourObject.Distance = distance;
+            MessageBox.Show(TourObject.Distance.ToString());
             TourObject.Duration = tourTime;
         }
     }

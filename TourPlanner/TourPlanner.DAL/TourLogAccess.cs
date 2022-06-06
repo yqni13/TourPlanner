@@ -79,7 +79,7 @@ namespace TourPlanner.DAL
             }
         }
 
-        public static Collection<TourLogs> GetLogsFromSpecificTour(Tour tour)
+        public static Collection<TourLogs> GetLogsFromSpecificTour(Guid tourId)
         {
             TourLogs log;
             Collection<TourLogs> logs = new();
@@ -94,7 +94,7 @@ namespace TourPlanner.DAL
                 var tourFK = command.CreateParameter();
                 tourFK.DbType = DbType.Guid;
                 tourFK.ParameterName = "tourFK";
-                tourFK.Value = tour.ID;
+                tourFK.Value = tourId;
                 command.Parameters.Add(tourFK);
 
                 var reader = command.ExecuteReader();

@@ -19,6 +19,12 @@ namespace TourPlanner.Models
         public TimeSpan TotalTime { get; set; }
         public ETourRating Rating { get; set; }
 
+        public TourLogs() { }
+
+        public TourLogs(DateTime current)
+        {
+            Timestamp = current;
+        }
         public TourLogs(Guid logID, Guid tourID, DateTime stamp, TimeSpan time, ETourDifficulty difficulty, string comment, ETourRating rating)
         {
             LogID = logID;
