@@ -91,9 +91,9 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetFontSize(10)
                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
 
-                listingStatistics.Add(new ListItem($"Difficulty: {GeneralService.AverageDifficulty(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Rating: {GeneralService.AverageRating(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Time: {GeneralService.AverageTime(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Difficulty: {GeneralController.AverageDifficulty(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Rating: {GeneralController.AverageRating(t.TourLogs)}"));
+                listingStatistics.Add(new ListItem($"Time: {GeneralController.AverageTime(t.TourLogs)}"));
                 document.Add(listingStatistics);
             }
 

@@ -84,10 +84,11 @@ namespace TourPlanner.BL.MapQuestAPI
             //double distance = (double)json["route"]["distance"];
 
             string temp = json["route"]["distance"].ToString();
-            temp.Replace(",", ".");
-            double distance = Double.Parse(temp);
+            temp = temp.Replace(",", ".");
+            //MessageBox.Show(temp.ToString());
+            double distance = Double.Parse(temp, CultureInfo.InvariantCulture);
             string time = json["route"]["formattedTime"].ToString();            
-            TimeSpan tourTime = TimeSpan.FromSeconds(GeneralService.StringTimeConverterToSeconds(time));
+            TimeSpan tourTime = TimeSpan.FromSeconds(GeneralController.StringTimeConverterToSeconds(time));
 
             TourObject.Session = sessionID;
             TourObject.BoundingBox = boundingBox;

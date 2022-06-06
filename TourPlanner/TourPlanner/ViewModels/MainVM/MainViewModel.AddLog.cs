@@ -14,11 +14,13 @@ namespace TourPlanner.ViewModels.MainVM
     {
         private void SubToAddDialogLogEvents()
         {
+            
             AddLog.AddedTourLogEvent += (_, log) =>
             {
+                log.TourID = DetailView.SelectedTour.ID;
                 LogController.AddTourLog(log);
                 UpdateTourLogs(log.TourID);
-                CloseOpenWindow();
+                CloseOpenWindow();                
             };
             AddLog.CloseAddLogDialogEvent += (_, arg) =>
             {
@@ -26,16 +28,22 @@ namespace TourPlanner.ViewModels.MainVM
             };
         }
 
+        private bool _isTourSelected;
+
         private void OpenAddLogDialog()
         {
-            if (OpenInputWindow == null)
+            if (_isTourSelected)
             {
-                OpenInputWindow = new AddLogDialog();
-                OpenInputWindow.DataContext = AddLog;
-                OpenInputWindow.Show();
+                if (OpenInputWindow == null)
+                {
+                    OpenInputWindow = new AddLogDialog();
+                    OpenInputWindow.DataContext = AddLog;
+                    OpenInputWindow.Show();
+                }
+
             }
         }
-
+        
         
     }
 }

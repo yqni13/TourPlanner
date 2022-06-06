@@ -9,7 +9,7 @@ using TourPlanner.Models.Enums;
 
 namespace TourPlanner.BL.Services
 {
-    public static class GeneralService
+    public static class GeneralController
     {
         public static double StringTimeConverterToSeconds(string time)
         {
@@ -59,7 +59,7 @@ namespace TourPlanner.BL.Services
             foreach (TourLogs logs in tourLogs)
             {
                 convertingTime = logs.TotalTime.ToString();
-                timeInSeconds += GeneralService.StringTimeConverterToSeconds(convertingTime);
+                timeInSeconds += GeneralController.StringTimeConverterToSeconds(convertingTime);
             }
 
             // Converting back to correct calculated and readable hh:mm:ss string.

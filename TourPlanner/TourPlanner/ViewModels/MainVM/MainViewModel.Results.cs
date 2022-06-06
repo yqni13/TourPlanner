@@ -19,12 +19,14 @@ namespace TourPlanner.ViewModels.MainVM
                 DetailView.SetSelectedTour(tour);                
                 if (tour != null)
                 {
+                    _isTourSelected = true;
                     LogsView.TourLogCollection = tour.TourLogs;
                     DetailView.SetMapPath(tour.MapPath);
                     DetailView.TourWeather = TourController.GetWeather(tour);                    
                 }
                 else
                 {
+                    _isTourSelected = false;
                     LogsView.TourLogCollection = null;
                     DetailView.SetMapPath(null);
                     DetailView.TourWeather = null;
