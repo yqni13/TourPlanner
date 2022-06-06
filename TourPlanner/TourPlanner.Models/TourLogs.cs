@@ -18,9 +18,8 @@ namespace TourPlanner.Models
         {
             get => _timestamp;
             set
-            {
-                DateTime t = new DateTime();
-                _timestamp = t;
+            {                
+                _timestamp = DateTime.Now;
             }
         }
         public String Comment { get; set; }

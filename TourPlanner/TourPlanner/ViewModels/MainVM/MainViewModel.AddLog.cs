@@ -17,7 +17,7 @@ namespace TourPlanner.ViewModels.MainVM
             
             AddLog.AddedTourLogEvent += (_, log) =>
             {
-                log.TourID = DetailView.SelectedTour.ID;
+                log.TourID = DetailView.DetailSelectedTour.ID;
                 LogController.AddTourLog(log);
                 UpdateTourLogs(log.TourID);
                 CloseOpenWindow();                
