@@ -56,7 +56,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }            
         }
 
@@ -118,7 +118,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
             //MessageBox.Show(weather.Temp);
             return weather;
@@ -133,7 +133,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to update Tour, message: " + err.Message);
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
         }
     }

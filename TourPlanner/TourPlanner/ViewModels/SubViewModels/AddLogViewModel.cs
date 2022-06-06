@@ -43,7 +43,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             set
             {
                 _newLog = value;
-                _newLog.Timestamp = TimeOfLogCreation;
+                //_newLog.Timestamp = TimeOfLogCreation;
                 OnPropertyChanged();
             }
         }
@@ -53,7 +53,7 @@ namespace TourPlanner.ViewModels.SubViewModels
 
             AddLogCommand = new RelayCommand((_) =>
             {
-                NewLog.Timestamp = TimeOfLogCreation;
+                //NewLog.Timestamp = TimeOfLogCreation;
                 NewLog.Difficulty = LogController.GetETourDifficultyEnumeration(Difficulty);
                 NewLog.Rating = LogController.GetETourRatingEnumeration(Rating);
                 

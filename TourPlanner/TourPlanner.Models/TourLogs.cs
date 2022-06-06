@@ -14,14 +14,8 @@ namespace TourPlanner.Models
 
         // Timestamp when tourlog was added.
         private DateTime _timestamp;
-        public DateTime Timestamp
-        {
-            get => _timestamp;
-            set
-            {                
-                _timestamp = DateTime.Now;
-            }
-        }
+        public DateTime Timestamp { get; set; }
+        
         public String Comment { get; set; }
         public ETourDifficulty Difficulty { get; set; }
         public TimeSpan TotalTime { get; set; }

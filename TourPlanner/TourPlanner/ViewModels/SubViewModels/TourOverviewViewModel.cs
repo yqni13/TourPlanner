@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.BL.Services;
 using TourPlanner.Models;
 using TourPlanner.ViewComponents;
 using TourPlanner.ViewModels.Abstract;
@@ -55,13 +56,17 @@ namespace TourPlanner.ViewModels.SubViewModels
                 {
                     _detailselectedTour = value;
                     From = "";
-                    To = "";                    
+                    To = "";
+                    ChildFriendly = "";
+                    PopularityProperty = 0;
                 }
                 else
                 {
                     _detailselectedTour = value;                    
                     From = _detailselectedTour.From.ToString();
-                    To = _detailselectedTour.To.ToString();                   
+                    To = _detailselectedTour.To.ToString();
+                    ChildFriendly = SetChildFriendliness(_detailselectedTour).ToString();
+                    PopularityProperty = GeneralController.CalculatePopularity(_detailselectedTour);
                 }                
                 OnPropertyChanged();
             }
@@ -79,6 +84,20 @@ namespace TourPlanner.ViewModels.SubViewModels
             set { _to = value; OnPropertyChanged(); }
         }
         private string _defaultPath;
+
+        private string _childFriendly;
+        public string ChildFriendly
+        {
+            get => _childFriendly;
+            set { _childFriendly = value; OnPropertyChanged(); }
+        }
+
+        private int _popularityProperty;
+        public int PopularityProperty
+        {
+            get => _popularityProperty;
+            set { _popularityProperty = value; OnPropertyChanged(); }
+        }
 
         private Weather _tourweather;
         public Weather TourWeather {
@@ -127,6 +146,16 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
             this.DetailSelectedTour = tour;                  
         }
+        
+        public int Popularity { get; set; }
 
+        
+        public string SetChildFriendliness(Tour tour)
+        {
+            if (GeneralController.CalculateChildFriendly(tour))
+                return "true";
+            else
+                return "false";
+        }
     }
 }

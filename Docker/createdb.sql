@@ -28,5 +28,6 @@ CREATE TABLE
             tl_time time,
             tl_difficulty integer,
             tl_comment text,
-            tl_rating integer
+            tl_rating integer,
+            tl_distance decimal
 );

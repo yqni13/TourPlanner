@@ -15,6 +15,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>            
+            <RowDefinition Height="Auto"/>            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -37,7 +38,9 @@
                   SelectedItem="{Binding Rating}"
                   ItemsSource="{Binding RatingDropdown}">
         </ComboBox>
-        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+        <Label Grid.Row="6" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Distance:</Label>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewLog.Distance}"></TextBox>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" Command="{Binding AddLogCommand}">Save</Button>
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" Command="{Binding CloseDialogCommand}">Cancel</Button>
         </StackPanel>
