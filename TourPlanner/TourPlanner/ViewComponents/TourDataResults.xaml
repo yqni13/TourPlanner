@@ -23,6 +23,7 @@
         <Button Grid.Row="0" Grid.Column="1" Content="+" Margin="2" Padding="5" Command="{Binding OpenAddDialogCommand}"/>
         <Button Grid.Row="0" Grid.Column="2" Content="-" Margin="2" Padding="5" Command="{Binding DeleteTourCommand}"/>
         <Button Grid.Row="0" Grid.Column="3" Content="[/]" Margin="2" Padding="5"/>
+        <!--.
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
                   Margin="5" 
                   ItemsSource="{Binding Data}" 
@@ -34,6 +35,16 @@
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="200"/>
                 <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="*"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>        
+        -->
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"  x:Name="resultList" ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedTour}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Tours" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Description" Width="200" DisplayMemberBinding="{Binding Description}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </UserControl>

@@ -122,5 +122,18 @@ namespace TourPlanner.BL.Services
             //MessageBox.Show(weather.Temp);
             return weather;
         }
+
+        public static void UpdateTour(Tour tour)
+        {
+            try
+            {
+                TourAccess.UpdateTour(tour);
+            }
+            catch (Exception err)
+            {
+                logger.Error("Failed to update Tour, message: " + err.Message);
+                MessageBox.Show(err.Message);
+            }
+        }
     }
 }

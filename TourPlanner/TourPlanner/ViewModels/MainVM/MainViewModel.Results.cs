@@ -15,8 +15,8 @@ namespace TourPlanner.ViewModels.MainVM
         private void SubToResultsViewEvents()
         {
             ResultView.SelectedTourChanged += (_, tour) =>
-            {
-                DetailView.SelectedTour = tour;                
+            {                
+                DetailView.SetSelectedTour(tour);                
                 if (tour != null)
                 {
                     LogsView.TourLogCollection = tour.TourLogs;
@@ -38,7 +38,7 @@ namespace TourPlanner.ViewModels.MainVM
             ResultView.DeleteTourEvent += (_, tour) =>
             {
                 TourController.DeleteTour(tour);
-                DetailView.SelectedTour = new Tour();
+                DetailView.SetSelectedTour(new Tour());
                 DetailView.SetMapPath(null);
                 UpdateTourList();
             };

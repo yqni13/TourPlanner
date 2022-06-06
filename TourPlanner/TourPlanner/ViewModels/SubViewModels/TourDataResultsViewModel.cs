@@ -40,7 +40,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
             get => _selectedTour;
             set
-            {
+            {                
                 _selectedTour = value;
                 this.SelectedTourChanged?.Invoke(this, SelectedTour);
                 OnPropertyChanged();

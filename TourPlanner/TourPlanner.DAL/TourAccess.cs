@@ -132,5 +132,32 @@ namespace TourPlanner.DAL
             }
         }
 
+        public static void UpdateTour(Tour tour)
+        {            
+            using (IDbConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                IDbCommand command = connection.CreateCommand();
+
+                Collection<Tour> tours = new Collection<Tour>();
+
+                command.CommandText = $"UPDATE tours SET t_name=@name, t_description=@description WHERE t_id=@id";
+
+                NpgsqlCommand c = command as NpgsqlCommand;
+                                
+                c.Parameters.Add("name", NpgsqlDbType.Varchar, 50);
+                c.Parameters.Add("description", NpgsqlDbType.Varchar, 500);
+                c.Parameters.Add("id", NpgsqlDbType.Uuid);
+
+                c.Prepare();
+
+                c.Parameters["name"].Value = tour.Name;
+                c.Parameters["description"].Value = tour.Description;
+                c.Parameters["id"].Value = tour.ID;                
+
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }

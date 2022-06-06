@@ -14,7 +14,7 @@ namespace TourPlanner.ViewModels.MainVM
         {
             Menu.tourExportEvent += (_, arg) =>
             {
-                TourIO.ExportTour(DetailView.SelectedTour, SaveFileDialog());
+                TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
             };
             Menu.tourImportEvent += (_, arg) =>
             {

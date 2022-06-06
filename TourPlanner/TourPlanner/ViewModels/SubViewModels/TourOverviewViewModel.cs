@@ -22,8 +22,8 @@ namespace TourPlanner.ViewModels.SubViewModels
         public event EventHandler<Tour> SaveChangesEvent;
         public event EventHandler<Tour> CancelChangesEvent;
 
-        public ICommand SaveChangesCommand { get; }
-        public ICommand CancelChangesCommand { get; }
+        public ICommand SaveChangesCommand { get; set; }
+        public ICommand CancelChangesCommand { get; set; }
         public ICommand OpenAddDialogCommand { get; set; }    
         public ICommand ShowTourDataCommand { get; set; }
         public ICommand ShowMapImageCommand { get; set; }
@@ -45,23 +45,23 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
         }
 
-        private Tour _selectedTour;
-        public Tour SelectedTour
+        private Tour _detailselectedTour;
+        public Tour DetailSelectedTour
         {
-            get => _selectedTour;
+            get => _detailselectedTour;
             set
             {
                 if (value == null)
                 {
-                    _selectedTour = value;
+                    _detailselectedTour = value;
                     From = "";
                     To = "";                    
                 }
                 else
                 {
-                    _selectedTour = value;                    
-                    From = _selectedTour.From.ToString();
-                    To = _selectedTour.To.ToString();                   
+                    _detailselectedTour = value;                    
+                    From = _detailselectedTour.From.ToString();
+                    To = _detailselectedTour.To.ToString();                   
                 }                
                 OnPropertyChanged();
             }
@@ -97,7 +97,7 @@ namespace TourPlanner.ViewModels.SubViewModels
            
             ShowTourDataCommand = new RelayCommand((_) =>
             {
-                this.ShowTourDataEvent?.Invoke(this, SelectedTour);
+                this.ShowTourDataEvent?.Invoke(this, DetailSelectedTour);
             });
             ShowMapImageCommand = new RelayCommand((_) =>
             {
@@ -105,11 +105,11 @@ namespace TourPlanner.ViewModels.SubViewModels
             });
             SaveChangesCommand = new RelayCommand((_) =>
             {
-                this.SaveChangesEvent?.Invoke(this, SelectedTour);
+                this.SaveChangesEvent?.Invoke(this, DetailSelectedTour);
             });
             CancelChangesCommand = new RelayCommand((_) =>
             {
-                this.CancelChangesEvent?.Invoke(this, SelectedTour);
+                this.CancelChangesEvent?.Invoke(this, DetailSelectedTour);
             });
         }
 
@@ -122,5 +122,11 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
             Image = path;
         }
+
+        public void SetSelectedTour(Tour tour)
+        {
+            this.DetailSelectedTour = tour;                  
+        }
+
     }
 }
