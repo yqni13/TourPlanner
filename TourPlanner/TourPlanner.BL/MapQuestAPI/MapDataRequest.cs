@@ -92,7 +92,7 @@ namespace TourPlanner.BL.MapQuestAPI
             TourObject.Session = sessionID;
             TourObject.BoundingBox = boundingBox;
             TourObject.Distance = distance;
-            MessageBox.Show(TourObject.Distance.ToString());
+            //MessageBox.Show(TourObject.Distance.ToString());
             TourObject.Duration = tourTime;
         }
     }

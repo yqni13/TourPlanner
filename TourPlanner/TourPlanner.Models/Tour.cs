@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -55,9 +56,10 @@ namespace TourPlanner.Models
         public String BoundingBox { get; set; }
 
         //Placeholder for the image.
-        public String MapPath { get; set; } = "";       
+        public String MapPath { get; set; } = "";
         
-        public List<TourLogs> TourLogs = new();
+
+        public Collection<TourLogs> TourLogs = new();
 
         
 
@@ -88,7 +90,7 @@ namespace TourPlanner.Models
             To = to;
         }
 
-        public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath, List<TourLogs> logs)
+        public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath, Collection<TourLogs> logs)
         {
             ID = id;
             Name = name;

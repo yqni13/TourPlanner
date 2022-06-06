@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace TourPlanner.BL.Services
             return "Childfriendly";
         }        
 
-        public static string AverageTime(List<TourLogs> tourLogs)
+        public static string AverageTime(Collection<TourLogs> tourLogs)
         {
             string convertingTime;
             double timeInSeconds = 0;
@@ -67,7 +68,7 @@ namespace TourPlanner.BL.Services
             return TimeSpan.FromSeconds(timeInSeconds).ToString();
         }
 
-        public static double AverageDifficulty(List<TourLogs> tourlogs)
+        public static double AverageDifficulty(Collection<TourLogs> tourlogs)
         {
             double number = 0;
             foreach (TourLogs logs in tourlogs)
@@ -78,7 +79,7 @@ namespace TourPlanner.BL.Services
             return number / tourlogs.Count;
         }
 
-        public static double AverageRating(List<TourLogs> tourlogs)
+        public static double AverageRating(Collection<TourLogs> tourlogs)
         {
             double number = 0;
             foreach (TourLogs logs in tourlogs)

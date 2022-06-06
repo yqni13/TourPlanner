@@ -22,8 +22,8 @@ namespace TourPlanner.ViewModels.SubViewModels
         public ICommand DeleteTourLogsCommand { get; }
         public ICommand ModifyTourLogsCommand { get; }
 
-        private List<TourLogs> _tourLogCollection;
-        public List<TourLogs> TourLogCollection
+        private Collection<TourLogs> _tourLogCollection;
+        public Collection<TourLogs> TourLogCollection
         {
             get { return _tourLogCollection; }
             set
@@ -31,18 +31,7 @@ namespace TourPlanner.ViewModels.SubViewModels
                 _tourLogCollection = value;
                 OnPropertyChanged();
             }
-        }
-
-        private Collection<TourLogs> _logData;
-        public Collection<TourLogs> LogData
-        {
-            get => _logData;
-            set
-            {
-                _logData = value;
-                OnPropertyChanged();
-            }
-        }
+        }        
 
         public TourLogViewModel()
         {
@@ -89,7 +78,7 @@ namespace TourPlanner.ViewModels.SubViewModels
 
         public void UpdateLogs(Collection<TourLogs> logs)
         {
-            this.LogData = logs;
+            this.TourLogCollection = logs;
         }
     }
 }

@@ -25,6 +25,7 @@
         <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="{Binding NewLog.Timestamp}"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Comment:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewLog.Comment}"></TextBox>
+        
         <Label Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Difficulty:</Label>
         <ComboBox Grid.Row="3" Grid.Column="1" 
                   SelectedItem="{Binding NewLog.Difficulty}"
@@ -41,5 +42,6 @@
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" IsDefault="True" Command="{Binding AddLogCommand}">Save</Button>
             <Button  HorizontalAlignment="Left" Width="75" Margin="10" Command="{Binding CloseDialogCommand}">Cancel</Button>
         </StackPanel>
+        
     </Grid>
 </Window>

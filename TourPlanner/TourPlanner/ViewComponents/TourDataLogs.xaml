@@ -24,13 +24,13 @@
         <Button Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="-" Command="{Binding DeleteTourLogsCommand}"/>
         <Button Grid.Row="0" Grid.Column="3" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="[-]"/>
 
-        <DataGrid ItemsSource="{Binding TourLogCollection}" SelectedItem="{Binding SelectedTourLog}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2">
+        <DataGrid ItemsSource="{Binding TourLogCollection}" SelectedItem="{Binding SelectedTourLog}" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding TourLog.Date}" Width="70"></DataGridTextColumn>
-                <DataGridTextColumn Header="Comment" Binding="{Binding TourLog.Comment}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Difficulty" Binding="{Binding TourLog.Difficulty}" Width="110"></DataGridTextColumn>
-                <DataGridTextColumn Header="TotalTime" Binding="{Binding TourLog.TotalTime}" Width="70"></DataGridTextColumn>
-                <DataGridTextColumn Header="Rating" Binding="{Binding TourLog.Rating}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"></DataGridTextColumn>                
+                <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="TotalTime" Binding="{Binding TotalTime}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="100"></DataGridTextColumn>                
             </DataGrid.Columns>
         </DataGrid>
         
