@@ -43,7 +43,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             set
             {
                 _newLog = value;
-                //_newLog.Timestamp = TimeOfLogCreation;
+                _newLog.Timestamp = TimeOfLogCreation;
                 OnPropertyChanged();
             }
         }
@@ -56,7 +56,7 @@ namespace TourPlanner.ViewModels.SubViewModels
                 NewLog.Timestamp = TimeOfLogCreation;
                 NewLog.Difficulty = LogController.GetETourDifficultyEnumeration(Difficulty);
                 NewLog.Rating = LogController.GetETourRatingEnumeration(Rating);
-                //NewLog.TourID = 
+                
                 if (ValidateInput())
                 {
                     this.AddedTourLogEvent?.Invoke(this, NewLog);
@@ -89,9 +89,8 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
             get { return _timeOfLogCreation; }
             set
-            {
-                DateTime t = new();
-                _timeOfLogCreation = t;
+            {                
+                _timeOfLogCreation = DateTime.Now;
             }
         }
     }

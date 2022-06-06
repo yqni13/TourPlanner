@@ -20,7 +20,7 @@ namespace TourPlanner.ViewModels.MainVM
                 if (tour != null)
                 {
                     _isTourSelected = true;
-                    LogsView.TourLogCollection = tour.TourLogs;
+                    LogsView.TourLogCollection = LogController.GetSpecificLogs(tour.ID);
                     DetailView.SetMapPath(tour.MapPath);
                     DetailView.TourWeather = TourController.GetWeather(tour);                    
                 }
