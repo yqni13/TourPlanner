@@ -11,20 +11,25 @@ namespace TourPlanner.Models
     {
         public Guid LogID { get; set; }
         public Guid TourID { get; set; }
-        
+
         // Timestamp when tourlog was added.
-        public DateTime Timestamp { get; set; }
+        private DateTime _timestamp;
+        public DateTime Timestamp
+        {
+            get => _timestamp;
+            set
+            {
+                DateTime t = new DateTime();
+                _timestamp = t;
+            }
+        }
         public String Comment { get; set; }
         public ETourDifficulty Difficulty { get; set; }
         public TimeSpan TotalTime { get; set; }
         public ETourRating Rating { get; set; }
 
         public TourLogs() { }
-
-        public TourLogs(DateTime current)
-        {
-            Timestamp = current;
-        }
+                
         public TourLogs(Guid logID, Guid tourID, DateTime stamp, TimeSpan time, ETourDifficulty difficulty, string comment, ETourRating rating)
         {
             LogID = logID;

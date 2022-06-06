@@ -66,15 +66,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
         }
 
-        private DateTime _timeOfLogCreation;
-        public DateTime TimeOfLogCreation
-        {
-            get { return _timeOfLogCreation; }
-            set
-            {
-                _timeOfLogCreation = DateTime.Now;
-            }
-        }
+        
 
         public void UpdateLogs(Collection<TourLogs> logs)
         {

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.DAL;
 using TourPlanner.Models;
+using TourPlanner.Models.Enums;
 
 namespace TourPlanner.BL.Services
 {
@@ -18,16 +19,20 @@ namespace TourPlanner.BL.Services
         {
             if(log.LogID == Guid.Empty)
                 log.LogID = Guid.NewGuid();
-                
+
+            MessageBox.Show(log.TourID.ToString());
             try
             {
-                TourLogAccess.AddTourLog(log);
+                int difficulty = GetETourDifficultyInt(log.Difficulty);
+                int rating = GetETourRatingInt(log.Rating);
+
+                TourLogAccess.AddTourLog(log, difficulty, rating);
                 logger.Debug("Added TourLog with ID " + log.LogID + " to Database");
             }
             catch (Exception err)
             {
                 logger.Error("Failed to add tour " + log.LogID + " to Database");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
         }
 
@@ -89,6 +94,90 @@ namespace TourPlanner.BL.Services
                 MessageBox.Show(err.Message);
             }
             return logs;
+        }
+
+        public static ETourDifficulty GetETourDifficultyEnumeration(string selection)
+        {
+            if (selection == ETourDifficulty.Warmup.GetDescription())
+                return (ETourDifficulty)1;
+            else if (selection == ETourDifficulty.Easy.GetDescription())
+                return (ETourDifficulty)2;
+            else if (selection == ETourDifficulty.Moderate.GetDescription())
+                return (ETourDifficulty)3;
+            else if (selection == ETourDifficulty.Hard.GetDescription())
+                return (ETourDifficulty)4;
+            else if (selection == ETourDifficulty.Expert.GetDescription())
+                return (ETourDifficulty)5;
+
+            return (ETourDifficulty)1;
+        }
+
+        public static ETourRating GetETourRatingEnumeration(string selection)
+        {
+            if (selection == ETourRating.Worst.GetDescription())
+                return (ETourRating)1;
+            else if (selection == ETourRating.Bad.GetDescription())
+                return (ETourRating)2;
+            else if (selection == ETourRating.Weak.GetDescription())
+                return (ETourRating)3;
+            else if (selection == ETourRating.Improveable.GetDescription())
+                return (ETourRating)4;
+            else if (selection == ETourRating.Moderate.GetDescription())
+                return (ETourRating)5;
+            else if (selection == ETourRating.Advancement.GetDescription())
+                return (ETourRating)6;
+            else if (selection == ETourRating.Good.GetDescription())
+                return (ETourRating)7;
+            else if (selection == ETourRating.Excellent.GetDescription())
+                return (ETourRating)8;
+            else if (selection == ETourRating.Satisfying.GetDescription())
+                return (ETourRating)9;
+            else if (selection == ETourRating.Perfect.GetDescription())
+                return (ETourRating)10;
+
+            return (ETourRating)1;
+        }
+
+        public static int GetETourDifficultyInt(ETourDifficulty selection)
+        {
+            if (selection == ETourDifficulty.Warmup)
+                return 1;
+            else if (selection == ETourDifficulty.Easy)
+                return 2;
+            else if (selection == ETourDifficulty.Moderate)
+                return 3;
+            else if (selection == ETourDifficulty.Hard)
+                return 4;
+            else if (selection == ETourDifficulty.Expert)
+                return 5;
+
+            return 1;
+        }
+
+        public static int GetETourRatingInt(ETourRating selection)
+        {
+            if (selection == ETourRating.Worst)
+                return 1;
+            else if (selection == ETourRating.Bad)
+                return 2;
+            else if (selection == ETourRating.Weak)
+                return 3;
+            else if (selection == ETourRating.Improveable)
+                return 4;
+            else if (selection == ETourRating.Moderate)
+                return 5;
+            else if (selection == ETourRating.Advancement)
+                return 6;
+            else if (selection == ETourRating.Good)
+                return 7;
+            else if (selection == ETourRating.Excellent)
+                return 8;
+            else if (selection == ETourRating.Satisfying)
+                return 9;
+            else if (selection == ETourRating.Perfect)
+                return 10;
+
+            return 1;
         }
     }
 }

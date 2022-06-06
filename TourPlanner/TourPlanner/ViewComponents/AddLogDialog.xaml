@@ -21,21 +21,20 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16">Add a new Log:</Label>
-        <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Time of Log:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="{Binding NewLog.Timestamp}"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Time of Log:</Label>        
+        <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="{Binding NewLog.Timestamp}"></TextBox>        
         <Label Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Comment:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewLog.Comment}"></TextBox>
-        
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewLog.Comment}"></TextBox>        
         <Label Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Difficulty:</Label>
         <ComboBox Grid.Row="3" Grid.Column="1" 
-                  SelectedItem="{Binding NewLog.Difficulty}"
+                  SelectedItem="{Binding Difficulty}"
                   ItemsSource="{Binding DifficultyDropdown}">            
         </ComboBox>
         <Label Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">TotalTime:</Label>
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewLog.TotalTime}"></TextBox>
         <Label Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right" FontSize="12">Rating:</Label>
         <ComboBox Grid.Row="5" Grid.Column="1" 
-                  SelectedItem="{Binding NewLog.Rating}"
+                  SelectedItem="{Binding Rating}"
                   ItemsSource="{Binding RatingDropdown}">
         </ComboBox>
         <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">

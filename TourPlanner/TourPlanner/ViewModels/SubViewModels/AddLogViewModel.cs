@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.BL.Services;
 using TourPlanner.Models;
 using TourPlanner.Models.Enums;
 using TourPlanner.ViewModels.Abstract;
@@ -30,13 +31,21 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
             "Worst", "Bad", "Weak", "Improveable", "Moderate", "Advancement", "Good",
             "Excellent", "Satisfying", "Perfect"
-        };        
+        };
+        
+        public string Difficulty { get; set; }
+        public string Rating { get; set; }
 
-        private TourLogs _newLog = new(DateTime.Now);
+        private TourLogs _newLog = new();
         public TourLogs NewLog
         {
             get { return _newLog; }
-            set { _newLog = value; OnPropertyChanged(); }
+            set
+            {
+                _newLog = value;
+                //_newLog.Timestamp = TimeOfLogCreation;
+                OnPropertyChanged();
+            }
         }
 
         public AddLogViewModel()
@@ -44,6 +53,10 @@ namespace TourPlanner.ViewModels.SubViewModels
 
             AddLogCommand = new RelayCommand((_) =>
             {
+                NewLog.Timestamp = TimeOfLogCreation;
+                NewLog.Difficulty = LogController.GetETourDifficultyEnumeration(Difficulty);
+                NewLog.Rating = LogController.GetETourRatingEnumeration(Rating);
+                //NewLog.TourID = 
                 if (ValidateInput())
                 {
                     this.AddedTourLogEvent?.Invoke(this, NewLog);
@@ -71,6 +84,15 @@ namespace TourPlanner.ViewModels.SubViewModels
             return true;
         }
 
-        
+        private DateTime _timeOfLogCreation;
+        public DateTime TimeOfLogCreation
+        {
+            get { return _timeOfLogCreation; }
+            set
+            {
+                DateTime t = new();
+                _timeOfLogCreation = t;
+            }
+        }
     }
 }

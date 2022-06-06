@@ -15,8 +15,9 @@ namespace TourPlanner.DAL
 {
     public class TourLogAccess
     {        
-        public static void AddTourLog(TourLogs log)
+        public static void AddTourLog(TourLogs log, int diff, int rating)
         {
+            int a, b;
             using (IDbConnection connection = DBConnection.GetConnection())
             {
                 connection.Open();
@@ -39,9 +40,9 @@ namespace TourPlanner.DAL
                 c.Parameters["tl_tour"].Value = log.TourID;
                 c.Parameters["tl_date"].Value = log.Timestamp;
                 c.Parameters["tl_time"].Value = log.TotalTime;
-                c.Parameters["tl_difficulty"].Value = log.Difficulty;
+                c.Parameters["tl_difficulty"].Value = diff;
                 c.Parameters["tl_comment"].Value = log.Comment;
-                c.Parameters["tl_rating"].Value = log.Rating;
+                c.Parameters["tl_rating"].Value = rating;
 
                 command.ExecuteNonQuery();                
             }
