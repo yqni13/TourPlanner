@@ -37,7 +37,7 @@
             </DataGrid.Columns>
         </DataGrid>        
         -->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"  x:Name="resultList" ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedTour}" >
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"  ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedTour}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Tours" Width="100" DisplayMemberBinding="{Binding Name}"/>

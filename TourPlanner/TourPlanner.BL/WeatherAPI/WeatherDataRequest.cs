@@ -47,13 +47,15 @@ namespace TourPlanner.BL.WeatherAPI
             }
             catch (NullReferenceException err)
             {
-                MessageBox.Show(err.ToString());
+                //MessageBox.Show(err.ToString());
                 logger.Error("Null ref at weather data rewuest");
+                throw;
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.ToString());
+                //MessageBox.Show(err.ToString());
                 logger.Error("fatal error at weather request");
+                throw;
             }
             return weather;
         }
