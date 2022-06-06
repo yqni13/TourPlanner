@@ -49,18 +49,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             {
                 this.SaveTourLogsChangeEvent?.Invoke(this, SelectedTourLog);
             });
-        }
-
-        private string _distanceAsString;
-        public String DistanceAsString
-        {
-            get => _distanceAsString;
-            set
-            {
-                _distanceAsString = $"{value}km";
-                OnPropertyChanged();
-            }
-        }
+        }        
 
         private TourLogs _selectedTourLog;
         public TourLogs SelectedTourLog
@@ -77,8 +66,6 @@ namespace TourPlanner.ViewModels.SubViewModels
                 }
             }
         }
-
-        
 
         public void UpdateLogs(Collection<TourLogs> logs)
         {

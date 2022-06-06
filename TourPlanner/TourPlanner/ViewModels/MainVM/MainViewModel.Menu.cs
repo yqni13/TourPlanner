@@ -1,11 +1,14 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TourPlanner.BL.PDFGeneration;
 using TourPlanner.BL.Services;
+using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels.MainVM
 {
@@ -21,7 +24,7 @@ namespace TourPlanner.ViewModels.MainVM
                 }
                 catch
                 {
-                    MessageBox.Show("Something went wrong when exporting a file");
+                    MessageBox.Show("Something went wrong when exporting a file.");
                 }
                 
             };
@@ -33,9 +36,36 @@ namespace TourPlanner.ViewModels.MainVM
                 }
                 catch
                 {
-                    MessageBox.Show("Something went wrong when importing the file");
+                    MessageBox.Show("Something went wrong when importing the file.");
                 }                
                 UpdateTourList();
+            };
+
+            Menu.pdfReportEvent += (_, arg) =>
+            {
+                try
+                {
+                    Collection<TourLogs> logs = LogController.GetSpecificLogs(DetailView.DetailSelectedTour.ID);
+                    TourToPDF.GenerateTourReport(DetailView.DetailSelectedTour, logs);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.ToString());
+                }
+            };
+
+            Menu.pdfSummaryEvent += (_, tour) =>
+            {
+                try
+                {
+                    Collection<Tour> tours = TourController.GetTours();
+                    //Collection<TourLogs> logs = LogController.GetAllLogs();                    
+                    TourToPDF.GenerateSummarizeReport(tours);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.ToString());
+                }
             };
         }
 

@@ -65,22 +65,33 @@ namespace TourPlanner.BL.Services
 
         public static string AverageTime(Collection<TourLogs> tourLogs)
         {
+            if (tourLogs.Count == 0)
+                return "0";
+
             string convertingTime;
             double timeInSeconds = 0;
+            
             foreach (TourLogs logs in tourLogs)
             {
-                convertingTime = logs.TotalTime.ToString();
-                timeInSeconds += GeneralController.StringTimeConverterToSeconds(convertingTime);
-            }
+                if(logs.TotalTime.TotalSeconds != 0)
+                {
+                    convertingTime = logs.TotalTime.ToString();
+                    timeInSeconds += GeneralController.StringTimeConverterToSeconds(convertingTime);
 
+                }
+            }
             // Converting back to correct calculated and readable hh:mm:ss string.
             timeInSeconds = timeInSeconds / tourLogs.Count;
-
+             
             return TimeSpan.FromSeconds(timeInSeconds).ToString();
+            
         }
 
         public static double AverageDifficulty(Collection<TourLogs> tourlogs)
         {
+            if (tourlogs.Count == 0)
+                return 0;
+
             double number = 0;
             foreach (TourLogs logs in tourlogs)
             {
@@ -92,6 +103,9 @@ namespace TourPlanner.BL.Services
 
         public static double AverageRating(Collection<TourLogs> tourlogs)
         {
+            if (tourlogs.Count == 0)
+                return 0;
+
             double number = 0;
             foreach (TourLogs logs in tourlogs)
             {
@@ -103,6 +117,9 @@ namespace TourPlanner.BL.Services
 
         public static double AverageDistance(Collection<TourLogs> tourlogs)
         {
+            if (tourlogs.Count == 0)
+                return 0;
+
             double number = 0;
             foreach (TourLogs logs in tourlogs)
             {
@@ -114,6 +131,9 @@ namespace TourPlanner.BL.Services
 
         public static double AverageTimeInSeconds(Collection<TourLogs> tourLogs)
         {
+            if (tourLogs.Count == 0)
+                return 0;
+
             string convertingTime;
             double timeInSeconds = 0;
             foreach (TourLogs logs in tourLogs)

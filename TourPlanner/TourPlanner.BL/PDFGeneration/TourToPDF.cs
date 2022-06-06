@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
 using iText.IO.Font.Constants;
 using iText.IO.Image;
 using iText.Kernel.Colors;
@@ -22,9 +25,14 @@ namespace TourPlanner.BL.PDFGeneration
     public class TourToPDF
     {
         public static void GenerateSummarizeReport(Collection<Tour> tourList)
-        {      
+        {
+            System.Windows.MessageBox.Show("PDF Summarize was printed.");
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
-            string fileName = $"Summary_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf";
+            string folder = $"{Environment.CurrentDirectory}/PDF_Summary";
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+            
+            string fileName = $"{folder}/Summary_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf";
 
             PdfWriter writer = new PdfWriter(fileName);
             PdfDocument pdf = new PdfDocument(writer);
@@ -90,10 +98,10 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetMarginLeft(60)
                     .SetFontSize(10)
                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
-
-                listingStatistics.Add(new ListItem($"Difficulty: {GeneralController.AverageDifficulty(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Rating: {GeneralController.AverageRating(t.TourLogs)}"));
-                listingStatistics.Add(new ListItem($"Time: {GeneralController.AverageTime(t.TourLogs)}"));
+                Collection<TourLogs> tourLogs = LogController.GetSpecificLogs(t.ID);
+                listingStatistics.Add(new ListItem($"Difficulty: {GeneralController.AverageDifficulty(tourLogs)}"));
+                listingStatistics.Add(new ListItem($"Rating: {GeneralController.AverageRating(tourLogs)}"));
+                listingStatistics.Add(new ListItem($"Time: {GeneralController.AverageTime(tourLogs)}"));
                 document.Add(listingStatistics);
             }
 
@@ -119,11 +127,20 @@ namespace TourPlanner.BL.PDFGeneration
             document.Close();
         }
 
-        public static void GenerateTourReport(Tour tour)
-        {            
+        public static void GenerateTourReport(Tour tour, Collection<TourLogs> logs)
+        {
+            System.Windows.MessageBox.Show("PDF Single Report was printed.");
             // Containing all information of single tour including all regarding tour logs. 
-          
-            string fileName = $"Report_{DateTime.Now.ToString("yyyy-MM-dd")}_{tour.Name}.pdf";
+
+            string folder = $"{Environment.CurrentDirectory}/PDF_Report";
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            var reg = new Regex(@"[^\-\""'()*+,./0-9<=>@A-Z\[\\\]^_`a-z{|}]");
+
+            string tourName = reg.Replace(tour.Name, "_");
+            System.Windows.MessageBox.Show(tourName.ToString());
+            string fileName = $"{folder}/Report_{DateTime.Now.ToString("yyyy-MM-dd")}_{tourName}.pdf";
             string mapImage = tour.MapPath;
 
             PdfWriter writer = new PdfWriter(fileName);
@@ -187,7 +204,7 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetFontColor(ColorConstants.ORANGE);
             document.Add(tourlogsTableHeader);
 
-            foreach (TourLogs log in tour.TourLogs)
+            foreach (TourLogs log in logs)
             {
                 Table tourlogsTable = new Table(UnitValue.CreatePercentArray(6)).UseAllAvailableWidth();
                 tourlogsTable.AddHeaderCell(getHeaderCell("Timestamp"));
