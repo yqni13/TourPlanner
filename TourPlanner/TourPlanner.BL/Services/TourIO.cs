@@ -29,14 +29,22 @@ namespace TourPlanner.BL.Services
             catch (ArgumentNullException)
             {
                 logger.Error("Export file path cant be null");
+                throw;
             }
             catch (PathTooLongException)
             {
                 logger.Error("Export file path to long");
+                throw;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                logger.Error("Directtory not found");
+                throw;
             }
             catch
             {
                 logger.Error("Exporting File Error");
+                throw;
             }
         }
 

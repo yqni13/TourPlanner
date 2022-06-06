@@ -24,7 +24,6 @@
 	
 	<ItemGroup>
 	  <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
-	  <ProjectReference Include="..\TourPlanner_T_IntegrationTests.Test\TourPlanner_T_IntegrationTests.Test.csproj" />
 	</ItemGroup>
 
 </Project>

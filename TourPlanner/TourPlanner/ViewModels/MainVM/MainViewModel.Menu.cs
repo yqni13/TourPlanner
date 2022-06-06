@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.BL.Services;
 
 namespace TourPlanner.ViewModels.MainVM
@@ -14,7 +15,15 @@ namespace TourPlanner.ViewModels.MainVM
         {
             Menu.tourExportEvent += (_, arg) =>
             {
-                TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
+                try
+                {
+                    TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong when exporting a file");
+                }
+                
             };
             Menu.tourImportEvent += (_, arg) =>
             {
