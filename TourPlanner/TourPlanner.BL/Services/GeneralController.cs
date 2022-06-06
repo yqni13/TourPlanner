@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TourPlanner.Models;
 using TourPlanner.Models.Enums;
 
@@ -39,17 +40,27 @@ namespace TourPlanner.BL.Services
 
         public static int CalculatePopularity(Tour tour)
         {
-            int result = 0;
-            foreach(TourLogs log in tour.TourLogs)
-            {
-                result += 1;
-            }
-            return result;
+            Collection<TourLogs> logs = LogController.GetSpecificLogs(tour.ID);
+            return logs.Count;
         }
 
-        public static string CalculateChildFriendly(Tour tour)
+        public static bool CalculateChildFriendly(Tour tour)
         {
-            return "Childfriendly";
+            Collection<TourLogs> logs = LogController.GetSpecificLogs(tour.ID);
+            if (logs.Count == 0)
+                return false;
+            
+            TimeSpan comparison = TimeSpan.FromSeconds(3600);
+            double distanceAVG = AverageDistance(logs);
+            double duration = AverageTimeInSeconds(logs);
+            double difficultyAVG = AverageDifficulty(logs);            
+
+            if (TimeSpan.FromSeconds(duration) <= comparison &&
+               distanceAVG <= 30 &&
+               difficultyAVG <= 2)
+                return true;
+            else
+                return false;
         }        
 
         public static string AverageTime(Collection<TourLogs> tourLogs)
@@ -88,6 +99,32 @@ namespace TourPlanner.BL.Services
                 number += enumNumber;
             }
             return number / tourlogs.Count;
+        }
+
+        public static double AverageDistance(Collection<TourLogs> tourlogs)
+        {
+            double number = 0;
+            foreach (TourLogs logs in tourlogs)
+            {
+                var distance = logs.Distance;
+                number += distance;
+            }
+            return number / tourlogs.Count;
+        }
+
+        public static double AverageTimeInSeconds(Collection<TourLogs> tourLogs)
+        {
+            string convertingTime;
+            double timeInSeconds = 0;
+            foreach (TourLogs logs in tourLogs)
+            {
+                convertingTime = logs.TotalTime.ToString();
+                timeInSeconds += GeneralController.StringTimeConverterToSeconds(convertingTime);
+            }
+
+            // Converting back to correct calculated and readable hh:mm:ss string.
+            timeInSeconds = timeInSeconds / tourLogs.Count;
+            return timeInSeconds;
         }
                 
     }    

@@ -26,10 +26,11 @@
 
         <DataGrid ItemsSource="{Binding TourLogCollection}" SelectedItem="{Binding SelectedTourLog}" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Timestamp}" Width="70"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"></DataGridTextColumn>                
                 <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="110"></DataGridTextColumn>
                 <DataGridTextColumn Header="TotalTime" Binding="{Binding TotalTime}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" Width="70"></DataGridTextColumn>                
                 <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="100"></DataGridTextColumn>                
             </DataGrid.Columns>
         </DataGrid>

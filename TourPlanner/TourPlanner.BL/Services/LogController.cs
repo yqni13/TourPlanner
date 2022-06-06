@@ -19,8 +19,7 @@ namespace TourPlanner.BL.Services
         {
             if(log.LogID == Guid.Empty)
                 log.LogID = Guid.NewGuid();
-
-            MessageBox.Show(log.TourID.ToString());
+                        
             try
             {
                 int difficulty = GetETourDifficultyInt(log.Difficulty);
@@ -46,7 +45,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to delete tour " + log.LogID + " from Database");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
         }
 
@@ -60,7 +59,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to update tour " + log.LogID + " in Database");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
         }
 
@@ -75,7 +74,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Could not get logs from DB");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
             return logs;
         }
@@ -91,7 +90,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Could not get logs from DB");
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
             return logs;
         }

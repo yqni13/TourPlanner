@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Abstract;
@@ -16,11 +17,11 @@ namespace TourPlanner.ViewModels.SubViewModels
         public event EventHandler OpenAddDialogEvent;
         public event EventHandler<TourLogs> DeleteTourLogsEvent;
         public event EventHandler<TourLogs> SelectTourLogsEvent;
-        public event EventHandler<TourLogs> ModifyTourLogsEvent;
+        public event EventHandler<TourLogs> SaveTourLogsChangeEvent;
 
         public ICommand OpenAddDialogCommand { get; }
         public ICommand DeleteTourLogsCommand { get; }
-        public ICommand ModifyTourLogsCommand { get; }
+        public ICommand SaveTourLogsChangeCommand { get; }
 
         private Collection<TourLogs> _tourLogCollection;
         public Collection<TourLogs> TourLogCollection
@@ -28,7 +29,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             get { return _tourLogCollection; }
             set
             {
-                _tourLogCollection = value;
+                _tourLogCollection = value;                
                 OnPropertyChanged();
             }
         }        
@@ -44,10 +45,21 @@ namespace TourPlanner.ViewModels.SubViewModels
             {
                 this.DeleteTourLogsEvent?.Invoke(this, SelectedTourLog);
             });
-            ModifyTourLogsCommand = new RelayCommand((_) =>
+            SaveTourLogsChangeCommand = new RelayCommand((_) =>
             {
-                this.ModifyTourLogsEvent?.Invoke(this, SelectedTourLog);
+                this.SaveTourLogsChangeEvent?.Invoke(this, SelectedTourLog);
             });
+        }
+
+        private string _distanceAsString;
+        public String DistanceAsString
+        {
+            get => _distanceAsString;
+            set
+            {
+                _distanceAsString = $"{value}km";
+                OnPropertyChanged();
+            }
         }
 
         private TourLogs _selectedTourLog;

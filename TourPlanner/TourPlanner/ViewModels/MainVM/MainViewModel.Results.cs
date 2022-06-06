@@ -22,6 +22,9 @@ namespace TourPlanner.ViewModels.MainVM
                     _isTourSelected = true;
                     LogsView.TourLogCollection = LogController.GetSpecificLogs(tour.ID);
                     DetailView.SetMapPath(tour.MapPath);
+                    DetailView.ChildFriendly = DetailView.SetChildFriendliness(tour);
+                    //DetailView.SetChildFriendliness(tour);
+                    DetailView.Popularity = GeneralController.CalculatePopularity(tour);
                     DetailView.TourWeather = TourController.GetWeather(tour);                    
                 }
                 else
