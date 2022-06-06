@@ -91,6 +91,7 @@ namespace TourPlanner.BL.Services
             catch
             {
                 logger.Error("Failed to Import tour");
+                throw;
             }
             
         }
