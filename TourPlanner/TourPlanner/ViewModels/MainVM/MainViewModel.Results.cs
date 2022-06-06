@@ -48,6 +48,8 @@ namespace TourPlanner.ViewModels.MainVM
         {
             Data = TourController.GetTours();
             ResultView.UpdateTours(Data);
-        }        
+        }
+
+        
     }
 }

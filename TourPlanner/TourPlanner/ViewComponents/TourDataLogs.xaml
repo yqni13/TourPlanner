@@ -20,8 +20,8 @@
         <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="DimGray" Margin="2" Background="LightGray">
             <Label HorizontalContentAlignment="Center" Margin="10 2 2 2" FontSize="16" FontWeight="Bold" Foreground="Goldenrod">List of Logs for chosen Tour</Label>
         </Border>
-        <Button Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="+"/>
-        <Button Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="-"/>
+        <Button Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="+" Command="{Binding OpenAddDialogCommand}"/>
+        <Button Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="-" Command="{Binding DeleteTourLogsCommand}"/>
         <Button Grid.Row="0" Grid.Column="3" HorizontalContentAlignment="Center" Margin="2" Padding="5" FontSize="16" FontWeight="Bold" Content="[-]"/>
 
         <DataGrid ItemsSource="{Binding TourLogCollection}" SelectedItem="{Binding SelectedTourLog}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2">

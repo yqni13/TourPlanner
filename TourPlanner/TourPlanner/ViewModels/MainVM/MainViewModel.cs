@@ -16,6 +16,7 @@ namespace TourPlanner.ViewModels.MainVM
         private static ILoggerWrapper logger = LoggerFactory.GetLogger();
         public Collection<Tour> Data { get; set; }
            = new Collection<Tour>();
+        public Collection<TourLogs> LogData { get; set; } = new();
         public Window OpenInputWindow { get; set; } = null;
 
         //ViewModels
@@ -25,6 +26,7 @@ namespace TourPlanner.ViewModels.MainVM
         public AddTourViewModel AddTour { get; set; }
         public MenuViewModel Menu { get; set; }
         public TourLogViewModel LogsView { get; set; }
+        public AddLogViewModel AddLog { get; set; }
 
 
 
@@ -33,7 +35,8 @@ namespace TourPlanner.ViewModels.MainVM
                             TourOverviewViewModel detailView,
                             AddTourViewModel addTour,
                             MenuViewModel menu,
-                            TourLogViewModel logs
+                            TourLogViewModel logs,
+                            AddLogViewModel addLog
                             )
         {
             SearchBar = searchBar;
@@ -42,6 +45,7 @@ namespace TourPlanner.ViewModels.MainVM
             AddTour = addTour;
             Menu = menu;
             LogsView = logs;
+            AddLog = addLog;
 
 
             //subscribe to all the Events from the ViewModels 
@@ -57,6 +61,7 @@ namespace TourPlanner.ViewModels.MainVM
             SubToSearchBarEvents();
             SubToResultsViewEvents();
             SubToAddDialogEvents();
+            SubToAddDialogLogEvents();
             SubToMenuEvents();
             SubToOverviewViewEvents();
             SubToLogsViewEvent();

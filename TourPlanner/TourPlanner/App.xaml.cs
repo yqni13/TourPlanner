@@ -23,7 +23,8 @@ namespace TourPlanner
         public TourOverviewViewModel TourOverviewViewModel { get; set; }
         public AddTourViewModel AddTourViewModel { get; set; }
         public MenuViewModel MenuViewModel {get;set;}
-        public TourLogViewModel TourLogViewModel { get; set; }        
+        public TourLogViewModel TourLogViewModel { get; set; }    
+        public AddLogViewModel AddLogViewModel { get; set; }
 
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
@@ -39,10 +40,11 @@ namespace TourPlanner
             AddTourViewModel = new AddTourViewModel();
             MenuViewModel = new MenuViewModel();
             TourLogViewModel = new TourLogViewModel();
+            AddLogViewModel = new AddLogViewModel();
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel, MenuViewModel, TourLogViewModel),
+                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel, MenuViewModel, TourLogViewModel, AddLogViewModel),
                 TourSearchBar = { DataContext = SearchBarViewModel },
                 TourDataResults = { DataContext = TourDataResultsViewModel },
                 TourDataDetails = {DataContext = TourOverviewViewModel},

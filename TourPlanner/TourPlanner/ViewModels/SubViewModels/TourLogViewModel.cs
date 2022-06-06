@@ -33,6 +33,17 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
         }
 
+        private Collection<TourLogs> _logData;
+        public Collection<TourLogs> LogData
+        {
+            get => _logData;
+            set
+            {
+                _logData = value;
+                OnPropertyChanged();
+            }
+        }
+
         public TourLogViewModel()
         {
             OpenAddDialogCommand = new RelayCommand((_) =>
@@ -56,10 +67,29 @@ namespace TourPlanner.ViewModels.SubViewModels
             get => _selectedTourLog;
             set
             {
-                _selectedTourLog = value;
-                this.SelectTourLogsEvent?.Invoke(this, SelectedTourLog);
-                OnPropertyChanged();
+                if(_selectedTourLog != value)
+                {
+                    _selectedTourLog = value;
+                    this.SelectTourLogsEvent?.Invoke(this, SelectedTourLog);
+                    OnPropertyChanged();
+                    // TODO: further methods?
+                }
             }
+        }
+
+        private DateTime _timeOfLogCreation;
+        public DateTime TimeOfLogCreation
+        {
+            get { return _timeOfLogCreation; }
+            set
+            {
+                _timeOfLogCreation = DateTime.Now;
+            }
+        }
+
+        public void UpdateLogs(Collection<TourLogs> logs)
+        {
+            this.LogData = logs;
         }
     }
 }
