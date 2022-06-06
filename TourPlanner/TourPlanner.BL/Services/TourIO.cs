@@ -50,8 +50,7 @@ namespace TourPlanner.BL.Services
 
         public static Tour ImportTour(String path)
         {
-            Tour tour = new();
-            
+            Tour tour = new();            
             try
             {
                 string json = File.ReadAllText(path);
@@ -61,6 +60,12 @@ namespace TourPlanner.BL.Services
             catch (JsonSerializationException)
             {
                 logger.Error("Serialization Error when importing Tour");
+                throw;
+            }
+            catch
+            {
+                logger.Error("Importing File Error");
+                throw;
             }
             return tour;
         }

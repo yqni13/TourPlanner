@@ -29,23 +29,57 @@ namespace TourPlanner.UnitTests
                 "//Somepath/test"
             );
             Directory.CreateDirectory("TestIO");
+            tour.MapPath = null;
         }
         [OneTimeTearDown]
         public void Teardown()
         {
             foreach (System.IO.FileInfo file in new DirectoryInfo("TestIO").GetFiles()) file.Delete();
-            //Directory.Delete("TestIO");
+            Directory.Delete("TestIO");
+        }
+        
+        [Test]
+        public void Test_ExportTour_ThrowsDirectoryNotFoundException()
+        {            
+            //Assert
+            Assert.Throws<DirectoryNotFoundException>(() => TourIO.ExportTour(tour, "WrongPath/testtour.json"));            
         }
 
-        [Test]
+        [Test, Order(1)]
         public void Test_ExportTour_FileCreated_True()
         {
             //arrange
 
             //Act
-            TourIO.ExportTour(tour, "TestI/testtour.json");
+            TourIO.ExportTour(tour, "TestIO/testtour.json");
             //Assert
             Assert.True(File.Exists("TestIO/testtour.json"));
+        }
+        [Test, Order(2)]
+        public void Test_ImportTour_SameName()
+        {
+            //arrange
+
+            //Act
+            Tour imported = TourIO.ImportTour("TestIO/testtour.json");
+            //Assert
+            Assert.AreEqual(imported.Name, tour.Name);
+        }
+        [Test, Order(3)]
+        public void Test_ExportTour_NullValueOmitted()
+        {
+            //arrange
+
+            //Act
+            Tour imported = TourIO.ImportTour("TestIO/testtour.json");
+            //Assert
+            Assert.True(imported.MapPath == String.Empty);
+        }
+        [Test]
+        public void Test_ImportTour_ThrowsDirectoryNotFoundException()
+        {
+            //Assert
+            Assert.Throws<DirectoryNotFoundException>(() => TourIO.ImportTour("WrongPath/testtour.json"));
         }
     }
 }

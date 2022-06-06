@@ -27,7 +27,14 @@ namespace TourPlanner.ViewModels.MainVM
             };
             Menu.tourImportEvent += (_, arg) =>
             {
-                TourController.ImportTour(OpenFileDialog());
+                try
+                {
+                    TourController.ImportTour(OpenFileDialog());
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong when importing the file");
+                }                
                 UpdateTourList();
             };
         }
