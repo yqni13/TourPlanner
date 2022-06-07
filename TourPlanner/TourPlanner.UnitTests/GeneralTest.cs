@@ -10,12 +10,13 @@ namespace TourPlanner.UnitTests
     public class GeneralTests
     {
         Tour tour;
+        public Guid tourId = Guid.NewGuid();
 
         [SetUp]
         public void Setup()
-        {
+        {            
             tour = new Tour(
-                Guid.NewGuid(),
+                tourId,
                 "TestTour",
                 "Test Description",
                 new Adress(),
@@ -50,12 +51,12 @@ namespace TourPlanner.UnitTests
             Assert.AreNotEqual(seconds, toseconds);
         }
         [Test]
-        public void Test_AverageDiff_SameRating()
+        public void Test_AverageDifficulty_SameValues()
         {
             //arrange
             TourLogs log1 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(),
                 ETourDifficulty.Easy,
@@ -67,7 +68,7 @@ namespace TourPlanner.UnitTests
 
             TourLogs log2 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(),
                 ETourDifficulty.Easy,
@@ -82,12 +83,13 @@ namespace TourPlanner.UnitTests
             Assert.AreEqual(difficulty, 2);
         }
         [Test]
-        public void Test_AverageDiff_DifferentRating()
+        public void Test_AverageDifficulty_DifferentValues()
         {
             //arrange
+             
             TourLogs log1 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(),
                 ETourDifficulty.Easy,
@@ -99,7 +101,7 @@ namespace TourPlanner.UnitTests
 
             TourLogs log2 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(),
                 ETourDifficulty.Hard,
@@ -121,7 +123,7 @@ namespace TourPlanner.UnitTests
             Collection<TourLogs> logs = new();
             TourLogs log1 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(0,0,50),
                 ETourDifficulty.Warmup,
@@ -133,7 +135,7 @@ namespace TourPlanner.UnitTests
 
             TourLogs log2 = new TourLogs(
                 Guid.NewGuid(),
-                Guid.NewGuid(),
+                tourId,
                 new DateTime(),
                 new TimeSpan(0,0,20),
                 ETourDifficulty.Easy,

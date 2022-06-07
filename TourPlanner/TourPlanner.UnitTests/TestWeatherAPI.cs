@@ -12,7 +12,7 @@ namespace TourPlanner.UnitTests
     public class TestWeatherAPI
     {
         [Test]
-        public void Test_WeatherAPI_getValidWeather_Temperatur()
+        public void Test_WeatherAPI_GetValidWeather_Temperatur()
         {
             //arrange
             Tour tour = new Tour();
@@ -23,7 +23,7 @@ namespace TourPlanner.UnitTests
             Assert.AreNotEqual(weather.Temp, String.Empty);
         }
         [Test]
-        public void Test_WeatherAPI_getValidWeather_Description()
+        public void Test_WeatherAPI_GetValidWeather_Description()
         {
             //arrange
             Tour tour = new Tour();

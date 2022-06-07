@@ -10,7 +10,7 @@ using TourPlanner.Models;
 
 namespace TourPlanner.UnitTests
 {
-    public class SearEngineTests
+    public class SearchEngineTests
     {
         Collection<Tour> tours = new Collection<Tour>();
         [OneTimeSetUp]
@@ -25,7 +25,7 @@ namespace TourPlanner.UnitTests
                 "Bike",
                 200,
                 new TimeSpan(2, 12, 13),
-                "//Somepath/test"
+                "//Some_path/test"
             );
             tours.Add(tour1);
             Tour tour2 = new Tour(
@@ -37,7 +37,7 @@ namespace TourPlanner.UnitTests
                 "Bike",
                 200,
                 new TimeSpan(2, 12, 13),
-                "//Somepath/test"
+                "//Some_path/test"
             );
             tours.Add(tour2);
             Tour tour3 = new Tour(
@@ -49,7 +49,7 @@ namespace TourPlanner.UnitTests
                 "Bike",
                 200,
                 new TimeSpan(2, 12, 13),
-                "//Somepath/test"
+                "//Some_path/test"
             );
             tours.Add(tour3);
             Tour tour4 = new Tour(
@@ -61,7 +61,7 @@ namespace TourPlanner.UnitTests
                 "Bike",
                 200,
                 new TimeSpan(2, 12, 13),
-                "//Somepath/test"
+                "//Some_path/test"
             );
             tours.Add(tour4);
         }
@@ -76,7 +76,7 @@ namespace TourPlanner.UnitTests
             Assert.AreEqual(result.Count, 1);
         }
         [Test]
-        public void Test_Searchengine_FindMultible()
+        public void Test_Searchengine_FindMultiple()
         {
             //arrange  
 
@@ -96,7 +96,7 @@ namespace TourPlanner.UnitTests
             Assert.AreEqual(result.Count, 0);
         }
         [Test]
-        public void Test_Searchengine_FindAllemptyStrings()
+        public void Test_Searchengine_FindAllEmptyStrings()
         {
             //arrange  
 
