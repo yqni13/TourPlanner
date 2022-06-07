@@ -11,7 +11,7 @@ namespace TourPlanner.ViewModels.MainVM
 {
     public partial class MainViewModel
     {
-
+        public List<String> ToDeleteMapPaths = new();
         private void SubToResultsViewEvents()
         {
             ResultView.SelectedTourChanged += (_, tour) =>
@@ -22,8 +22,7 @@ namespace TourPlanner.ViewModels.MainVM
                     _isTourSelected = true;
                     LogsView.TourLogCollection = LogController.GetSpecificLogs(tour.ID);
                     DetailView.SetMapPath(tour.MapPath);
-                    DetailView.ChildFriendly = DetailView.SetChildFriendliness(tour);
-                    //DetailView.SetChildFriendliness(tour);
+                    DetailView.ChildFriendly = DetailView.SetChildFriendliness(tour);                    
                     DetailView.Popularity = GeneralController.CalculatePopularity(tour);
                     DetailView.TourWeather = TourController.GetWeather(tour);                    
                 }
@@ -42,10 +41,12 @@ namespace TourPlanner.ViewModels.MainVM
             };
             ResultView.DeleteTourEvent += (_, tour) =>
             {
+                // Prepare to Add the map files from deleted tours for deleting at end of program.
+                ToDeleteMapPaths.Add(tour.MapPath);
                 TourController.DeleteTour(tour);
                 DetailView.SetSelectedTour(new Tour());
                 DetailView.SetMapPath(null);
-                UpdateTourList();
+                UpdateTourList();                
             };
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:TourPlanner.ViewComponents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" MaxHeight="2000" Width="940" MaxWidth="1000">
+        Title="MainWindow" Height="800" Width="940" >
     
     <Grid Margin="3">
         <Grid.RowDefinitions>
@@ -15,7 +15,8 @@
             <RowDefinition Height="*"/>            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" MaxWidth="300"/>            
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="30" Content="TourPlanner" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="CadetBlue"/>
@@ -24,7 +25,8 @@
             <local:TourSearchBar x:Name="TourSearchBar" DockPanel.Dock="Top"/>
             <local:TourDataResults x:Name="TourDataResults" DockPanel.Dock="Top"/>
         </DockPanel>
-        <Grid Margin="3" Grid.Row="3" Grid.Column="1">
+        <GridSplitter Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Width="3" VerticalAlignment="Stretch"></GridSplitter>
+        <Grid Margin="3" Grid.Row="3" Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="480"/>
                 <RowDefinition Height="Auto"/>

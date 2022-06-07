@@ -17,7 +17,7 @@ namespace TourPlanner.DAL
     {        
         public static void AddTourLog(TourLogs log, int diff, int rating)
         {
-            int a, b;
+            
             using (IDbConnection connection = DBConnection.GetConnection())
             {
                 connection.Open();
@@ -178,8 +178,6 @@ namespace TourPlanner.DAL
                 c.Parameters["id"].Value = logID;
 
                 command.ExecuteNonQuery();
-
-                //return true;
             }
         }
     }

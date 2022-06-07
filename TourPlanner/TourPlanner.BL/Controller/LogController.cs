@@ -15,6 +15,7 @@ namespace TourPlanner.BL.Services
     public class LogController
     {
         private static ILoggerWrapper logger = LoggerFactory.GetLogger();
+
         public static void AddTourLog(TourLogs log)
         {
             if(log.LogID == Guid.Empty)
@@ -28,10 +29,10 @@ namespace TourPlanner.BL.Services
                 TourLogAccess.AddTourLog(log, difficulty, rating);
                 logger.Debug("Added TourLog with ID " + log.LogID + " to Database");
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Failed to add tour " + log.LogID + " to Database");
-                MessageBox.Show(err.ToString());
+                throw;
             }
         }
 
@@ -42,10 +43,10 @@ namespace TourPlanner.BL.Services
                 TourLogAccess.DeleteTourLog(log.LogID);
                 logger.Debug("Deleted tour with ID " + log.LogID + " from Database");
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Failed to delete tour " + log.LogID + " from Database");
-                MessageBox.Show(err.ToString());
+                throw;
             }
         }
 
@@ -56,10 +57,10 @@ namespace TourPlanner.BL.Services
                 TourLogAccess.UpdateTourLog(log);
                 logger.Debug("Updated tour with ID " + log.LogID + " in Database");
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Failed to update tour " + log.LogID + " in Database");
-                MessageBox.Show(err.ToString());
+                throw;
             }
         }
 
@@ -71,10 +72,10 @@ namespace TourPlanner.BL.Services
                 logs = TourLogAccess.GetAllTourLogs();
                 logger.Debug("Fetched all " + logs.Count.ToString() + " logs from Database");
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Could not get logs from DB");
-                MessageBox.Show(err.ToString());
+                throw;
             }
             return logs;
         }
@@ -87,10 +88,10 @@ namespace TourPlanner.BL.Services
                 logs = TourLogAccess.GetLogsFromSpecificTour(tourId);
                 logger.Debug("Fetched specific " + logs.Count.ToString() + " logs from Database");
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Could not get logs from DB");
-                MessageBox.Show(err.ToString());
+                throw;
             }
             return logs;
         }

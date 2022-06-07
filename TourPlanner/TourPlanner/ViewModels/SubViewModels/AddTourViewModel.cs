@@ -34,7 +34,7 @@ namespace TourPlanner.ViewModels.SubViewModels
 
         public AddTourViewModel()
         {
-            newTour.Name = "testTour";
+            /*newTour.Name = "testTour";
             newTour.Description = "Desc....";
             newTour.From.Street = "Kaschlgasse";
             newTour.From.Number = "1";
@@ -45,7 +45,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             newTour.To.Number = "1";
             newTour.To.City = "Wien";
             newTour.To.ZibCode = 1010;
-            newTour.To.Country = "AT";
+            newTour.To.Country = "AT";*/
             //AddTourCommand function raises the ToursChangedEvent event when called            
             AddTourCommand = new RelayCommand((_) =>
             {
@@ -63,13 +63,12 @@ namespace TourPlanner.ViewModels.SubViewModels
         public bool ValidateInput()
         {
             if (newTour.Name =="" ||
+                newTour.Description == "" ||
                 newTour.From.Street == "" ||
                 newTour.From.Number == "" ||
-                newTour.From.City == "" ||
                 newTour.From.ZibCode <= 0 ||
                 newTour.To.Street == "" ||
                 newTour.To.Number == "" ||
-                newTour.To.City == "" ||
                 newTour.To.ZibCode <= 0                
                 )
             {

@@ -67,11 +67,11 @@ namespace TourPlanner.UnitTests
         {
             //arrange  
             TourDataResultsViewModel vm = new TourDataResultsViewModel();
-            Collection<Tour> tourrcoll = new Collection<Tour>();
+            Collection<Tour> tourResultCollection = new Collection<Tour>();
             //Act
-            vm.UpdateTours(tourrcoll);
+            vm.UpdateTours(tourResultCollection);
             //Assert
-            Assert.AreEqual(vm.Data, tourrcoll);
+            Assert.AreEqual(vm.Data, tourResultCollection);
         }
 
 

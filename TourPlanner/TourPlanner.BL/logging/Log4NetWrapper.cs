@@ -3,6 +3,8 @@ using System.IO;
 
 namespace Example.Log4Net.logging
 {
+    //Taken from example code SWEN2 lecture.
+
     /// <summary>
     /// Wraps the log4j2 logger instances by realizing interface ILoggerWrapper.
     /// This avoids direct dependencies to log4j2 package.

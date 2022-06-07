@@ -35,6 +35,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         
         public string Difficulty { get; set; }
         public string Rating { get; set; }
+        
 
         private TourLogs _newLog = new();
         public TourLogs NewLog
@@ -42,8 +43,7 @@ namespace TourPlanner.ViewModels.SubViewModels
             get { return _newLog; }
             set
             {
-                _newLog = value;
-                //_newLog.Timestamp = TimeOfLogCreation;
+                _newLog = value;                
                 OnPropertyChanged();
             }
         }
@@ -52,27 +52,34 @@ namespace TourPlanner.ViewModels.SubViewModels
         {
 
             AddLogCommand = new RelayCommand((_) =>
-            {
-                //NewLog.Timestamp = TimeOfLogCreation;
+            {                
                 NewLog.Difficulty = LogController.GetETourDifficultyEnumeration(Difficulty);
                 NewLog.Rating = LogController.GetETourRatingEnumeration(Rating);
                 
                 if (ValidateInput())
                 {
                     this.AddedTourLogEvent?.Invoke(this, NewLog);
-                    this.NewLog = new TourLogs();
+                    ResetInput();
                 }
             });
             CloseDialogCommand = new RelayCommand((_) =>
             {
                 this.CloseAddLogDialogEvent?.Invoke(this, EventArgs.Empty);
+                ResetInput();
             });
         }
 
-        public bool ValidateInput()
+        public void ResetInput()
         {
+            this.NewLog = new TourLogs();
+            Difficulty = "";
+            Rating = "";
+        }
+
+        public bool ValidateInput()
+        {            
             if (NewLog.TourID.ToString() == "" ||                
-                NewLog.Comment == "" ||
+                NewLog.Comment == String.Empty ||
                 NewLog.Difficulty.ToString() == "" ||
                 NewLog.TotalTime.ToString() == "" ||
                 NewLog.Rating.ToString() == ""                
@@ -83,6 +90,8 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
             return true;
         }
+
+        
 
         private DateTime _timeOfLogCreation;
         public DateTime TimeOfLogCreation

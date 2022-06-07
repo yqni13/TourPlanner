@@ -20,6 +20,7 @@ namespace TourPlanner.ViewModels.MainVM
                 log.Timestamp = DateTime.Now.Date;
                 log.TourID = DetailView.DetailSelectedTour.ID;
                 LogController.AddTourLog(log);
+
                 UpdateTourLogs(log.TourID);
                 CloseOpenWindow();                
             };

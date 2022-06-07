@@ -26,8 +26,7 @@ namespace TourPlanner.BL.Search
                 }
                 return returnCollection;
             }
-            return tours;
-            
+            return tours;            
         }
     }
 }

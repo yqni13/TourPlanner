@@ -17,13 +17,15 @@ CREATE TABLE
             t_mappath varchar
 );
 
+
+
 CREATE TABLE
     IF NOT EXISTS
         tourlogs (
             tl_id uuid
                 constraint tourlogs_pk
                     primary key,
-            tl_tour uuid CONSTRAINT tourlogs_tours_t_id_fk REFERENCES tours,
+            tl_tour uuid CONSTRAINT tourlogs_tours_t_id_fk REFERENCES tours ON DELETE CASCADE,
             tl_date date,
             tl_time time,
             tl_difficulty integer,

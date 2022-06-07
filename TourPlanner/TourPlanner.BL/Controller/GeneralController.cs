@@ -21,23 +21,6 @@ namespace TourPlanner.BL.Services
             return seconds + minutes + hours;
         }
 
-        public static Tour AddTourDescription(Tour tour, string description)
-        {
-            tour.Description = description;
-            return tour;
-        }
-
-        public static List<string> GetRouteTypes()
-        {
-            List<string> types = new();
-            types.Add("fastest");
-            types.Add("shortest");
-            types.Add("pedestrian");
-            types.Add("bicyle");
-
-            return types;
-        }
-
         public static int CalculatePopularity(Tour tour)
         {
             Collection<TourLogs> logs = LogController.GetSpecificLogs(tour.ID);
@@ -82,8 +65,7 @@ namespace TourPlanner.BL.Services
             // Converting back to correct calculated and readable hh:mm:ss string.
             timeInSeconds = timeInSeconds / tourLogs.Count;
              
-            return TimeSpan.FromSeconds(timeInSeconds).ToString();
-            
+            return TimeSpan.FromSeconds(timeInSeconds).ToString();            
         }
 
         public static double AverageDifficulty(Collection<TourLogs> tourlogs)
@@ -144,7 +126,6 @@ namespace TourPlanner.BL.Services
             // Converting back to correct calculated and readable hh:mm:ss string.
             timeInSeconds = timeInSeconds / tourLogs.Count;
             return timeInSeconds;
-        }
-                
+        }                
     }    
 }

@@ -20,7 +20,7 @@ namespace TourPlanner.UnitTests
         }
 
         [Test, Order(1)]
-        public void Test_Logger_Logfilecreated()
+        public void Test_Logger_LogfileCreated()
         {
             //arrange
 

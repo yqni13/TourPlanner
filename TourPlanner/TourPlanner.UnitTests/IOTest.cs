@@ -26,11 +26,14 @@ namespace TourPlanner.UnitTests
                 "Bike",
                 200,
                 new TimeSpan(2, 12, 13),
-                "//Somepath/test"
+                "//Some_path/test"
             );
-            Directory.CreateDirectory("TestIO");
+            string folder = "TestIO";
+            if(!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
             tour.MapPath = null;
         }
+
         [OneTimeTearDown]
         public void Teardown()
         {
