@@ -78,8 +78,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         }
 
         public bool ValidateInput()
-        {
-            MessageBox.Show(NewLog.Comment.ToString());
+        {            
             if (NewLog.TourID.ToString() == "" ||                
                 NewLog.Comment == String.Empty ||
                 NewLog.Difficulty.ToString() == "" ||

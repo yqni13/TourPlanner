@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,16 +62,16 @@ namespace TourPlanner.BL.Services
         }
 
         public static void DeleteTour(Tour tour)
-        {            
+        {   
             try
             {
-                TourAccess.DeleteTour(tour.ID);
+                TourAccess.DeleteTour(tour.ID);                
                 logger.Debug("Deleted tour with ID " + tour.ID + " from Database");                
             }
             catch
             {
                 logger.Error("Failed to delete tour " + tour.ID + " from Database");                
-            }
+            }            
         }
 
         public static void ImportTour(String path)
@@ -133,6 +134,19 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to update Tour, message: " + err.Message);
+                MessageBox.Show(err.ToString());
+            }
+        }
+
+        public static void DeleteMapFile(string mappath)
+        {
+            try
+            {
+                File.Delete(mappath);
+
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.ToString());
             }
         }
