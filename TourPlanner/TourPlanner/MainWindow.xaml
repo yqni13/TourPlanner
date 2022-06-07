@@ -3,38 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:local="clr-namespace:TourPlanner.UI.ViewComponents"
+        xmlns:local="clr-namespace:TourPlanner.ViewComponents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="500">
+        Title="MainWindow" Height="800" MaxHeight="2000" Width="940" MaxWidth="1000">
     
     <Grid Margin="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> <!-- GridSplitter -->
+            <RowDefinition Height="*"/>            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300" MaxWidth="300"/>            
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="30" Content="TourPlanner" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="CadetBlue"/>
-        <local:TourMenu x:Name="TourMenu" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0"/>
-        <GridSplitter Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <local:TourSearchBar x:Name="TourSearchBar" Grid.Row="1" Grid.Column="2"/>
-        <Grid Grid.Row="2" Grid.Column="2">
+        <local:TourMenu x:Name="TourMenu" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <DockPanel Grid.Row="3" Grid.Column="0">
+            <local:TourSearchBar x:Name="TourSearchBar" DockPanel.Dock="Top"/>
+            <local:TourDataResults x:Name="TourDataResults" DockPanel.Dock="Top"/>
+        </DockPanel>
+        <Grid Margin="3" Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="480"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <local:TourDataResults x:Name="TourDataResults" Grid.Row="0" Grid.Column="0"/>
+            <local:TourDataDetails x:Name="TourDataDetails" Grid.Row="0" Grid.Column="0"/>
+            <GridSplitter Grid.Row="1" Grid.Column="0" Height="3" HorizontalAlignment="Stretch"></GridSplitter>
+            <local:TourDataLogs x:Name="TourDataLogs" Grid.Row="2" Grid.Column="0" />
         </Grid>
-
-
+                
+        <GridSplitter Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+                    
+        
     </Grid>
 
  

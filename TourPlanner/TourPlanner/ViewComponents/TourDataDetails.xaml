@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="TourPlanner.ViewComponents.TourDataDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TourPlanner.ViewComponents" 
+             DataContext="{Binding TourOverviewViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>                
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" BorderThickness="1" BorderBrush="DimGray" Margin="2">
+                <TextBox FontSize="20" Foreground="Goldenrod" TextAlignment="Center">Chosen Tour in Detail</TextBox>
+            </Border>
+            <Button Grid.Row="0" Grid.Column="1" IsDefault="True" Command="{Binding SaveChangesCommand}">Save</Button>
+            <Button Grid.Row="0" Grid.Column="2" Command="{Binding CancelChangesCommand}">Cancel</Button>
+        </Grid>
+
+        <TabControl Grid.Row="1" Margin="5">
+            <TabItem Header="Route" FontSize="20">
+                <Image Source="{Binding Image}" Width="600" Height="400"></Image>
+            </TabItem>
+            <TabItem Header="Description" FontSize="20" >
+                <StackPanel Width="600" Height="400" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="ID:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.ID}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Name:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding DetailSelectedTour.Name}" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Description:" HorizontalAlignment="Left" Width="150" Height="60" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding DetailSelectedTour.Description}" Width="430" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Stretch"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="From:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding From}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="To:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding To}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Transport-Type:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding DetailSelectedTour.Transport}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Distance:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding DetailSelectedTour.Distance}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Estimated Time:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
+                        <TextBox Text="{Binding DetailSelectedTour.Duration}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Popularity:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
+                        <TextBox Text="{Binding PopularityProperty}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Child-Friendliness:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
+                        <TextBox Text="{Binding ChildFriendly}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Weather" FontSize="20">
+                <StackPanel Width="600" Height="400" Margin="0,10,0,0">
+                    <TextBox FontSize="20" Foreground="Goldenrod" TextAlignment="Center">Tomorrow's weather:</TextBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Temperatur:" HorizontalAlignment="Left" Height="Auto" Width="130" FontSize="16" VerticalContentAlignment="Center"/>
+                        <Label Content="{Binding TourWeather.Temp}" HorizontalAlignment="Left" Height="Auto" Width="100" FontSize="16" VerticalContentAlignment="Center"/>                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Felt temperatur:" HorizontalAlignment="Left" Height="Auto" Width="130" FontSize="16" VerticalContentAlignment="Center"/>
+                        <Label Content="{Binding TourWeather.FeltTemp}" HorizontalAlignment="Left" Height="Auto" Width="100" FontSize="16" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Description:" HorizontalAlignment="Left" Height="Auto" Width="130" FontSize="16" VerticalContentAlignment="Center"/>
+                        <Label Content="{Binding TourWeather.WeatherCondition}" HorizontalAlignment="Left" Height="Auto" Width="100" FontSize="16" VerticalContentAlignment="Center"/>
+                    </StackPanel>                    
+                </StackPanel>
+            </TabItem>
+        </TabControl>        
+    </Grid>
+</UserControl>

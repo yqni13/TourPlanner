@@ -1,8 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="itext7" Version="7.2.2" />
+    <PackageReference Include="log4net" Version="2.0.14" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Npgsql" Version="6.0.4" />
+  </ItemGroup>
+	
+	<ItemGroup>
+		<CSFile Include="*.cs" Exclude="Tourplanner.json.config" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <CSFile Remove="TourLogAccess.cs" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
+	</ItemGroup>
 
 </Project>
