@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections.ObjectModel;
 using TourPlanner.BL.Services;
 using TourPlanner.Models;
 using TourPlanner.Models.Enums;
@@ -117,6 +118,7 @@ namespace TourPlanner.UnitTests
         public void Test_Childfriend_Yes()
         {
             //arrange
+            Collection<TourLogs> logs = new();
             TourLogs log1 = new TourLogs(
                 Guid.NewGuid(),
                 Guid.NewGuid(),
@@ -127,7 +129,7 @@ namespace TourPlanner.UnitTests
                 ETourRating.Satisfying,
                 12
                 );
-            tour.TourLogs.Add(log1);
+            logs.Add(log1);
 
             TourLogs log2 = new TourLogs(
                 Guid.NewGuid(),
@@ -139,11 +141,11 @@ namespace TourPlanner.UnitTests
                 ETourRating.Satisfying,
                 1
                 );
-            tour.TourLogs.Add(log2);
+            logs.Add(log2);
             //Act
             
             //Assert
-            Assert.IsTrue(GeneralController.CalculateChildFriendly(tour));
+            Assert.IsTrue(GeneralController.CalculateChildFriendly(tour, logs));
         }
     }
 }

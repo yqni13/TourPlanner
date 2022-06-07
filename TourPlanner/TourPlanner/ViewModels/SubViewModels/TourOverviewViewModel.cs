@@ -151,8 +151,8 @@ namespace TourPlanner.ViewModels.SubViewModels
 
         
         public string SetChildFriendliness(Tour tour)
-        {
-            if (GeneralController.CalculateChildFriendly(tour))
+        {            
+            if (GeneralController.CalculateChildFriendly(tour, LogController.GetSpecificLogs(tour.ID)))
                 return "true";
             else
                 return "false";

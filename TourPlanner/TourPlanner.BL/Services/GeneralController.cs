@@ -44,9 +44,8 @@ namespace TourPlanner.BL.Services
             return logs.Count;
         }
 
-        public static bool CalculateChildFriendly(Tour tour)
-        {
-            Collection<TourLogs> logs = LogController.GetSpecificLogs(tour.ID);
+        public static bool CalculateChildFriendly(Tour tour, Collection<TourLogs> logs)
+        {            
             if (logs.Count == 0)
                 return false;
             
