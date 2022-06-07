@@ -35,6 +35,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         
         public string Difficulty { get; set; }
         public string Rating { get; set; }
+        
 
         private TourLogs _newLog = new();
         public TourLogs NewLog
@@ -60,19 +61,27 @@ namespace TourPlanner.ViewModels.SubViewModels
                 if (ValidateInput())
                 {
                     this.AddedTourLogEvent?.Invoke(this, NewLog);
-                    this.NewLog = new TourLogs();
                 }
             });
             CloseDialogCommand = new RelayCommand((_) =>
             {
                 this.CloseAddLogDialogEvent?.Invoke(this, EventArgs.Empty);
+                ResetInput();
             });
+        }
+
+        public void ResetInput()
+        {
+            this.NewLog = new TourLogs();
+            Difficulty = "";
+            Rating = "";
         }
 
         public bool ValidateInput()
         {
+            MessageBox.Show(NewLog.Comment.ToString());
             if (NewLog.TourID.ToString() == "" ||                
-                NewLog.Comment == "" ||
+                NewLog.Comment == String.Empty ||
                 NewLog.Difficulty.ToString() == "" ||
                 NewLog.TotalTime.ToString() == "" ||
                 NewLog.Rating.ToString() == ""                
@@ -83,6 +92,8 @@ namespace TourPlanner.ViewModels.SubViewModels
             }
             return true;
         }
+
+        
 
         private DateTime _timeOfLogCreation;
         public DateTime TimeOfLogCreation

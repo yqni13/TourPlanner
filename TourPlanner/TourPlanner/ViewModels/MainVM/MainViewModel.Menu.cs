@@ -45,8 +45,13 @@ namespace TourPlanner.ViewModels.MainVM
             {
                 try
                 {
-                    Collection<TourLogs> logs = LogController.GetSpecificLogs(DetailView.DetailSelectedTour.ID);
-                    TourToPDF.GenerateTourReport(DetailView.DetailSelectedTour, logs);
+                    if (DetailView.DetailSelectedTour != null)
+                    {
+                        Collection<TourLogs> logs = LogController.GetSpecificLogs(DetailView.DetailSelectedTour.ID);
+                        TourToPDF.GenerateTourReport(DetailView.DetailSelectedTour, logs);
+                    }
+                    else
+                        MessageBox.Show("Please select a tour to get regarding Report.");
                 }
                 catch (Exception err)
                 {
