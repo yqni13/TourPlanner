@@ -139,7 +139,7 @@ namespace TourPlanner.BL.PDFGeneration
             var reg = new Regex(@"[^\-\""'()*+,./0-9<=>@A-Z\[\\\]^_`a-z{|}]");
 
             string tourName = reg.Replace(tour.Name, "_");
-            System.Windows.MessageBox.Show(tourName.ToString());
+            
             string fileName = $"{folder}/Report_{DateTime.Now.ToString("yyyy-MM-dd")}_{tourName}.pdf";
             string mapImage = tour.MapPath;
 

@@ -22,7 +22,10 @@ namespace TourPlanner.Models
         public ETourRating Rating { get; set; }
         public double Distance { get; set; }
 
-        public TourLogs() { }
+        public TourLogs()
+        {
+            Comment = "";
+        }
                 
         public TourLogs(Guid logID, Guid tourID, DateTime stamp, TimeSpan time, ETourDifficulty difficulty, string comment, ETourRating rating, double distance)
         {

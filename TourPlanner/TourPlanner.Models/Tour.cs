@@ -67,6 +67,7 @@ namespace TourPlanner.Models
         {
             this.From = new Adress();
             this.To = new Adress();
+            Description = "";
         }
 
         public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath)
