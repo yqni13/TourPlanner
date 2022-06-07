@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Example.Log4Net.logging;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -22,6 +23,8 @@ namespace TourPlanner.BL.MapQuestAPI
         public String Format { get; set; }
         public String RouteColor { get; set; }
         public String ScaleBar { get; set; }
+
+        private static ILoggerWrapper logger = LoggerFactory.GetLogger();
 
         public MapImageRequest()
         {
@@ -61,13 +64,13 @@ namespace TourPlanner.BL.MapQuestAPI
             }
             catch (NullReferenceException err)
             {
-                MessageBox.Show(err.ToString());
-                // Place logger here.
+                logger.Error(err.ToString());
+                throw;
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.ToString());
-                // Place logger here.
+                logger.Error(err.ToString());
+                throw;
             }
             return tour;
         }
