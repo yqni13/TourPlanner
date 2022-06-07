@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TourPlanner.BL.Services;
 using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.MainVM;
 using TourPlanner.ViewModels.SubViewModels;
@@ -25,6 +26,7 @@ namespace TourPlanner
         public MenuViewModel MenuViewModel {get;set;}
         public TourLogViewModel TourLogViewModel { get; set; }    
         public AddLogViewModel AddLogViewModel { get; set; }
+        public MainViewModel MainViewModel { get; set; }
 
         private void App_OnExecution(object sender, StartupEventArgs e)
         {
@@ -41,10 +43,11 @@ namespace TourPlanner
             MenuViewModel = new MenuViewModel();
             TourLogViewModel = new TourLogViewModel();
             AddLogViewModel = new AddLogViewModel();
+            MainViewModel = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel, TourOverviewViewModel, AddTourViewModel, MenuViewModel, TourLogViewModel, AddLogViewModel);
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel(SearchBarViewModel, TourDataResultsViewModel,TourOverviewViewModel, AddTourViewModel, MenuViewModel, TourLogViewModel, AddLogViewModel),
+                DataContext = MainViewModel,
                 TourSearchBar = { DataContext = SearchBarViewModel },
                 TourDataResults = { DataContext = TourDataResultsViewModel },
                 TourDataDetails = {DataContext = TourOverviewViewModel},
@@ -54,5 +57,16 @@ namespace TourPlanner
 
             window.Show();
         }
+
+        // Last resort to delete list of mapfile from deleted tours by ending program.
+        /*private void App_OnExit(object sender, ExitEventArgs e)
+        {
+            try
+            {
+                foreach(string s in MainViewModel.ToDeleteMapPaths)            
+                    TourController.DeleteMapFile(s);
+            }
+            catch { }
+        }*/
     }
 }

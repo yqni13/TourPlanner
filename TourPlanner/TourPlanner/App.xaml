@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TourPlanner"
-             Startup="App_OnExecution">
+             Startup="App_OnExecution"
+             >
+             
     <Application.Resources>
          
     </Application.Resources>

@@ -41,43 +41,43 @@
                 <StackPanel Width="600" Height="400" Margin="0,10,0,0">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="ID:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
-                        <TextBox Text="{Binding DetailSelectedTour.ID}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.ID}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Name:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding DetailSelectedTour.Name}" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.Name}" TextWrapping="Wrap" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Description:" HorizontalAlignment="Left" Width="150" Height="60" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding DetailSelectedTour.Description}" Width="430" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Stretch"/>
+                        <TextBox Text="{Binding DetailSelectedTour.Description}" TextWrapping="Wrap" Width="430" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="From:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding From}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding From}" TextWrapping="Wrap" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="To:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding To}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding To}" TextWrapping="Wrap" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Transport-Type:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding DetailSelectedTour.Transport}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.Transport}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Distance:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding DetailSelectedTour.Distance}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.Distance}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Estimated Time:" HorizontalAlignment="Left" Width="150" Height="Auto" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"></Label>
-                        <TextBox Text="{Binding DetailSelectedTour.Duration}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding DetailSelectedTour.Duration}" IsReadOnly="True" Width="430" Height="36" HorizontalAlignment="Center" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Popularity:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
-                        <TextBox Text="{Binding PopularityProperty}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding PopularityProperty}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Child-Friendliness:" HorizontalAlignment="Left" Height="Auto" Width="150" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center"/>
-                        <TextBox Text="{Binding ChildFriendly}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding ChildFriendly}" IsReadOnly="True" HorizontalAlignment="Center" Width="430" Height="36" BorderBrush="CadetBlue" BorderThickness="2,2,2,2" FontSize="14" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </TabItem>

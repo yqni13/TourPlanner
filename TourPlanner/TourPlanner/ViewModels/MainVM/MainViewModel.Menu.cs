@@ -20,11 +20,15 @@ namespace TourPlanner.ViewModels.MainVM
             {
                 try
                 {
-                    TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
+                    if (DetailView.DetailSelectedTour != null)
+                        TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
+                    else
+                        MessageBox.Show("For activating the export function, please select a tour first.");
                 }
-                catch
+                catch (Exception err)
                 {
                     MessageBox.Show("Something went wrong when exporting a file.");
+                    logger.Error(err.ToString());
                 }
                 
             };
@@ -34,9 +38,10 @@ namespace TourPlanner.ViewModels.MainVM
                 {
                     TourController.ImportTour(OpenFileDialog());
                 }
-                catch
+                catch (Exception err)
                 {
                     MessageBox.Show("Something went wrong when importing the file.");
+                    logger.Error(err.ToString());
                 }                
                 UpdateTourList();
             };
@@ -55,7 +60,8 @@ namespace TourPlanner.ViewModels.MainVM
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show(err.ToString());
+                    MessageBox.Show("We had a problem generating your specific Report. Please contact customer support.");
+                    logger.Error(err.ToString());
                 }
             };
 
@@ -69,7 +75,8 @@ namespace TourPlanner.ViewModels.MainVM
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show(err.ToString());
+                    MessageBox.Show("We had a problem generating your Summary. Please contact customer support.");
+                    logger.Error(err.ToString());
                 }
             };
         }
