@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using Example.Log4Net.logging;
 using iText.IO.Font.Constants;
 using iText.IO.Image;
 using iText.Kernel.Colors;
@@ -24,9 +24,10 @@ namespace TourPlanner.BL.PDFGeneration
 {
     public class TourToPDF
     {
+        private static ILoggerWrapper logger = LoggerFactory.GetLogger();
+
         public static void GenerateSummarizeReport(Collection<Tour> tourList)
-        {
-            System.Windows.MessageBox.Show("PDF Summarize was printed.");
+        {            
             // Containing statistical report of average time, distance and rating of all existing tours from their regarding tour logs.
             string folder = $"{Environment.CurrentDirectory}/PDF_Summary";
             if (!Directory.Exists(folder))
@@ -81,9 +82,7 @@ namespace TourPlanner.BL.PDFGeneration
                     .SetFontColor(ColorConstants.ORANGE);
             document.Add(tourlogsListHeader);
 
-            List listingAllStatistics = new List()
-                /*.SetSymbolIndent(12)
-                .SetListSymbol("\u2022")*/
+            List listingAllStatistics = new List()                
                 .SetMarginLeft(30)
                 .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD));
             foreach (Tour t in tourList)
@@ -125,13 +124,16 @@ namespace TourPlanner.BL.PDFGeneration
             }
 
             document.Close();
+
+            // Inform user that you successfully generated the pdf summary.
+            System.Windows.MessageBox.Show("PDF Summarize was printed.");
+            logger.Debug("PDF Summary successfully generated.");
+
         }
 
         public static void GenerateTourReport(Tour tour, Collection<TourLogs> logs)
-        {
-            System.Windows.MessageBox.Show("PDF Single Report was printed.");
+        {            
             // Containing all information of single tour including all regarding tour logs. 
-
             string folder = $"{Environment.CurrentDirectory}/PDF_Report";
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
@@ -265,6 +267,10 @@ namespace TourPlanner.BL.PDFGeneration
             }
 
             document.Close();
+
+            // Inform user that you successfully generated the pdf summary.
+            System.Windows.MessageBox.Show("PDF Single Report was printed.");
+            logger.Debug("PDF Report successfully generated.");
         }
 
         private static Cell getHeaderCell(String s)

@@ -15,7 +15,7 @@ namespace TourPlanner.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public Adress From { get; set; }        
-        public Adress To { get; set; }       
+        public Adress To { get; set; }
 
         private string _routeType = "fastest";
         public String Transport
@@ -47,10 +47,7 @@ namespace TourPlanner.Models
                     _mapType = "map";
             }
         }
-        public Double Distance { get; set; } = 0;
-
-        //Needs testing see if we can calculate average of list of TimeSpan (adding and subtracting two TimeSpan should work)
-        //public String Duration { get; set; }
+        public Double Distance { get; set; } = 0;                
         public TimeSpan Duration { get; set; }
         public String Session { get; set; }
         public String BoundingBox { get; set; }
@@ -83,27 +80,6 @@ namespace TourPlanner.Models
             Duration = duration;
             MapPath = mappath;
         }
-        public Tour(string name, string description, Adress from, Adress to)
-        {
-            Name = name;
-            Description = description;
-            From = from;
-            To = to;
-        }
-
-        public Tour(Guid id, string name, string description, Adress from, Adress to, string transport, double distance, TimeSpan duration, string mappath, Collection<TourLogs> logs)
-        {
-            ID = id;
-            Name = name;
-            Description = description;
-            From = from;
-            To = to;            
-            Transport = transport;
-            Distance = distance;
-            Duration = duration;
-            MapPath = mappath;
-            // Including Logs.
-            TourLogs = logs;
-        }
+        
     }
 }

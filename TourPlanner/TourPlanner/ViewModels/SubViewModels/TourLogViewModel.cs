@@ -37,8 +37,7 @@ namespace TourPlanner.ViewModels.SubViewModels
         public TourLogViewModel()
         {
             OpenAddDialogCommand = new RelayCommand((_) =>
-            {
-                // (this, EventArgs.Empty) => 2nd parameter if Eventhandler (line 19) is empty or gives specific datatype
+            {                
                 this.OpenAddDialogEvent?.Invoke(this, EventArgs.Empty);
             });
             DeleteTourLogsCommand = new RelayCommand((_) =>
@@ -61,8 +60,7 @@ namespace TourPlanner.ViewModels.SubViewModels
                 {
                     _selectedTourLog = value;
                     this.SelectTourLogsEvent?.Invoke(this, SelectedTourLog);
-                    OnPropertyChanged();
-                    // TODO: further methods?
+                    OnPropertyChanged();                    
                 }
             }
         }

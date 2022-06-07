@@ -18,8 +18,6 @@ namespace TourPlanner.BL.Services
     {
         private static ILoggerWrapper logger = LoggerFactory.GetLogger();
 
-        public static object Giud { get; private set; }
-
         public static Collection<Tour> GetTours()
         {
             Collection<Tour> tours = new();
@@ -31,6 +29,7 @@ namespace TourPlanner.BL.Services
             catch
             {
                 logger.Error("Could not get tours from DB");
+                throw;
             }
             return tours;
         }
@@ -51,26 +50,31 @@ namespace TourPlanner.BL.Services
                 Task<Tour> imagetask = Task.Run<Tour>(async () => await imagerequest.RequestMapImageFromAPI(requesttask.Result));
                 
                 TourAccess.AddTour(imagetask.Result);               
-                logger.Debug("Added tour with ID " + tour.ID + " to Database");                
+                logger.Debug("Added tour with ID " + tour.ID + " to Database");   
+                foreach(TourLogs logs in tour.TourLogs)
+                {
+                    LogController.AddTourLog(logs);
+                }
             }
-
             catch (Exception err)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
                 MessageBox.Show(err.ToString());
+                throw;
             }            
         }
 
         public static void DeleteTour(Tour tour)
         {   
             try
-            {
+            {                
                 TourAccess.DeleteTour(tour.ID);                
                 logger.Debug("Deleted tour with ID " + tour.ID + " from Database");                
             }
-            catch
+            catch (Exception)
             {
-                logger.Error("Failed to delete tour " + tour.ID + " from Database");                
+                logger.Error("Failed to delete tour " + tour.ID + " from Database");
+                throw;
             }            
         }
 
@@ -89,17 +93,12 @@ namespace TourPlanner.BL.Services
             {
                 AddTour(tour);
             }
-            catch
+            catch (Exception)
             {
                 logger.Error("Failed to Import tour");
                 throw;
             }
             
-        }
-
-        private Tour getMapQuestData(Tour tour)
-        {
-            return tour;
         }
 
         public static Weather GetWeather(Tour tour)
@@ -116,12 +115,12 @@ namespace TourPlanner.BL.Services
                 logger.Debug("Fetched Weather for tour " + tour.ID);
             }
 
-            catch (Exception err)
+            catch (Exception)
             {
                 logger.Error("Failed to add tour " + tour.ID + " to Database");
-                MessageBox.Show(err.ToString());
+                throw;
             }
-            //MessageBox.Show(weather.Temp);
+            
             return weather;
         }
 
@@ -134,7 +133,7 @@ namespace TourPlanner.BL.Services
             catch (Exception err)
             {
                 logger.Error("Failed to update Tour, message: " + err.Message);
-                MessageBox.Show(err.ToString());
+                throw;
             }
         }
 

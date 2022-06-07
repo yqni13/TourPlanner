@@ -41,7 +41,7 @@ namespace TourPlanner.BL.Services
                 logger.Error("Directtory not found");
                 throw;
             }
-            catch
+            catch (Exception)
             {
                 logger.Error("Exporting File Error");
                 throw;
@@ -62,7 +62,7 @@ namespace TourPlanner.BL.Services
                 logger.Error("Serialization Error when importing Tour");
                 throw;
             }
-            catch
+            catch (Exception)
             {
                 logger.Error("Importing File Error");
                 throw;

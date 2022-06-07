@@ -66,11 +66,9 @@ namespace TourPlanner.ViewModels.SubViewModels
                 newTour.Description == "" ||
                 newTour.From.Street == "" ||
                 newTour.From.Number == "" ||
-                /*newTour.From.City == "" ||*/
                 newTour.From.ZibCode <= 0 ||
                 newTour.To.Street == "" ||
-                newTour.To.Number == "" /*||
-                newTour.To.City == "" */||
+                newTour.To.Number == "" ||
                 newTour.To.ZibCode <= 0                
                 )
             {

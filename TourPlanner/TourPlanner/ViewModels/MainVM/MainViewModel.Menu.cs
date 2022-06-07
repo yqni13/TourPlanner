@@ -21,7 +21,11 @@ namespace TourPlanner.ViewModels.MainVM
                 try
                 {
                     if (DetailView.DetailSelectedTour != null)
-                        TourIO.ExportTour(DetailView.DetailSelectedTour, SaveFileDialog());
+                    {
+                        Tour tour = DetailView.DetailSelectedTour;
+                        tour.TourLogs = LogsView.TourLogCollection;
+                        TourIO.ExportTour(tour, SaveFileDialog());
+                    }
                     else
                         MessageBox.Show("For activating the export function, please select a tour first.");
                 }
