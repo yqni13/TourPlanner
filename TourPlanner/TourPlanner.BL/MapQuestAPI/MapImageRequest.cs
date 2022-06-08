@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.Models;
@@ -54,8 +55,12 @@ namespace TourPlanner.BL.MapQuestAPI
                 // Wait for the request to complete and return requested image by reading the bytes.
                 var response = await client.GetByteArrayAsync(MapImageURL);
 
+                var reg = new Regex(@"[^\-\""'()*+,./0-9<=>@A-Z\[\\\]^_`a-z{|}]");
+
+                string tourName = reg.Replace(tour.Name, "_");
+
                 // Generate file name by Guid (avoid DateTime format drama with no ":") and name of tour.
-                imageName = $"{tour.ID}_{tour.Name}.{Format}";
+                imageName = $"{tour.ID}_{tourName}.{Format}";
                 tour.MapPath = $"{Environment.CurrentDirectory}/{ImageDirectoryPath}/{imageName}";
                 if(!File.Exists(tour.MapPath))
                 {
